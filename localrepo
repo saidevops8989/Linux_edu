@@ -1,0 +1,54 @@
+Steps download the ISO which has full packages 11G
+https://mirror.stream.centos.org/9-stream/BaseOS/x86_64/iso/
+#if downloaded on local scp to the server which we need to make it as localrepo server##
+or 
+https://mirror.stream.centos.org/9-stream/BaseOS/x86_64/iso/CentOS-Stream-9-latest-x86_64-dvd1.iso > dvd.iso
+
+Steps to make server
+#mount -o loop dvd.iso /mnt
+#cd /mnt
+#ls
+AppStream  BaseOS  EFI  EULA  extra_files.json  images  isolinux  LICENSE  media.repo
+
+#### steps to make local repo on local machine###
+
+[root@localhost yum.repos.d]# pwd
+/etc/yum.repos.d
+[root@localhost yum.repos.d]# cat local.repo 
+[localrepo]
+name=CentOS Stream $releasever - BaseOS
+baseurl=file://mnt/BaseOS
+
+#####
+
+if we need client and server for other machines.
+  On server need to install Http
+#dnf install http* -y
+
+#systemctl start httpd
+#systemctl enable httpd
+#systemctl stop firewalld
+#mdkir -p /var/www/html/repo
+#mount -o loop dvd.iso /var/www/html/repo/
+
+
+#####on the client side#####
+[root@localhost yum.repos.d]# pwd
+/etc/yum.repos.d
+[root@localhost yum.repos.d]# cat local.repo 
+[localrepo]
+name=CentOS Stream $releasever - BaseOS
+baseurl=http://192.168.12.179/repo/BaseOS
+#gpgcheck=0
+enabled=1
+
+######second repo###
+
+[localrepo2]
+name=CentOS Stream $releasever - BaseOS
+baseurl=http://192.168.12.179/repo/AppStream
+enabled=1
+########################
+
+
+
