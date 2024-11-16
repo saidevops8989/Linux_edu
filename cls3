@@ -1,0 +1,351 @@
+root@server999 ~]# history 
+    1  ip a
+    2  df -h
+    3  ip a
+    4  hostnamectl set-hostname server999.example.com
+    5  ping google.com
+    6  dnf install httpd
+    7  dnf install ftp
+    8  #cd /etc/yum.repos.d/
+    9  cd /etc/yum.repos.d/
+   10  ls
+   11  cat centos.repo 
+   12  dnf install ftp
+   13  pwd
+   14  cd
+   15  dnf install ftp
+   16  dnf update ftp
+   17  #dnf remove ftp
+   18  rpm -qa
+   19  rpm -qa | grep ftp
+   20  dnf remove ftp
+   21  dnf history
+   22  #dnf update ftp
+   23  dnf update ftp
+   24  #dnf remove ftp
+   25  dnf history undo 3
+   26  dnf history
+   27  #rpm -qa | grep ftp
+   28  dnf install telnet
+   29  rpm -qa| grep telnet
+   30  rpm -e telnet-0.17-85.el9.x86_64
+   31  rpm -qa| grep telnet
+   32  #dnf history undo 3
+   33  ls
+   34  du -sh CentOS-Stream-9-latest-x86_64-dvd1.iso 
+   35  ls
+   36  rm -rf CentOS-Stream-9-latest-x86_64-dvd1.iso 
+   37  ls
+   38  du -sh CentOS-Stream-9-latest-x86_64-dvd1.iso 
+   39  ls /mnt/
+   40  mount -o loop CentOS-Stream-9-latest-x86_64-dvd1.iso /mnt/
+   41  ls /mnt/
+   42  dnf install ftp
+   43  pwd
+   44  ls /mnt/
+   45  cd /mnt/
+   46  pwd
+   47  ls
+   48  cd /etc/yum.repos.d/
+   49  ls
+   50  cat centos.repo 
+   51  #server999- please dont go to intenert
+   52  dnf install ftp
+   53  ls
+   54  mv centos-addons.repo centos-addons.repo_bkp
+   55  mv centos.repo centos.repo_bkp
+   56  dnf install ftp
+   57  ls
+   58  cat local.repo_bkp 
+   59  cp local.repo_bkp local1.repo
+   60  vi local1.repo 
+   61  dnf install ftp
+   62  cat local1.repo 
+   63  ls  /mnt/
+   64  dnf history
+   65  cat local1.repo 
+   66  ls /mnt/
+   67  ls
+   68  cd /mnt/
+   69  cd AppStream/
+   70  ls
+   71  cd Packages/
+   72  ls -l | wc -l
+   73  cd
+   74  ls -l | wc -l
+   75  cd -
+   76  ls -l | wc -l
+   77  dnf install http* -y
+   78  rpm -qa | grep http
+   79  systemctl status httpd
+   80  systemctl enable httpd
+   81  systemctl status httpd
+   82  systemctl start httpd
+   83  systemctl status httpd
+   84  cd /var/www/html/
+   85  ls
+   86  vi index.html
+   87  cat index.html 
+   88  ip a
+   89  cd 
+   90  cd /mnt/
+   91  ls
+   92  cd ..
+   93  df -h
+   94  umount /mnt 
+   95  df -h
+   96  mount -o loop /root/CentOS-Stream-9-latest-x86_64-dvd1.iso /var/www/html/repo/
+   97  df -h
+   98  cd /var/www/html/repo
+   99  ls
+  100  cat /etc/yum.repos.d/local
+  101  cat /etc/yum.repos.d/local.repo_bkp 
+  102  cd /etc/yum.repos.d/
+  103  ls
+  104  cat centos.repo_bkp 
+  105  uname -a
+  106  dnf update kernel
+  107  dnf update 
+  108  dateroot@server999 ~]# history 
+    1  ip a
+    2  df -h
+    3  ip a
+    4  hostnamectl set-hostname server999.example.com
+    5  ping google.com
+    6  dnf install httpd
+    7  dnf install ftp
+    8  #cd /etc/yum.repos.d/
+    9  cd /etc/yum.repos.d/
+   10  ls
+   11  cat centos.repo 
+   12  dnf install ftp
+   13  pwd
+   14  cd
+   15  dnf install ftp
+   16  dnf update ftp
+   17  #dnf remove ftp
+   18  rpm -qa
+   19  rpm -qa | grep ftp
+   20  dnf remove ftp
+   21  dnf history
+   22  #dnf update ftp
+   23  dnf update ftp
+   24  #dnf remove ftp
+   25  dnf history undo 3
+   26  dnf history
+   27  #rpm -qa | grep ftp
+   28  dnf install telnet
+   29  rpm -qa| grep telnet
+   30  rpm -e telnet-0.17-85.el9.x86_64
+   31  rpm -qa| grep telnet
+   32  #dnf history undo 3
+   33  ls
+   34  du -sh CentOS-Stream-9-latest-x86_64-dvd1.iso 
+   35  ls
+   36  rm -rf CentOS-Stream-9-latest-x86_64-dvd1.iso 
+   37  ls
+   38  du -sh CentOS-Stream-9-latest-x86_64-dvd1.iso 
+   39  ls /mnt/
+   40  mount -o loop CentOS-Stream-9-latest-x86_64-dvd1.iso /mnt/
+   41  ls /mnt/
+   42  dnf install ftp
+   43  pwd
+   44  ls /mnt/
+   45  cd /mnt/
+   46  pwd
+   47  ls
+   48  cd /etc/yum.repos.d/
+   49  ls
+   50  cat centos.repo 
+   51  #server999- please dont go to intenert
+   52  dnf install ftp
+   53  ls
+   54  mv centos-addons.repo centos-addons.repo_bkp
+   55  mv centos.repo centos.repo_bkp
+   56  dnf install ftp
+   57  ls
+   58  cat local.repo_bkp 
+   59  cp local.repo_bkp local1.repo
+   60  vi local1.repo 
+   61  dnf install ftp
+   62  cat local1.repo 
+   63  ls  /mnt/
+   64  dnf history
+   65  cat local1.repo 
+   66  ls /mnt/
+   67  ls
+   68  cd /mnt/
+   69  cd AppStream/
+   70  ls
+   71  cd Packages/
+   72  ls -l | wc -l
+   73  cd
+   74  ls -l | wc -l
+   75  cd -
+   76  ls -l | wc -l
+   77  dnf install http* -y
+   78  rpm -qa | grep http
+   79  systemctl status httpd
+   80  systemctl enable httpd
+   81  systemctl status httpd
+   82  systemctl start httpd
+   83  systemctl status httpd
+   84  cd /var/www/html/
+   85  ls
+   86  vi index.html
+   87  cat index.html 
+   88  ip a
+   89  cd 
+   90  cd /mnt/
+   91  ls
+   92  cd ..
+   93  df -h
+   94  umount /mnt 
+   95  df -h
+   96  mount -o loop /root/CentOS-Stream-9-latest-x86_64-dvd1.iso /var/www/html/repo/
+   97  df -h
+   98  cd /var/www/html/repo
+   99  ls
+  100  cat /etc/yum.repos.d/local
+  101  cat /etc/yum.repos.d/local.repo_bkp 
+  102  cd /etc/yum.repos.d/
+  103  ls
+  104  cat centos.repo_bkp root@server999 ~]# history 
+    1  ip a
+    2  df -h
+    3  ip a
+    4  hostnamectl set-hostname server999.example.com
+    5  ping google.com
+    6  dnf install httpd
+    7  dnf install ftp
+    8  #cd /etc/yum.repos.d/
+    9  cd /etc/yum.repos.d/
+   10  ls
+   11  cat centos.repo 
+   12  dnf install ftp
+   13  pwd
+   14  cd
+   15  dnf install ftp
+   16  dnf update ftp
+   17  #dnf remove ftp
+   18  rpm -qa
+   19  rpm -qa | grep ftp
+   20  dnf remove ftp
+   21  dnf history
+   22  #dnf update ftp
+   23  dnf update ftp
+   24  #dnf remove ftp
+   25  dnf history undo 3
+   26  dnf history
+   27  #rpm -qa | grep ftp
+   28  dnf install telnet
+   29  rpm -qa| grep telnet
+   30  rpm -e telnet-0.17-85.el9.x86_64
+   31  rpm -qa| grep telnet
+   32  #dnf history undo 3
+   33  ls
+   34  du -sh CentOS-Stream-9-latest-x86_64-dvd1.iso 
+   35  ls
+   36  rm -rf CentOS-Stream-9-latest-x86_64-dvd1.iso 
+   37  ls
+   38  du -sh CentOS-Stream-9-latest-x86_64-dvd1.iso 
+   39  ls /mnt/
+   40  mount -o loop CentOS-Stream-9-latest-x86_64-dvd1.iso /mnt/
+   41  ls /mnt/
+   42  dnf install ftp
+   43  pwd
+   44  ls /mnt/
+   45  cd /mnt/
+   46  pwd
+   47  ls
+   48  cd /etc/yum.repos.d/
+   49  ls
+   50  cat centos.repo 
+   51  #server999- please dont go to intenert
+   52  dnf install ftp
+   53  ls
+   54  mv centos-addons.repo centos-addons.repo_bkp
+   55  mv centos.repo centos.repo_bkp
+   56  dnf install ftp
+   57  ls
+   58  cat local.repo_bkp 
+   59  cp local.repo_bkp local1.repo
+   60  vi local1.repo 
+   61  dnf install ftp
+   62  cat local1.repo 
+   63  ls  /mnt/
+   64  dnf history
+   65  cat local1.repo 
+   66  ls /mnt/
+   67  ls
+   68  cd /mnt/
+   69  cd AppStream/
+   70  ls
+   71  cd Packages/
+   72  ls -l | wc -l
+   73  cd
+   74  ls -l | wc -l
+   75  cd -
+   76  ls -l | wc -l
+   77  dnf install http* -y
+   78  rpm -qa | grep http
+   79  systemctl status httpd
+   80  systemctl enable httpd
+   81  systemctl status httpd
+   82  systemctl start httpd
+   83  systemctl status httpd
+   84  cd /var/www/html/
+   85  ls
+   86  vi index.html
+   87  cat index.html 
+   88  ip a
+   89  cd 
+   90  cd /mnt/
+   91  ls
+   92  cd ..
+   93  df -h
+   94  umount /mnt 
+   95  df -h
+   96  mount -o loop /root/CentOS-Stream-9-latest-x86_64-dvd1.iso /var/www/html/repo/
+   97  df -h
+   98  cd /var/www/html/repo
+   99  ls
+  100  cat /etc/yum.repos.d/local
+  101  cat /etc/yum.repos.d/local.repo_bkp 
+  102  cd /etc/yum.repos.d/
+  103  ls
+  104  cat centos.repo_bkp 
+  105  uname -a
+  106  dnf update kernel
+  107  dnf update 
+  108  date
+  109  systemctl restart httpd
+  110  cd
+  111  history 
+
+  105  uname -a
+  106  dnf update kernel
+  107  dnf update 
+  108  date
+  109  systemctl restart httpd
+  110  cd
+  111  history 
+
+
+  109  systemctl restart httpd
+  110  cd
+  111  history [root@server999 ~]# !101
+cat /etc/yum.repos.d/local.repo_bkp 
+[localrepo]
+name=CentOS Stream $releasever - BaseOS
+baseurl=file:///var/www/html/repo/BaseOS
+enabled=1
+
+#[localrepo2]
+#name=CentOS Stream $releasever - BaseOS
+#baseurl=http://192.168.12.179/repo/AppStream
+#enabled=1
+[root@server999 ~]#
+
+
+
