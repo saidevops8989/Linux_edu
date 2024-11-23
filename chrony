@@ -16,3 +16,42 @@
   241  timedatectl status
   242  timedatectl set-timezone America/Los_Angeles
   243  timedatectl status
+######
+  229  rpm -qa | grep chrony
+  230  systemctl status chronyd
+  231  date
+  232  systemctl status chronyd
+  233  cat /etc/chrony.conf 
+  234  vi /etc/chrony.conf 
+  235  systemctl restart chronyd
+  236  systemctl status chronyd
+  237  chronyc tracking 
+  238  chronyc  -N sources
+  239  chronyc makestep 
+  240  chronyc help
+  241  timedatectl status
+  242  timedatectl set-timezone America/Los_Angeles
+  243  timedatectl status
+  244  history 
+  245  rpm -qa | grep -i ssh
+  246  systemctl status sshd
+  247  vi /etc/ssh/sshd_config
+  248  systemctl restart sshd
+  249  systemctl status sshd
+  250  vi /etc/ssh/sshd_config
+  251  systemctl restart sshd
+  252  vi /etc/ssh/sshd_config
+  253  grep -v ^#  /etc/ssh/sshd_config
+  254  vi /etc/ssh/sshd_config
+  255  cd /etc/ssh/sshd_config.d/
+  256  ls
+  257  vi 01-permitrootlogin.conf 
+  258  systemctl restart sshd
+  259  cd /var/log/
+  260  ls
+  261  tail cron
+  262  cat /tmp/testcron.txt 
+  263  ls
+  264  tail messages
+  265  tail audit/audit.log 
+  266  history 
