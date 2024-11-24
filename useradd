@@ -63,3 +63,1119 @@ at now + 2min
   238  sudo chage -l u2
   239  sudo chage -M 30 u2
   240  sudo chage -l u2
+########################################################
+[sai@server999 ~]$ cat /etc/sudoers
+cat: /etc/sudoers: Permission denied
+[sai@server999 ~]$ sudo cat /etc/sudoers
+[sudo] password for sai: 
+## Sudoers allows particular users to run various commands as
+## the root user, without needing the root password.
+##
+## Examples are provided at the bottom of the file for collections
+## of related commands, which can then be delegated out to particular
+## users or groups.
+## 
+## This file must be edited with the 'visudo' command.
+
+## Host Aliases
+## Groups of machines. You may prefer to use hostnames (perhaps using 
+## wildcards for entire domains) or IP addresses instead.
+# Host_Alias     FILESERVERS = fs1, fs2
+# Host_Alias     MAILSERVERS = smtp, smtp2
+
+## User Aliases
+## These aren't often necessary, as you can use regular groups
+## (ie, from files, LDAP, NIS, etc) in this file - just use %groupname 
+## rather than USERALIAS
+# User_Alias ADMINS = jsmith, mikem
+
+
+## Command Aliases
+## These are groups of related commands...
+
+## Networking
+# Cmnd_Alias NETWORKING = /sbin/route, /sbin/ifconfig, /bin/ping, /sbin/dhclient, /usr/bin/net, /sbin/iptables, /usr/bin/rfcomm, /usr/bin/wvdial, /sbin/iwconfig, /sbin/mii-tool
+
+## Installation and management of software
+# Cmnd_Alias SOFTWARE = /bin/rpm, /usr/bin/up2date, /usr/bin/yum
+
+## Services
+# Cmnd_Alias SERVICES = /sbin/service, /sbin/chkconfig, /usr/bin/systemctl start, /usr/bin/systemctl stop, /usr/bin/systemctl reload, /usr/bin/systemctl restart, /usr/bin/systemctl status, /usr/bin/systemctl enable, /usr/bin/systemctl disable
+
+## Updating the locate database
+# Cmnd_Alias LOCATE = /usr/bin/updatedb
+
+## Storage
+# Cmnd_Alias STORAGE = /sbin/fdisk, /sbin/sfdisk, /sbin/parted, /sbin/partprobe, /bin/mount, /bin/umount
+
+## Delegating permissions
+# Cmnd_Alias DELEGATING = /usr/sbin/visudo, /bin/chown, /bin/chmod, /bin/chgrp 
+
+## Processes
+# Cmnd_Alias PROCESSES = /bin/nice, /bin/kill, /usr/bin/kill, /usr/bin/killall
+
+## Drivers
+# Cmnd_Alias DRIVERS = /sbin/modprobe
+
+# Defaults specification
+
+#
+# Refuse to run if unable to disable echo on the tty.
+#
+Defaults   !visiblepw
+
+#
+# Preserving HOME has security implications since many programs
+# use it when searching for configuration files. Note that HOME
+# is already set when the the env_reset option is enabled, so
+# this option is only effective for configurations where either
+# env_reset is disabled or HOME is present in the env_keep list.
+#
+Defaults    always_set_home
+Defaults    match_group_by_gid
+
+# Prior to version 1.8.15, groups listed in sudoers that were not
+# found in the system group database were passed to the group
+# plugin, if any. Starting with 1.8.15, only groups of the form
+# %:group are resolved via the group plugin by default.
+# We enable always_query_group_plugin to restore old behavior.
+# Disable this option for new behavior.
+Defaults    always_query_group_plugin
+
+Defaults    env_reset
+Defaults    env_keep =  "COLORS DISPLAY HOSTNAME HISTSIZE KDEDIR LS_COLORS"
+Defaults    env_keep += "MAIL PS1 PS2 QTDIR USERNAME LANG LC_ADDRESS LC_CTYPE"
+Defaults    env_keep += "LC_COLLATE LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES"
+Defaults    env_keep += "LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE"
+Defaults    env_keep += "LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY"
+
+#
+# Adding HOME to env_keep may enable a user to run unrestricted
+# commands via sudo.
+#
+# Defaults   env_keep += "HOME"
+
+Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
+
+## Next comes the main part: which users can run what software on 
+## which machines (the sudoers file can be shared between multiple
+## systems).
+## Syntax:
+##
+## 	user	MACHINE=COMMANDS
+##
+## The COMMANDS section may have other options added to it.
+##
+## Allow root to run any commands anywhere 
+root	ALL=(ALL) 	ALL
+
+## Allows members of the 'sys' group to run networking, software, 
+## service management apps and more.
+# %sys ALL = NETWORKING, SOFTWARE, SERVICES, STORAGE, DELEGATING, PROCESSES, LOCATE, DRIVERS
+
+## Allows people in group wheel to run all commands
+%wheel	ALL=(ALL)	ALL
+
+## Same thing without a password
+# %wheel	ALL=(ALL)	NOPASSWD: ALL
+
+## Allows members of the users group to mount and unmount the 
+## cdrom as root
+# %users  ALL=/sbin/mount /mnt/cdrom, /sbin/umount /mnt/cdrom
+
+## Allows members of the users group to shutdown this system
+# %users  localhost=/sbin/shutdown -h now
+
+## Read drop-in files from /etc/sudoers.d (the # here does not mean a comment)
+#includedir /etc/sudoers.d
+[sai@server999 ~]$ sudo su -
+[root@server999 ~]# cd /etc/sudoers.d/
+[root@server999 sudoers.d]# ls
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+logout
+[sai@server999 ~]$ 
+logout
+Connection to 192.168.12.179 closed.
+[saipavan@superman ~]$ ssh u2@192.168.12.179
+u2@192.168.12.179's password: 
+Last login: Sat Nov 23 11:37:40 2024 from 192.168.12.227
+[u2@server999 ~]$ 
+[u2@server999 ~]$ 
+[u2@server999 ~]$ 
+[u2@server999 ~]$ fdisk -l
+fdisk: cannot open /dev/sda: Permission denied
+fdisk: cannot open /dev/sr0: Permission denied
+fdisk: cannot open /dev/mapper/cs-root: Permission denied
+fdisk: cannot open /dev/mapper/cs-swap: Permission denied
+[u2@server999 ~]$ sudo fdisk -l
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+[sudo] password for u2: 
+u2 is not in the sudoers file.  This incident will be reported.
+[u2@server999 ~]$ 
+logout
+Connection to 192.168.12.179 closed.
+[saipavan@superman ~]$ ssh sai@192.168.12.179
+sai@192.168.12.179's password: 
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last login: Sat Nov 23 11:38:06 2024 from 192.168.12.227
+[sai@server999 ~]$ sudo su -
+[sudo] password for sai: 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# cd /etc/sudoers.d/
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# pwd
+/etc/sudoers.d
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# ls
+[root@server999 sudoers.d]# vi users
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# cat users 
+u2 ALL=(ALL) ALL
+[root@server999 sudoers.d]# cat /etc/sudoers
+## Sudoers allows particular users to run various commands as
+## the root user, without needing the root password.
+##
+## Examples are provided at the bottom of the file for collections
+## of related commands, which can then be delegated out to particular
+## users or groups.
+## 
+## This file must be edited with the 'visudo' command.
+
+## Host Aliases
+## Groups of machines. You may prefer to use hostnames (perhaps using 
+## wildcards for entire domains) or IP addresses instead.
+# Host_Alias     FILESERVERS = fs1, fs2
+# Host_Alias     MAILSERVERS = smtp, smtp2
+
+## User Aliases
+## These aren't often necessary, as you can use regular groups
+## (ie, from files, LDAP, NIS, etc) in this file - just use %groupname 
+## rather than USERALIAS
+# User_Alias ADMINS = jsmith, mikem
+
+
+## Command Aliases
+## These are groups of related commands...
+
+## Networking
+# Cmnd_Alias NETWORKING = /sbin/route, /sbin/ifconfig, /bin/ping, /sbin/dhclient, /usr/bin/net, /sbin/iptables, /usr/bin/rfcomm, /usr/bin/wvdial, /sbin/iwconfig, /sbin/mii-tool
+
+## Installation and management of software
+# Cmnd_Alias SOFTWARE = /bin/rpm, /usr/bin/up2date, /usr/bin/yum
+
+## Services
+# Cmnd_Alias SERVICES = /sbin/service, /sbin/chkconfig, /usr/bin/systemctl start, /usr/bin/systemctl stop, /usr/bin/systemctl reload, /usr/bin/systemctl restart, /usr/bin/systemctl status, /usr/bin/systemctl enable, /usr/bin/systemctl disable
+
+## Updating the locate database
+# Cmnd_Alias LOCATE = /usr/bin/updatedb
+
+## Storage
+# Cmnd_Alias STORAGE = /sbin/fdisk, /sbin/sfdisk, /sbin/parted, /sbin/partprobe, /bin/mount, /bin/umount
+
+## Delegating permissions
+# Cmnd_Alias DELEGATING = /usr/sbin/visudo, /bin/chown, /bin/chmod, /bin/chgrp 
+
+## Processes
+# Cmnd_Alias PROCESSES = /bin/nice, /bin/kill, /usr/bin/kill, /usr/bin/killall
+
+## Drivers
+# Cmnd_Alias DRIVERS = /sbin/modprobe
+
+# Defaults specification
+
+#
+# Refuse to run if unable to disable echo on the tty.
+#
+Defaults   !visiblepw
+
+#
+# Preserving HOME has security implications since many programs
+# use it when searching for configuration files. Note that HOME
+# is already set when the the env_reset option is enabled, so
+# this option is only effective for configurations where either
+# env_reset is disabled or HOME is present in the env_keep list.
+#
+Defaults    always_set_home
+Defaults    match_group_by_gid
+
+# Prior to version 1.8.15, groups listed in sudoers that were not
+# found in the system group database were passed to the group
+# plugin, if any. Starting with 1.8.15, only groups of the form
+# %:group are resolved via the group plugin by default.
+# We enable always_query_group_plugin to restore old behavior.
+# Disable this option for new behavior.
+Defaults    always_query_group_plugin
+
+Defaults    env_reset
+Defaults    env_keep =  "COLORS DISPLAY HOSTNAME HISTSIZE KDEDIR LS_COLORS"
+Defaults    env_keep += "MAIL PS1 PS2 QTDIR USERNAME LANG LC_ADDRESS LC_CTYPE"
+Defaults    env_keep += "LC_COLLATE LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES"
+Defaults    env_keep += "LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE"
+Defaults    env_keep += "LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY"
+
+#
+# Adding HOME to env_keep may enable a user to run unrestricted
+# commands via sudo.
+#
+# Defaults   env_keep += "HOME"
+
+Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
+
+## Next comes the main part: which users can run what software on 
+## which machines (the sudoers file can be shared between multiple
+## systems).
+## Syntax:
+##
+## 	user	MACHINE=COMMANDS
+##
+## The COMMANDS section may have other options added to it.
+##
+## Allow root to run any commands anywhere 
+root	ALL=(ALL) 	ALL
+
+## Allows members of the 'sys' group to run networking, software, 
+## service management apps and more.
+# %sys ALL = NETWORKING, SOFTWARE, SERVICES, STORAGE, DELEGATING, PROCESSES, LOCATE, DRIVERS
+
+## Allows people in group wheel to run all commands
+%wheel	ALL=(ALL)	ALL
+
+## Same thing without a password
+# %wheel	ALL=(ALL)	NOPASSWD: ALL
+
+## Allows members of the users group to mount and unmount the 
+## cdrom as root
+# %users  ALL=/sbin/mount /mnt/cdrom, /sbin/umount /mnt/cdrom
+
+## Allows members of the users group to shutdown this system
+# %users  localhost=/sbin/shutdown -h now
+
+## Read drop-in files from /etc/sudoers.d (the # here does not mean a comment)
+#includedir /etc/sudoers.d
+[root@server999 sudoers.d]# 
+logout
+[sai@server999 ~]$ 
+logout
+Connection to 192.168.12.179 closed.
+[saipavan@superman ~]$ 
+[saipavan@superman ~]$ 
+[saipavan@superman ~]$ 
+[saipavan@superman ~]$ ssh u2@192.168.12.179
+u2@192.168.12.179's password: 
+Last login: Sat Nov 23 12:11:24 2024 from 192.168.12.227
+[u2@server999 ~]$ fdisk -l
+fdisk: cannot open /dev/sda: Permission denied
+fdisk: cannot open /dev/sr0: Permission denied
+fdisk: cannot open /dev/mapper/cs-root: Permission denied
+fdisk: cannot open /dev/mapper/cs-swap: Permission denied
+[u2@server999 ~]$ sudo fdisk -l
+[sudo] password for u2: 
+Disk /dev/sda: 25.13 GiB, 26987642880 bytes, 52710240 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x89f31621
+
+Device     Boot   Start      End  Sectors  Size Id Type
+/dev/sda1  *       2048  2099199  2097152    1G 83 Linux
+/dev/sda2       2099200 52709375 50610176 24.1G 8e Linux LVM
+
+
+Disk /dev/mapper/cs-root: 22.08 GiB, 23710400512 bytes, 46309376 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/cs-swap: 2.05 GiB, 2197815296 bytes, 4292608 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+[u2@server999 ~]$ 
+[u2@server999 ~]$ 
+[u2@server999 ~]$ 
+[u2@server999 ~]$ sudo dnf install ftp
+Last metadata expiration check: 2:44:06 ago on Sat 23 Nov 2024 09:31:54 AM PST.
+Dependencies resolved.
+================================================================================================================
+ Package               Architecture             Version                       Repository                   Size
+================================================================================================================
+Installing:
+ ftp                   x86_64                   0.17-89.el9                   appstream                    62 k
+
+Transaction Summary
+================================================================================================================
+Install  1 Package
+
+Total download size: 62 k
+Installed size: 112 k
+Is this ok [y/N]: ^COperation aborted.
+[u2@server999 ~]$ 
+logout
+Connection to 192.168.12.179 closed.
+[saipavan@superman ~]$ ssh u3@192.168.12.179
+u3@192.168.12.179's password: 
+[u3@server999 ~]$ sudo dnf install ftp
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+[sudo] password for u3: 
+u3 is not in the sudoers file.  This incident will be reported.
+[u3@server999 ~]$ which dnf
+/usr/bin/dnf
+[u3@server999 ~]$ 
+logout
+Connection to 192.168.12.179 closed.
+[saipavan@superman ~]$ ssh sai@192.168.12.179
+sai@192.168.12.179's password: 
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last login: Sat Nov 23 12:11:57 2024 from 192.168.12.227
+
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ sudo su -
+[sudo] password for sai: 
+[root@server999 ~]# cd /etc/sudoers.d/
+[root@server999 sudoers.d]# ls
+users
+[root@server999 sudoers.d]# cat /etc/sudoers
+## Sudoers allows particular users to run various commands as
+## the root user, without needing the root password.
+##
+## Examples are provided at the bottom of the file for collections
+## of related commands, which can then be delegated out to particular
+## users or groups.
+## 
+## This file must be edited with the 'visudo' command.
+
+## Host Aliases
+## Groups of machines. You may prefer to use hostnames (perhaps using 
+## wildcards for entire domains) or IP addresses instead.
+# Host_Alias     FILESERVERS = fs1, fs2
+# Host_Alias     MAILSERVERS = smtp, smtp2
+
+## User Aliases
+## These aren't often necessary, as you can use regular groups
+## (ie, from files, LDAP, NIS, etc) in this file - just use %groupname 
+## rather than USERALIAS
+# User_Alias ADMINS = jsmith, mikem
+
+
+## Command Aliases
+## These are groups of related commands...
+
+## Networking
+# Cmnd_Alias NETWORKING = /sbin/route, /sbin/ifconfig, /bin/ping, /sbin/dhclient, /usr/bin/net, /sbin/iptables, /usr/bin/rfcomm, /usr/bin/wvdial, /sbin/iwconfig, /sbin/mii-tool
+
+## Installation and management of software
+# Cmnd_Alias SOFTWARE = /bin/rpm, /usr/bin/up2date, /usr/bin/yum
+
+## Services
+# Cmnd_Alias SERVICES = /sbin/service, /sbin/chkconfig, /usr/bin/systemctl start, /usr/bin/systemctl stop, /usr/bin/systemctl reload, /usr/bin/systemctl restart, /usr/bin/systemctl status, /usr/bin/systemctl enable, /usr/bin/systemctl disable
+
+## Updating the locate database
+# Cmnd_Alias LOCATE = /usr/bin/updatedb
+
+## Storage
+# Cmnd_Alias STORAGE = /sbin/fdisk, /sbin/sfdisk, /sbin/parted, /sbin/partprobe, /bin/mount, /bin/umount
+
+## Delegating permissions
+# Cmnd_Alias DELEGATING = /usr/sbin/visudo, /bin/chown, /bin/chmod, /bin/chgrp 
+
+## Processes
+# Cmnd_Alias PROCESSES = /bin/nice, /bin/kill, /usr/bin/kill, /usr/bin/killall
+
+## Drivers
+# Cmnd_Alias DRIVERS = /sbin/modprobe
+
+# Defaults specification
+
+#
+# Refuse to run if unable to disable echo on the tty.
+#
+Defaults   !visiblepw
+
+#
+# Preserving HOME has security implications since many programs
+# use it when searching for configuration files. Note that HOME
+# is already set when the the env_reset option is enabled, so
+# this option is only effective for configurations where either
+# env_reset is disabled or HOME is present in the env_keep list.
+#
+Defaults    always_set_home
+Defaults    match_group_by_gid
+
+# Prior to version 1.8.15, groups listed in sudoers that were not
+# found in the system group database were passed to the group
+# plugin, if any. Starting with 1.8.15, only groups of the form
+# %:group are resolved via the group plugin by default.
+# We enable always_query_group_plugin to restore old behavior.
+# Disable this option for new behavior.
+Defaults    always_query_group_plugin
+
+Defaults    env_reset
+Defaults    env_keep =  "COLORS DISPLAY HOSTNAME HISTSIZE KDEDIR LS_COLORS"
+Defaults    env_keep += "MAIL PS1 PS2 QTDIR USERNAME LANG LC_ADDRESS LC_CTYPE"
+Defaults    env_keep += "LC_COLLATE LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES"
+Defaults    env_keep += "LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE"
+Defaults    env_keep += "LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY"
+
+#
+# Adding HOME to env_keep may enable a user to run unrestricted
+# commands via sudo.
+#
+# Defaults   env_keep += "HOME"
+
+Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
+
+## Next comes the main part: which users can run what software on 
+## which machines (the sudoers file can be shared between multiple
+## systems).
+## Syntax:
+##
+## 	user	MACHINE=COMMANDS
+##
+## The COMMANDS section may have other options added to it.
+##
+## Allow root to run any commands anywhere 
+root	ALL=(ALL) 	ALL
+
+## Allows members of the 'sys' group to run networking, software, 
+## service management apps and more.
+# %sys ALL = NETWORKING, SOFTWARE, SERVICES, STORAGE, DELEGATING, PROCESSES, LOCATE, DRIVERS
+
+## Allows people in group wheel to run all commands
+%wheel	ALL=(ALL)	ALL
+
+## Same thing without a password
+# %wheel	ALL=(ALL)	NOPASSWD: ALL
+
+## Allows members of the users group to mount and unmount the 
+## cdrom as root
+# %users  ALL=/sbin/mount /mnt/cdrom, /sbin/umount /mnt/cdrom
+
+## Allows members of the users group to shutdown this system
+# %users  localhost=/sbin/shutdown -h now
+
+## Read drop-in files from /etc/sudoers.d (the # here does not mean a comment)
+#includedir /etc/sudoers.d
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# vi users 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+logout
+[sai@server999 ~]$ 
+logout
+Connection to 192.168.12.179 closed.
+[saipavan@superman ~]$ ssh u3@192.168.12.179
+u3@192.168.12.179's password: 
+Last login: Sat Nov 23 12:16:12 2024 from 192.168.12.227
+[u3@server999 ~]$ sudo dnf install ftp
+[sudo] password for u3: 
+Last metadata expiration check: 2:47:52 ago on Sat 23 Nov 2024 09:31:54 AM PST.
+Dependencies resolved.
+================================================================================================================
+ Package               Architecture             Version                       Repository                   Size
+================================================================================================================
+Installing:
+ ftp                   x86_64                   0.17-89.el9                   appstream                    62 k
+
+Transaction Summary
+================================================================================================================
+Install  1 Package
+
+Total download size: 62 k
+Installed size: 112 k
+Is this ok [y/N]: N
+Operation aborted.
+[u3@server999 ~]$ sudo fdisk -l
+Sorry, user u3 is not allowed to execute '/sbin/fdisk -l' as root on server999.example.com.
+[u3@server999 ~]$ sudo dnf install ftp^C
+[u3@server999 ~]$ 
+logout
+Connection to 192.168.12.179 closed.
+[saipavan@superman ~]$ ssh sai@192.168.12.179
+sai@192.168.12.179's password: 
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last login: Sat Nov 23 12:16:49 2024 from 192.168.12.227
+[sai@server999 ~]$ sudo su -
+[sudo] password for sai: 
+[root@server999 ~]# cd /etc/sudoers.d/
+[root@server999 sudoers.d]# ls
+users
+[root@server999 sudoers.d]# cat users 
+u2 ALL=(ALL) ALL
+u3 ALL=(ALL) /usr/bin/dnf
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# cd
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# tail /etc/group
+saslauth:x:76:
+rtkit:x:172:
+pipewire:x:987:
+geoclue:x:986:
+flatpak:x:985:
+u1:x:1001:
+u2:x:1002:
+u3:x:1003:
+u4:x:1004:
+project:x:9999:u1,u4
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# cd /etc/sudoers.d/
+[root@server999 sudoers.d]# ls
+users
+[root@server999 sudoers.d]# vi users 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# id u1
+uid=1001(u1) gid=1001(u1) groups=1001(u1),9999(project)
+[root@server999 sudoers.d]# id u4
+uid=1004(u4) gid=1004(u4) groups=1004(u4),9999(project)
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+logout
+[sai@server999 ~]$ 
+logout
+Connection to 192.168.12.179 closed.
+[saipavan@superman ~]$ ssh u4@192.168.12.179
+u4@192.168.12.179's password: 
+[u4@server999 ~]$ 
+[u4@server999 ~]$ 
+[u4@server999 ~]$ 
+[u4@server999 ~]$ sudo dnf install ftp
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+[sudo] password for u4: 
+Last metadata expiration check: 2:52:20 ago on Sat 23 Nov 2024 09:31:54 AM PST.
+Dependencies resolved.
+================================================================================================================
+ Package               Architecture             Version                       Repository                   Size
+================================================================================================================
+Installing:
+ ftp                   x86_64                   0.17-89.el9                   appstream                    62 k
+
+Transaction Summary
+================================================================================================================
+Install  1 Package
+
+Total download size: 62 k
+Installed size: 112 k
+Is this ok [y/N]: N
+Operation aborted.
+[u4@server999 ~]$ 
+[u4@server999 ~]$ 
+[u4@server999 ~]$ sudo dnf install ftp
+Last metadata expiration check: 2:52:47 ago on Sat 23 Nov 2024 09:31:54 AM PST.
+Dependencies resolved.
+================================================================================================================
+ Package               Architecture             Version                       Repository                   Size
+================================================================================================================
+Installing:
+ ftp                   x86_64                   0.17-89.el9                   appstream                    62 k
+
+Transaction Summary
+================================================================================================================
+Install  1 Package
+
+Total download size: 62 k
+Installed size: 112 k
+Is this ok [y/N]: Operation aborted.
+[u4@server999 ~]$ 
+logout
+Connection to 192.168.12.179 closed.
+[saipavan@superman ~]$ ssh u1@192.168.12.179
+u1@192.168.12.179's password: 
+[u1@server999 ~]$ 
+[u1@server999 ~]$ 
+[u1@server999 ~]$ sudo fdisk -l
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+[sudo] password for u1: 
+sudo: a password is required
+[u1@server999 ~]$ 
+[u1@server999 ~]$ 
+logout
+Connection to 192.168.12.179 closed.
+[saipavan@superman ~]$ ssh sai@192.168.12.179
+sai@192.168.12.179's password: 
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last login: Sat Nov 23 12:20:30 2024 from 192.168.12.227
+[sai@server999 ~]$ sudo su -
+[sudo] password for sai: 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# cd /etc/sudoers.d/
+[root@server999 sudoers.d]# vi users 
+[root@server999 sudoers.d]# 
+logout
+[sai@server999 ~]$ 
+logout
+Connection to 192.168.12.179 closed.
+[saipavan@superman ~]$ ssh u1@192.168.12.179
+u1@192.168.12.179's password: 
+Last login: Sat Nov 23 12:24:54 2024 from 192.168.12.227
+[u1@server999 ~]$ sudo fdisk -l
+Disk /dev/sda: 25.13 GiB, 26987642880 bytes, 52710240 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x89f31621
+
+Device     Boot   Start      End  Sectors  Size Id Type
+/dev/sda1  *       2048  2099199  2097152    1G 83 Linux
+/dev/sda2       2099200 52709375 50610176 24.1G 8e Linux LVM
+
+
+Disk /dev/mapper/cs-root: 22.08 GiB, 23710400512 bytes, 46309376 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/cs-swap: 2.05 GiB, 2197815296 bytes, 4292608 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+[u1@server999 ~]$ 
+[u1@server999 ~]$ 
+[u1@server999 ~]$ 
+[u1@server999 ~]$ 
+logout
+Connection to 192.168.12.179 closed.
+[saipavan@superman ~]$ ssh sai@192.168.12.179
+sai@192.168.12.179's password: 
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last login: Sat Nov 23 12:25:49 2024 from 192.168.12.227
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ cat /etc/sudo
+sudo.conf       sudoers         sudoers.d/      sudo-ldap.conf  
+[sai@server999 ~]$ sudo cat /etc/sudoers.d/user
+[sudo] password for sai: 
+cat: /etc/sudoers.d/user: No such file or directory
+[sai@server999 ~]$ sudo cat /etc/sudoers.d/users
+u2 ALL=(ALL) ALL
+u3 ALL=(ALL) /usr/bin/dnf
+%project	ALL=(ALL)	NOPASSWD: ALL
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ sudo cat /etc/sudoers.d/users^C
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ sudo vi /etc/sudoers
+[sai@server999 ~]$ sudo vi /etc/sudoers^C
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ cat /etc/ssh/sshd_config
+cat: /etc/ssh/sshd_config: Permission denied
+[sai@server999 ~]$ sudo cat /etc/ssh/sshd_config
+#	$OpenBSD: sshd_config,v 1.104 2021/07/02 05:11:21 dtucker Exp $
+
+# This is the sshd server system-wide configuration file.  See
+# sshd_config(5) for more information.
+
+# This sshd was compiled with PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+
+# The strategy used for options in the default sshd_config shipped with
+# OpenSSH is to specify options with their default value where
+# possible, but leave them commented.  Uncommented options override the
+# default value.
+
+# To modify the system-wide sshd configuration, create a  *.conf  file under
+#  /etc/ssh/sshd_config.d/  which will be automatically included below
+Include /etc/ssh/sshd_config.d/*.conf
+
+# If you want to change the port on a SELinux system, you have to tell
+# SELinux about this change.
+# semanage port -a -t ssh_port_t -p tcp #PORTNUMBER
+#
+#Port 22
+#AddressFamily any
+#ListenAddress 0.0.0.0
+#ListenAddress ::
+
+#HostKey /etc/ssh/ssh_host_rsa_key
+#HostKey /etc/ssh/ssh_host_ecdsa_key
+#HostKey /etc/ssh/ssh_host_ed25519_key
+
+# Ciphers and keying
+#RekeyLimit default none
+
+# Logging
+#SyslogFacility AUTH
+#LogLevel INFO
+
+# Authentication:
+
+#LoginGraceTime 2m
+#PermitRootLogin prohibit-password
+PermitRootLogin no
+#StrictModes yes
+#MaxAuthTries 6
+#MaxSessions 10
+
+#PubkeyAuthentication yes
+
+# The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
+# but this is overridden so installations will only check .ssh/authorized_keys
+AuthorizedKeysFile	.ssh/authorized_keys
+
+#AuthorizedPrincipalsFile none
+
+#AuthorizedKeysCommand none
+#AuthorizedKeysCommandUser nobody
+
+# For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+#HostbasedAuthentication no
+# Change to yes if you don't trust ~/.ssh/known_hosts for
+# HostbasedAuthentication
+#IgnoreUserKnownHosts no
+# Don't read the user's ~/.rhosts and ~/.shosts files
+#IgnoreRhosts yes
+
+# To disable tunneled clear text passwords, change to no here!
+#PasswordAuthentication yes
+#PermitEmptyPasswords no
+
+# Change to no to disable s/key passwords
+#KbdInteractiveAuthentication yes
+
+# Kerberos options
+#KerberosAuthentication no
+#KerberosOrLocalPasswd yes
+#KerberosTicketCleanup yes
+#KerberosGetAFSToken no
+#KerberosUseKuserok yes
+
+# GSSAPI options
+#GSSAPIAuthentication no
+#GSSAPICleanupCredentials yes
+#GSSAPIStrictAcceptorCheck yes
+#GSSAPIKeyExchange no
+#GSSAPIEnablek5users no
+
+# Set this to 'yes' to enable PAM authentication, account processing,
+# and session processing. If this is enabled, PAM authentication will
+# be allowed through the KbdInteractiveAuthentication and
+# PasswordAuthentication.  Depending on your PAM configuration,
+# PAM authentication via KbdInteractiveAuthentication may bypass
+# the setting of "PermitRootLogin without-password".
+# If you just want the PAM account and session checks to run without
+# PAM authentication, then enable this but set PasswordAuthentication
+# and KbdInteractiveAuthentication to 'no'.
+# WARNING: 'UsePAM no' is not supported in RHEL and may cause several
+# problems.
+#UsePAM no
+
+#AllowAgentForwarding yes
+#AllowTcpForwarding yes
+#GatewayPorts no
+#X11Forwarding no
+#X11DisplayOffset 10
+#X11UseLocalhost yes
+#PermitTTY yes
+#PrintMotd yes
+#PrintLastLog yes
+#TCPKeepAlive yes
+#PermitUserEnvironment no
+#Compression delayed
+#ClientAliveInterval 0
+#ClientAliveCountMax 3
+#UseDNS no
+#PidFile /var/run/sshd.pid
+#MaxStartups 10:30:100
+#PermitTunnel no
+#ChrootDirectory none
+#VersionAddendum none
+
+# no default banner path
+#Banner none
+
+# override default of no subsystems
+Subsystem	sftp	/usr/libexec/openssh/sftp-server
+
+# Example of overriding settings on a per-user basis
+#Match User anoncvs
+#	X11Forwarding no
+#	AllowTcpForwarding no
+#	PermitTTY no
+#	ForceCommand cvs server
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ cd /etc/ssh/ssh
+ssh_config.d/  sshd_config.d/ 
+[sai@server999 ~]$ cd /etc/ssh/ssh
+ssh_config.d/  sshd_config.d/ 
+[sai@server999 ~]$ cd /etc/ssh/ssh_config.d/
+[sai@server999 ssh_config.d]$ ls
+50-redhat.conf
+[sai@server999 ssh_config.d]$ cat 50-redhat.conf 
+# The options here are in the "Match final block" to be applied as the last
+# options and could be potentially overwritten by the user configuration
+Match final all
+	# Follow system-wide Crypto Policy, if defined:
+	Include /etc/crypto-policies/back-ends/openssh.config
+
+	GSSAPIAuthentication yes
+
+# If this option is set to yes then remote X11 clients will have full access
+# to the original X11 display. As virtually no X11 client supports the untrusted
+# mode correctly we set this to yes.
+	ForwardX11Trusted yes
+
+# Uncomment this if you want to use .local domain
+# Host *.local
+[sai@server999 ssh_config.d]$ 
+[sai@server999 ssh_config.d]$ 
+[sai@server999 ssh_config.d]$ 
+[sai@server999 ssh_config.d]$ cd
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ cat /etc/sudoers
+cat: /etc/sudoers: Permission denied
+[sai@server999 ~]$ sdo cat /etc/sudoers
+-bash: sdo: command not found
+[sai@server999 ~]$ sudo cat /etc/sudoers
+## Sudoers allows particular users to run various commands as
+## the root user, without needing the root password.
+##
+## Examples are provided at the bottom of the file for collections
+## of related commands, which can then be delegated out to particular
+## users or groups.
+## 
+## This file must be edited with the 'visudo' command.
+
+## Host Aliases
+## Groups of machines. You may prefer to use hostnames (perhaps using 
+## wildcards for entire domains) or IP addresses instead.
+# Host_Alias     FILESERVERS = fs1, fs2
+# Host_Alias     MAILSERVERS = smtp, smtp2
+
+## User Aliases
+## These aren't often necessary, as you can use regular groups
+## (ie, from files, LDAP, NIS, etc) in this file - just use %groupname 
+## rather than USERALIAS
+# User_Alias ADMINS = jsmith, mikem
+
+
+## Command Aliases
+## These are groups of related commands...
+
+## Networking
+# Cmnd_Alias NETWORKING = /sbin/route, /sbin/ifconfig, /bin/ping, /sbin/dhclient, /usr/bin/net, /sbin/iptables, /usr/bin/rfcomm, /usr/bin/wvdial, /sbin/iwconfig, /sbin/mii-tool
+
+## Installation and management of software
+# Cmnd_Alias SOFTWARE = /bin/rpm, /usr/bin/up2date, /usr/bin/yum
+
+## Services
+# Cmnd_Alias SERVICES = /sbin/service, /sbin/chkconfig, /usr/bin/systemctl start, /usr/bin/systemctl stop, /usr/bin/systemctl reload, /usr/bin/systemctl restart, /usr/bin/systemctl status, /usr/bin/systemctl enable, /usr/bin/systemctl disable
+
+## Updating the locate database
+# Cmnd_Alias LOCATE = /usr/bin/updatedb
+
+## Storage
+# Cmnd_Alias STORAGE = /sbin/fdisk, /sbin/sfdisk, /sbin/parted, /sbin/partprobe, /bin/mount, /bin/umount
+
+## Delegating permissions
+# Cmnd_Alias DELEGATING = /usr/sbin/visudo, /bin/chown, /bin/chmod, /bin/chgrp 
+
+## Processes
+# Cmnd_Alias PROCESSES = /bin/nice, /bin/kill, /usr/bin/kill, /usr/bin/killall
+
+## Drivers
+# Cmnd_Alias DRIVERS = /sbin/modprobe
+
+# Defaults specification
+
+#
+# Refuse to run if unable to disable echo on the tty.
+#
+Defaults   !visiblepw
+
+#
+# Preserving HOME has security implications since many programs
+# use it when searching for configuration files. Note that HOME
+# is already set when the the env_reset option is enabled, so
+# this option is only effective for configurations where either
+# env_reset is disabled or HOME is present in the env_keep list.
+#
+Defaults    always_set_home
+Defaults    match_group_by_gid
+
+# Prior to version 1.8.15, groups listed in sudoers that were not
+# found in the system group database were passed to the group
+# plugin, if any. Starting with 1.8.15, only groups of the form
+# %:group are resolved via the group plugin by default.
+# We enable always_query_group_plugin to restore old behavior.
+# Disable this option for new behavior.
+Defaults    always_query_group_plugin
+
+Defaults    env_reset
+Defaults    env_keep =  "COLORS DISPLAY HOSTNAME HISTSIZE KDEDIR LS_COLORS"
+Defaults    env_keep += "MAIL PS1 PS2 QTDIR USERNAME LANG LC_ADDRESS LC_CTYPE"
+Defaults    env_keep += "LC_COLLATE LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES"
+Defaults    env_keep += "LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE"
+Defaults    env_keep += "LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY"
+
+#
+# Adding HOME to env_keep may enable a user to run unrestricted
+# commands via sudo.
+#
+# Defaults   env_keep += "HOME"
+
+Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
+
+## Next comes the main part: which users can run what software on 
+## which machines (the sudoers file can be shared between multiple
+## systems).
+## Syntax:
+##
+## 	user	MACHINE=COMMANDS
+##
+## The COMMANDS section may have other options added to it.
+##
+## Allow root to run any commands anywhere 
+root	ALL=(ALL) 	ALL
+
+## Allows members of the 'sys' group to run networking, software, 
+## service management apps and more.
+# %sys ALL = NETWORKING, SOFTWARE, SERVICES, STORAGE, DELEGATING, PROCESSES, LOCATE, DRIVERS
+
+## Allows people in group wheel to run all commands
+%wheel	ALL=(ALL)	ALL
+
+## Same thing without a password
+# %wheel	ALL=(ALL)	NOPASSWD: ALL
+
+## Allows members of the users group to mount and unmount the 
+## cdrom as root
+# %users  ALL=/sbin/mount /mnt/cdrom, /sbin/umount /mnt/cdrom
+
+## Allows members of the users group to shutdown this system
+# %users  localhost=/sbin/shutdown -h now
+
+## Read drop-in files from /etc/sudoers.d (the # here does not mean a comment)
+#includedir /etc/sudoers.d
+[sai@server999 ~]$ cd /etc/sudoers.d/
+-bash: cd: /etc/sudoers.d/: Permission denied
+[sai@server999 ~]$ sudo cd /etc/sudoers.d/
+[sai@server999 ~]$ sudo su 
+[root@server999 sai]# cd /etc/sudoers.d/
+[root@server999 sudoers.d]# ls
+users
+[root@server999 sudoers.d]# cat users 
+u2 ALL=(ALL) ALL
+u3 ALL=(ALL) /usr/bin/dnf
+%project	ALL=(ALL)	NOPASSWD: ALL
+[root@server999 sudoers.d]# cd
+[root@server999 ~]# 
+[root@server999 ~]# ls
+anaconda-ks.cfg  CentOS-Stream-9-latest-x86_64-dvd1.iso  file1.txt  file1_witupdated.txt  file2.txt
+[root@server999 ~]# ls -l file1
+file1.txt             file1_witupdated.txt  
+[root@server999 ~]# ls -l file1.txt 
+-rw-r--r--. 1 root root 35 Nov 17 08:47 file1.txt
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# ls
+anaconda-ks.cfg  CentOS-Stream-9-latest-x86_64-dvd1.iso  file1.txt  file1_witupdated.txt  file2.txt
+[root@server999 ~]# 
+
+
+
+
+
+
+
+
+
+
+
+
+
+[root@server999 ~]# ls -l
+total 11431760
+-rw-------. 1 root root         878 Nov  9 16:34 anaconda-ks.cfg
+-rw-r--r--. 1 root root 11706105856 Nov 16 07:46 CentOS-Stream-9-latest-x86_64-dvd1.iso
+-rw-r--r--. 1 root root          35 Nov 17 08:47 file1.txt
+-rw-r--r--. 1 root root          34 Nov 17 08:44 file1_witupdated.txt
+-rw-r--r--. 1 root root          70 Nov 17 09:09 file2.txt
+[root@server999 ~]# chmod 664 file1.txt 
+[root@server999 ~]# ls -l file1.txt 
+-rw-rw-r--. 1 root root 35 Nov 17 08:47 file1.txt
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# chmod o-r file1.txt 
+[root@server999 ~]# ls -l file1.txt 
+-rw-rw----. 1 root root 35 Nov 17 08:47 file1.txt
+[root@server999 ~]# 
+
+
+
+
+
+
+
+
+
+
+
