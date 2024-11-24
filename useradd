@@ -1,0 +1,65 @@
+at now + 2min
+  177  atq
+  178  date
+  179  cat /tmp/att.txt
+  180  date
+  181  cat /tmp/att.txt
+  182  systemctl status atd
+  183  systemctl status httpd
+  184  id
+  185  pwd
+  186  tail /etc/passwd
+  187  tail /etc/group
+  188  useradd u1
+  189  sudo useradd u1
+  190  sudo passwd u1
+  191  id u1
+  192  ls -l /home/
+  193  tail /etc/passwd
+  194  tail /etc/group
+  195  id u1
+  196  useradd u2
+  197  sudo useradd u2
+  198  sudo passwd u2
+  199  sudo useradd u3
+  200  sudo passwd u3
+  201  sudo passwd u4
+  202  sudo useradd u4
+  203  sudo passwd u4
+  204  id u2
+  205  id u3
+  206  id u4
+  207  ls /home/
+  208  tail /etc/passwd
+  209  cat /etc/group
+  210  groupadd  -g 9999 project
+  211  sudo groupadd  -g 9999 project
+  212  cat /etc/group
+  213  sudo vi /etc/group
+  214  usermod -aG project u1
+  215  sudo usermod -aG project u1
+  216  tail /etc/group
+  217  sudo usermod -aG project u4
+  218  tail /etc/group
+  219  id u1
+  220  id u2
+  221  id u4
+  222  sudo vi /etc/group
+  223  id u2
+  224  sudo vi /etc/group
+  225  gpasswd -d u2 project
+  226  sudo gpasswd -d u2 project
+  227  id u2
+  228  #userdel -r u1
+  229  usermod -L u2
+  230  sudo usermod -L u2
+  231  getent passwd u2
+  232  sudo getent passwd u2
+  233  chage -L u2
+  234  chage -l u2
+  235  sudo chage -l u2
+  236  sudo passwd -u u2
+  237  tail /etc/group
+  238  sudo chage -l u2
+  239  sudo chage -M 30 u2
+  240  sudo chage -l u2
