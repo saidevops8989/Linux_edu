@@ -1,0 +1,1414 @@
+u2:x:1002:
+u3:x:1003:
+u4:x:1004:
+project:x:9999:u1,u4
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ cd /etc/sudoers.d/
+-bash: cd: /etc/sudoers.d/: Permission denied
+[sai@server999 ~]$ sudo cd /etc/sudoers.d/
+[sudo] password for sai: 
+Sorry, try again.
+[sudo] password for sai: 
+[sai@server999 ~]$ sudo su -
+[root@server999 ~]# cd /etc/sudoers.d/
+[root@server999 sudoers.d]# ls
+users
+[root@server999 sudoers.d]# cat users 
+u2 ALL=(ALL) ALL
+u3 ALL=(ALL) /usr/bin/dnf
+%project	ALL=(ALL)	NOPASSWD: ALL
+[root@server999 sudoers.d]# vi  users 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+[root@server999 sudoers.d]# 
+
+
+[root@server999 sudoers.d]# cd
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# l
+-bash: l: command not found
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# tail /etc/group
+saslauth:x:76:
+rtkit:x:172:
+pipewire:x:987:
+geoclue:x:986:
+flatpak:x:985:
+u1:x:1001:
+u2:x:1002:
+u3:x:1003:
+u4:x:1004:
+project:x:9999:u1,u4
+[root@server999 ~]# 
+
+
+
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# mkdir /myteam
+[root@server999 ~]# ls -ld /myteam/
+drwxr-xr-x. 2 root root 6 Nov 30 07:20 /myteam/
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# su - u1
+[u1@server999 ~]$ cd /myteam/
+[u1@server999 myteam]$ touch flile1
+touch: cannot touch 'flile1': Permission denied
+[u1@server999 myteam]$ 
+logout
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# ls -ld /myteam/
+drwxr-xr-x. 2 root root 6 Nov 30 07:20 /myteam/
+[root@server999 ~]# chmod o-x /myteam/
+[root@server999 ~]# ls -ld /myteam/
+drwxr-xr--. 2 root root 6 Nov 30 07:20 /myteam/
+[root@server999 ~]# su - u1
+[u1@server999 ~]$ cd /myteam/
+-bash: cd: /myteam/: Permission denied
+[u1@server999 ~]$ 
+logout
+[root@server999 ~]# 
+[root@server999 ~]# ls -ld /myteam/
+drwxr-xr--. 2 root root 6 Nov 30 07:20 /myteam/
+[root@server999 ~]# chgrp project /myteam/
+[root@server999 ~]# ls -ld /myteam/
+drwxr-xr--. 2 root project 6 Nov 30 07:20 /myteam/
+[root@server999 ~]# su - u2
+[u2@server999 ~]$ cd /myteam/
+-bash: cd: /myteam/: Permission denied
+[u2@server999 ~]$ 
+logout
+[root@server999 ~]# su - u1
+[u1@server999 ~]$ cd /myteam/
+[u1@server999 myteam]$ touch file1
+touch: cannot touch 'file1': Permission denied
+[u1@server999 myteam]$ 
+logout
+[root@server999 ~]# ls -ld /myteam/
+drwxr-xr--. 2 root project 6 Nov 30 07:20 /myteam/
+[root@server999 ~]# chmod g+w /myteam/
+[root@server999 ~]# ls -ld /myteam/
+drwxrwxr--. 2 root project 6 Nov 30 07:20 /myteam/
+[root@server999 ~]# 
+[root@server999 ~]# su - u1
+[u1@server999 ~]$ cd /myteam/
+[u1@server999 myteam]$ touch file1
+[u1@server999 myteam]$ ls
+file1
+[u1@server999 myteam]$ cat /etc/group| grep project
+project:x:9999:u1,u4
+[u1@server999 myteam]$ 
+[u1@server999 myteam]$ sudo fdisk -l^C
+[u1@server999 myteam]$ 
+logout
+[root@server999 ~]# ls -ld /myteam/
+drwxrwxr--. 2 root project 19 Nov 30 07:26 /myteam/
+[root@server999 ~]# su - u2
+[u2@server999 ~]$ cd /myteam/
+-bash: cd: /myteam/: Permission denied
+[u2@server999 ~]$ ls /myteam/
+ls: cannot access '/myteam/file1': Permission denied
+file1
+[u2@server999 ~]$ cd /myteam/
+-bash: cd: /myteam/: Permission denied
+[u2@server999 ~]$ 
+logout
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# ls -ld /myteam/
+drwxrwxr--. 2 root project 19 Nov 30 07:26 /myteam/
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# touch test9
+[root@server999 ~]# ls -l test9 
+-rw-r--r--. 1 root root 0 Nov 30 07:29 test9
+[root@server999 ~]# 
+[root@server999 ~]# mkdir test999
+[root@server999 ~]# ls -ld test999/
+drwxr-xr-x. 2 root root 6 Nov 30 07:30 test999/
+[root@server999 ~]# 
+[root@server999 ~]# umask 
+0022
+[root@server999 ~]# 
+
+
+
+
+
+
+
+
+[root@server999 ~]# umask 
+0022
+[root@server999 ~]# ls -ld test999/
+drwxr-xr-x. 2 root root 6 Nov 30 07:30 test999/
+[root@server999 ~]# ls -l test9 
+-rw-r--r--. 1 root root 0 Nov 30 07:29 test9
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# os --- umask^C
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# umask 002
+[root@server999 ~]# umask 
+0002
+[root@server999 ~]# touch chagesumaske
+[root@server999 ~]# ls -l chagesumaske 
+-rw-rw-r--. 1 root root 0 Nov 30 07:39 chagesumaske
+[root@server999 ~]# 
+logout
+[sai@server999 ~]$ 
+logout
+Connection to 192.168.12.179 closed.
+[saipavan@superman ~]$ ssh sai@192.168.12.179
+sai@192.168.12.179's password: 
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last login: Sat Nov 30 07:05:12 2024 from 192.168.12.227
+[sai@server999 ~]$ sudo su -
+[sudo] password for sai: 
+[root@server999 ~]# umask 
+0022
+[root@server999 ~]# 
+[root@server999 ~]# vi .bashrc 
+[root@server999 ~]# vi .bash
+.bash_history  .bash_logout   .bash_profile  .bashrc        
+[root@server999 ~]# vi .bash_profile 
+[root@server999 ~]# 
+[root@server999 ~]# umask 
+0022
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# touch  edureka
+[root@server999 ~]# ls -l edureka 
+-rw-r--r--. 1 root root 0 Nov 30 07:42 edureka
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# umask 
+0022
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# umask 002
+[root@server999 ~]# ls -l edureka_test
+ls: cannot access 'edureka_test': No such file or directory
+[root@server999 ~]# touch  edureka_test
+[root@server999 ~]# 
+[root@server999 ~]# ls -l edureka_test 
+-rw-rw-r--. 1 root root 0 Nov 30 07:43 edureka_test
+[root@server999 ~]# umask 
+0002
+[root@server999 ~]# ls -ld /myteam/
+drwxrwxr--. 2 root project 19 Nov 30 07:26 /myteam/
+[root@server999 ~]# su - u1
+[u1@server999 ~]$ cd /myteam/
+[u1@server999 myteam]$ ls -l
+total 0
+-rw-r--r--. 1 u1 u1 0 Nov 30 07:26 file1
+[u1@server999 myteam]$ 
+[u1@server999 myteam]$ 
+[u1@server999 myteam]$ touch file2
+[u1@server999 myteam]$ ls -l
+total 0
+-rw-r--r--. 1 u1 u1 0 Nov 30 07:26 file1
+-rw-r--r--. 1 u1 u1 0 Nov 30 08:01 file2
+[u1@server999 myteam]$ chgrp project file1 
+[u1@server999 myteam]$ ls -l
+total 0
+-rw-r--r--. 1 u1 project 0 Nov 30 07:26 file1
+-rw-r--r--. 1 u1 u1      0 Nov 30 08:01 file2
+[u1@server999 myteam]$ chgrp project file2
+[u1@server999 myteam]$ 
+[u1@server999 myteam]$ 
+[u1@server999 myteam]$ 
+[u1@server999 myteam]$ 100 files^C
+[u1@server999 myteam]$ 
+logout
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# chmod g+s /myteam/
+[root@server999 ~]# su - u4
+[u4@server999 ~]$ cd /myteam/
+[u4@server999 myteam]$ touch test1
+[u4@server999 myteam]$ touch test2
+[u4@server999 myteam]$ touch test{3..10}
+[u4@server999 myteam]$ ls -l
+total 0
+-rw-r--r--. 1 u1 project 0 Nov 30 07:26 file1
+-rw-r--r--. 1 u1 project 0 Nov 30 08:01 file2
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test1
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test10
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test2
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test3
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test4
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test5
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test6
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test7
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test8
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test9
+[u4@server999 myteam]$ 
+[u4@server999 myteam]$ 
+logout
+[root@server999 ~]# #chmod g+s /myteam/
+[root@server999 ~]# ls -ld /myteam/
+drwxrwsr--. 2 root project 163 Nov 30 08:04 /myteam/
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# su - u4
+[u4@server999 ~]$ cd /myteam/
+[u4@server999 myteam]$ 
+[u4@server999 myteam]$ ls -l
+total 0
+-rw-r--r--. 1 u1 project 0 Nov 30 07:26 file1
+-rw-r--r--. 1 u1 project 0 Nov 30 08:01 file2
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test1
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test10
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test2
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test3
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test4
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test5
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test6
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test7
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test8
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test9
+[u4@server999 myteam]$ rm -rf file2
+[u4@server999 myteam]$ ls -l
+total 0
+-rw-r--r--. 1 u1 project 0 Nov 30 07:26 file1
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test1
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test10
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test2
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test3
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test4
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test5
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test6
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test7
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test8
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test9
+[u4@server999 myteam]$ 
+logout
+[root@server999 ~]# ls -ld /myteam/
+drwxrwsr--. 2 root project 150 Nov 30 08:09 /myteam/
+[root@server999 ~]# chmod o+t /myteam/
+[root@server999 ~]# 
+[root@server999 ~]# su - u4
+[u4@server999 ~]$ cd /myteam/
+[u4@server999 myteam]$ ls -l
+total 0
+-rw-r--r--. 1 u1 project 0 Nov 30 07:26 file1
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test1
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test10
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test2
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test3
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test4
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test5
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test6
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test7
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test8
+-rw-r--r--. 1 u4 project 0 Nov 30 08:04 test9
+[u4@server999 myteam]$ rm -rf file1
+rm: cannot remove 'file1': Operation not permitted
+[u4@server999 myteam]$ 
+logout
+[root@server999 ~]# #chmod o+t /myteam/
+[root@server999 ~]# ls -ld /myteam/
+drwxrwsr-T. 2 root project 150 Nov 30 08:09 /myteam/
+[root@server999 ~]# chmod o+x /myteam/
+[root@server999 ~]# ls -ld /myteam/
+drwxrwsr-t. 2 root project 150 Nov 30 08:09 /myteam/
+[root@server999 ~]# chmod o-x /myteam/
+[root@server999 ~]# ls -ld /myteam/
+drwxrwsr-T. 2 root project 150 Nov 30 08:09 /myteam/
+[root@server999 ~]# 
+[root@server999 ~]# #chmod g-s /myteam/
+[root@server999 ~]# chmod o-t /myteam/
+[root@server999 ~]# ls -ld /myteam/
+drwxrwsr--. 2 root project 150 Nov 30 08:09 /myteam/
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# umask^C
+[root@server999 ~]# gid^C
+[root@server999 ~]# sticky^C
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# #chmod 4777 /myteam/
+[root@server999 ~]# chm
+chmem  chmod  
+[root@server999 ~]# chmod 2777 /myteam/^C
+[root@server999 ~]# chmod 1777 /myteam/^C
+[root@server999 ~]# 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[root@server999 ~]# umask 
+0002
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# fdisk -l
+
+
+Disk /dev/sda: 25.13 GiB, 26987642880 bytes, 52710240 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x89f31621
+
+Device     Boot   Start      End  Sectors  Size Id Type
+/dev/sda1  *       2048  2099199  2097152    1G 83 Linux
+/dev/sda2       2099200 52709375 50610176 24.1G 8e Linux LVM
+
+
+Disk /dev/mapper/cs-root: 22.08 GiB, 23710400512 bytes, 46309376 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/cs-swap: 2.05 GiB, 2197815296 bytes, 4292608 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# poweroff 
+[root@server999 ~]# Connection to 192.168.12.179 closed by remote host.
+Connection to 192.168.12.179 closed.
+[saipavan@superman ~]$ ssh sai@192.168.12.179
+sai@192.168.12.179's password: 
+Permission denied, please try again.
+sai@192.168.12.179's password: 
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last failed login: Sat Nov 30 08:33:48 PST 2024 from 192.168.12.227 on ssh:notty
+There was 1 failed login attempt since the last successful login.
+Last login: Sat Nov 30 07:39:58 2024 from 192.168.12.227
+[sai@server999 ~]$ sudo su -
+[sudo] password for sai: 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# fdisk  -l
+
+
+Disk /dev/sda: 25.13 GiB, 26987642880 bytes, 52710240 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x89f31621
+
+Device     Boot   Start      End  Sectors  Size Id Type
+/dev/sda1  *       2048  2099199  2097152    1G 83 Linux
+/dev/sda2       2099200 52709375 50610176 24.1G 8e Linux LVM
+
+
+Disk /dev/sdb: 1.01 GiB, 1083890688 bytes, 2116974 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/cs-root: 22.08 GiB, 23710400512 bytes, 46309376 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/cs-swap: 2.05 GiB, 2197815296 bytes, 4292608 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# #fdisk  -l
+[root@server999 ~]# fdisk /dev/sdb
+
+Welcome to fdisk (util-linux 2.37.4).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+Device does not contain a recognized partition table.
+Created a new DOS disklabel with disk identifier 0x8578228a.
+
+Command (m for help): m
+
+Help:
+
+  DOS (MBR)
+   a   toggle a bootable flag
+   b   edit nested BSD disklabel
+   c   toggle the dos compatibility flag
+
+  Generic
+   d   delete a partition
+   F   list free unpartitioned space
+   l   list known partition types
+   n   add a new partition
+   p   print the partition table
+   t   change a partition type
+   v   verify the partition table
+   i   print information about a partition
+
+  Misc
+   m   print this menu
+   u   change display/entry units
+   x   extra functionality (experts only)
+
+  Script
+   I   load disk layout from sfdisk script file
+   O   dump disk layout to sfdisk script file
+
+  Save & Exit
+   w   write table to disk and exit
+   q   quit without saving changes
+
+  Create a new label
+   g   create a new empty GPT partition table
+   G   create a new empty SGI (IRIX) partition table
+   o   create a new empty DOS partition table
+   s   create a new empty Sun partition table
+
+
+Command (m for help): 
+
+
+Command (m for help): 
+
+
+Command (m for help): n
+Partition type
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended (container for logical partitions)
+Select (default p): p
+Partition number (1-4, default 1): 1
+First sector (2048-2116973, default 2048): 
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-2116973, default 2116973): +500M
+
+Created a new partition 1 of type 'Linux' and of size 500 MiB.
+
+Command (m for help): 
+
+
+Command (m for help): p
+
+Disk /dev/sdb: 1.01 GiB, 1083890688 bytes, 2116974 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x8578228a
+
+Device     Boot Start     End Sectors  Size Id Type
+/dev/sdb1        2048 1026047 1024000  500M 83 Linux
+
+Command (m for help): m
+
+Help:
+
+  DOS (MBR)
+   a   toggle a bootable flag
+   b   edit nested BSD disklabel
+   c   toggle the dos compatibility flag
+
+  Generic
+   d   delete a partition
+   F   list free unpartitioned space
+   l   list known partition types
+   n   add a new partition
+   p   print the partition table
+   t   change a partition type
+   v   verify the partition table
+   i   print information about a partition
+
+  Misc
+   m   print this menu
+   u   change display/entry units
+   x   extra functionality (experts only)
+
+  Script
+   I   load disk layout from sfdisk script file
+   O   dump disk layout to sfdisk script file
+
+  Save & Exit
+   w   write table to disk and exit
+   q   quit without saving changes
+
+  Create a new label
+   g   create a new empty GPT partition table
+   G   create a new empty SGI (IRIX) partition table
+   o   create a new empty DOS partition table
+   s   create a new empty Sun partition table
+
+
+Command (m for help): q
+
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# fdisk /dev/sdb
+
+Welcome to fdisk (util-linux 2.37.4).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+Device does not contain a recognized partition table.
+Created a new DOS disklabel with disk identifier 0xa3051e69.
+
+Command (m for help): p
+Disk /dev/sdb: 1.01 GiB, 1083890688 bytes, 2116974 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xa3051e69
+
+Command (m for help): 
+
+
+Command (m for help): n
+Partition type
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended (container for logical partitions)
+Select (default p): p
+Partition number (1-4, default 1): 
+First sector (2048-2116973, default 2048): 
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-2116973, default 2116973): +500M
+
+Created a new partition 1 of type 'Linux' and of size 500 MiB.
+
+Command (m for help): p
+Disk /dev/sdb: 1.01 GiB, 1083890688 bytes, 2116974 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xa3051e69
+
+Device     Boot Start     End Sectors  Size Id Type
+/dev/sdb1        2048 1026047 1024000  500M 83 Linux
+
+Command (m for help): 
+
+
+Command (m for help): w
+
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+
+[root@server999 ~]# 
+[root@server999 ~]# fd
+fdformat  fdisk     
+[root@server999 ~]# fdisk -l /dev/sdb
+Disk /dev/sdb: 1.01 GiB, 1083890688 bytes, 2116974 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xa3051e69
+
+Device     Boot Start     End Sectors  Size Id Type
+/dev/sdb1        2048 1026047 1024000  500M 83 Linux
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# mkf
+mkfifo       mkfs.cramfs  mkfs.ext3    mkfs.fat     mkfs.msdos   mkfs.xfs     
+mkfs         mkfs.ext2    mkfs.ext4    mkfs.minix   mkfs.vfat    
+[root@server999 ~]# mkfs
+mkfs         mkfs.ext2    mkfs.ext4    mkfs.minix   mkfs.vfat    
+mkfs.cramfs  mkfs.ext3    mkfs.fat     mkfs.msdos   mkfs.xfs     
+[root@server999 ~]# mkfs.xfs /dev/sdb1
+meta-data=/dev/sdb1              isize=512    agcount=4, agsize=32000 blks
+         =                       sectsz=512   attr=2, projid32bit=1
+         =                       crc=1        finobt=1, sparse=1, rmapbt=0
+         =                       reflink=1    bigtime=1 inobtcount=1 nrext64=0
+data     =                       bsize=4096   blocks=128000, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0, ftype=1
+log      =internal log           bsize=4096   blocks=16384, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+[root@server999 ~]# 
+[root@server999 ~]# mkdir /mydrive
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# mount /dev/sdb1 /mydrive/
+[root@server999 ~]# df -h
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs             4.0M     0  4.0M   0% /dev
+tmpfs                887M     0  887M   0% /dev/shm
+tmpfs                355M  5.0M  350M   2% /run
+/dev/mapper/cs-root   23G   14G  8.2G  63% /
+/dev/sda1            960M  308M  653M  33% /boot
+tmpfs                178M  4.0K  178M   1% /run/user/1000
+/dev/sdb1            436M   29M  408M   7% /mydrive
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# cd /mydrive/
+[root@server999 mydrive]# touch file123
+[root@server999 mydrive]# ls
+file123
+[root@server999 mydrive]# reboot
+[root@server999 mydrive]# Connection to 192.168.12.179 closed by remote host.
+Connection to 192.168.12.179 closed.
+[saipavan@superman ~]$ ssh sai@192.168.12.179
+^C
+[saipavan@superman ~]$ ssh sai@192.168.12.179
+^C
+[saipavan@superman ~]$ ssh sai@192.168.12.179
+sai@192.168.12.179's password: 
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last login: Sat Nov 30 08:33:51 2024 from 192.168.12.227
+[sai@server999 ~]$ df -h
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs             4.0M     0  4.0M   0% /dev
+tmpfs                887M     0  887M   0% /dev/shm
+tmpfs                355M  5.0M  350M   2% /run
+/dev/mapper/cs-root   23G   14G  8.2G  63% /
+/dev/sda1            960M  308M  653M  33% /boot
+tmpfs                178M  4.0K  178M   1% /run/user/1000
+[sai@server999 ~]$ 
+[sai@server999 ~]$ sudo su -
+[sudo] password for sai: 
+[root@server999 ~]# vi /etc/fstab 
+[root@server999 ~]# df -h
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs             4.0M     0  4.0M   0% /dev
+tmpfs                887M     0  887M   0% /dev/shm
+tmpfs                355M  5.0M  350M   2% /run
+/dev/mapper/cs-root   23G   14G  8.2G  63% /
+/dev/sda1            960M  308M  653M  33% /boot
+tmpfs                178M  4.0K  178M   1% /run/user/1000
+[root@server999 ~]# 
+[root@server999 ~]# cat /etc/fstab 
+
+#
+# /etc/fstab
+# Created by anaconda on Sun Nov 10 00:26:12 2024
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk/'.
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.
+#
+# After editing this file, run 'systemctl daemon-reload' to update systemd
+# units generated from this file.
+#
+/dev/mapper/cs-root     /                       xfs     defaults        0 0
+UUID=cf417c84-1fd5-49e6-9ff1-66d99a376b3d /boot                   xfs     defaults        0 0
+/dev/mapper/cs-swap     none                    swap    defaults        0 0
+/dev/sdb1           /mydrive            xfs        defaults 0 0
+[root@server999 ~]# mount -a
+mount: (hint) your fstab has been modified, but systemd still uses
+       the old version; use 'systemctl daemon-reload' to reload.
+[root@server999 ~]# systemctl daemon-reload
+[root@server999 ~]# mount -a
+[root@server999 ~]# df -h
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs             4.0M     0  4.0M   0% /dev
+tmpfs                887M     0  887M   0% /dev/shm
+tmpfs                355M  5.0M  350M   2% /run
+/dev/mapper/cs-root   23G   14G  8.2G  63% /
+/dev/sda1            960M  308M  653M  33% /boot
+tmpfs                178M  4.0K  178M   1% /run/user/1000
+/dev/sdb1            436M   29M  408M   7% /mydrive
+[root@server999 ~]# 
+[root@server999 ~]# cat /etc/fstab 
+
+#
+# /etc/fstab
+# Created by anaconda on Sun Nov 10 00:26:12 2024
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk/'.
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.
+#
+# After editing this file, run 'systemctl daemon-reload' to update systemd
+# units generated from this file.
+#
+/dev/mapper/cs-root     /                       xfs     defaults        0 0
+UUID=cf417c84-1fd5-49e6-9ff1-66d99a376b3d /boot                   xfs     defaults        0 0
+/dev/mapper/cs-swap     none                    swap    defaults        0 0
+/dev/sdb1           /mydrive            xfs        defaults 0 0
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# reboot
+[root@server999 ~]# Connection to 192.168.12.179 closed by remote host.
+Connection to 192.168.12.179 closed.
+[saipavan@superman ~]$ 
+[saipavan@superman ~]$ 
+[saipavan@superman ~]$ ssh sai@192.168.12.179
+sai@192.168.12.179's password: 
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last login: Sat Nov 30 08:47:39 2024 from 192.168.12.227
+[sai@server999 ~]$ sudo su -
+[sudo] password for sai: 
+[root@server999 ~]# df -h
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs             4.0M     0  4.0M   0% /dev
+tmpfs                887M     0  887M   0% /dev/shm
+tmpfs                355M  5.1M  350M   2% /run
+/dev/mapper/cs-root   23G   14G  8.2G  63% /
+/dev/sdb1            436M   29M  408M   7% /mydrive
+/dev/sda1            960M  308M  653M  33% /boot
+tmpfs                178M  4.0K  178M   1% /run/user/1000
+[root@server999 ~]# cat /etc/fstab ^C
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# lsblk 
+NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+sda           8:0    0 25.1G  0 disk 
+├─sda1        8:1    0    1G  0 part /boot
+└─sda2        8:2    0 24.1G  0 part 
+  ├─cs-root 253:0    0 22.1G  0 lvm  /
+  └─cs-swap 253:1    0    2G  0 lvm  [SWAP]
+sdb           8:16   0    1G  0 disk 
+└─sdb1        8:17   0  500M  0 part /mydrive
+sr0          11:0    1 1024M  0 rom  
+[root@server999 ~]# fdisk /dev/sdb
+
+Welcome to fdisk (util-linux 2.37.4).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+This disk is currently in use - repartitioning is probably a bad idea.
+It's recommended to umount all file systems, and swapoff all swap
+partitions on this disk.
+
+
+Command (m for help): p
+
+Disk /dev/sdb: 1.01 GiB, 1083890688 bytes, 2116974 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xa3051e69
+
+Device     Boot Start     End Sectors  Size Id Type
+/dev/sdb1        2048 1026047 1024000  500M 83 Linux
+
+Command (m for help): q
+
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# fdisk -l
+
+
+Disk /dev/sda: 25.13 GiB, 26987642880 bytes, 52710240 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x89f31621
+
+Device     Boot   Start      End  Sectors  Size Id Type
+/dev/sda1  *       2048  2099199  2097152    1G 83 Linux
+/dev/sda2       2099200 52709375 50610176 24.1G 8e Linux LVM
+
+
+Disk /dev/sdb: 1.01 GiB, 1083890688 bytes, 2116974 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xa3051e69
+
+Device     Boot Start     End Sectors  Size Id Type
+/dev/sdb1        2048 1026047 1024000  500M 83 Linux
+
+
+Disk /dev/mapper/cs-root: 22.08 GiB, 23710400512 bytes, 46309376 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/cs-swap: 2.05 GiB, 2197815296 bytes, 4292608 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# df -h
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs             4.0M     0  4.0M   0% /dev
+tmpfs                887M     0  887M   0% /dev/shm
+tmpfs                355M  5.0M  350M   2% /run
+/dev/mapper/cs-root   23G   14G  8.2G  63% /
+/dev/sdb1            436M   29M  408M   7% /mydrive
+/dev/sda1            960M  308M  653M  33% /boot
+tmpfs                178M  4.0K  178M   1% /run/user/1000
+[root@server999 ~]# free -h
+               total        used        free      shared  buff/cache   available
+Mem:           1.7Gi       334Mi       1.3Gi       5.0Mi       211Mi       1.4Gi
+Swap:          2.0Gi          0B       2.0Gi
+[root@server999 ~]# 
+
+
+
+
+
+
+
+
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# fdisk /dev/sdb
+
+Welcome to fdisk (util-linux 2.37.4).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+This disk is currently in use - repartitioning is probably a bad idea.
+It's recommended to umount all file systems, and swapoff all swap
+partitions on this disk.
+
+
+Command (m for help): p
+
+Disk /dev/sdb: 1.01 GiB, 1083890688 bytes, 2116974 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xa3051e69
+
+Device     Boot Start     End Sectors  Size Id Type
+/dev/sdb1        2048 1026047 1024000  500M 83 Linux
+
+Command (m for help): n
+Partition type
+   p   primary (1 primary, 0 extended, 3 free)
+   e   extended (container for logical partitions)
+Select (default p): p
+Partition number (2-4, default 2): 
+First sector (1026048-2116973, default 1026048): 
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (1026048-2116973, default 2116973): 
+
+Created a new partition 2 of type 'Linux' and of size 532.7 MiB.
+
+Command (m for help): p
+Disk /dev/sdb: 1.01 GiB, 1083890688 bytes, 2116974 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xa3051e69
+
+Device     Boot   Start     End Sectors   Size Id Type
+/dev/sdb1          2048 1026047 1024000   500M 83 Linux
+/dev/sdb2       1026048 2116973 1090926 532.7M 83 Linux
+
+Command (m for help): t
+Partition number (1,2, default 2): 2
+Hex code or alias (type L to list all): L
+
+00 Empty            24 NEC DOS          81 Minix / old Lin  bf Solaris        
+01 FAT12            27 Hidden NTFS Win  82 Linux swap / So  c1 DRDOS/sec (FAT-
+02 XENIX root       39 Plan 9           83 Linux            c4 DRDOS/sec (FAT-
+03 XENIX usr        3c PartitionMagic   84 OS/2 hidden or   c6 DRDOS/sec (FAT-
+04 FAT16 <32M       40 Venix 80286      85 Linux extended   c7 Syrinx         
+05 Extended         41 PPC PReP Boot    86 NTFS volume set  da Non-FS data    
+06 FAT16            42 SFS              87 NTFS volume set  db CP/M / CTOS / .
+07 HPFS/NTFS/exFAT  4d QNX4.x           88 Linux plaintext  de Dell Utility   
+08 AIX              4e QNX4.x 2nd part  8e Linux LVM        df BootIt         
+09 AIX bootable     4f QNX4.x 3rd part  93 Amoeba           e1 DOS access     
+0a OS/2 Boot Manag  50 OnTrack DM       94 Amoeba BBT       e3 DOS R/O        
+0b W95 FAT32        51 OnTrack DM6 Aux  9f BSD/OS           e4 SpeedStor      
+0c W95 FAT32 (LBA)  52 CP/M             a0 IBM Thinkpad hi  ea Linux extended 
+0e W95 FAT16 (LBA)  53 OnTrack DM6 Aux  a5 FreeBSD          eb BeOS fs        
+0f W95 Ext'd (LBA)  54 OnTrackDM6       a6 OpenBSD          ee GPT            
+10 OPUS             55 EZ-Drive         a7 NeXTSTEP         ef EFI (FAT-12/16/
+11 Hidden FAT12     56 Golden Bow       a8 Darwin UFS       f0 Linux/PA-RISC b
+12 Compaq diagnost  5c Priam Edisk      a9 NetBSD           f1 SpeedStor      
+14 Hidden FAT16 <3  61 SpeedStor        ab Darwin boot      f4 SpeedStor      
+16 Hidden FAT16     63 GNU HURD or Sys  af HFS / HFS+       f2 DOS secondary  
+17 Hidden HPFS/NTF  64 Novell Netware   b7 BSDI fs          fb VMware VMFS    
+18 AST SmartSleep   65 Novell Netware   b8 BSDI swap        fc VMware VMKCORE 
+1b Hidden W95 FAT3  70 DiskSecure Mult  bb Boot Wizard hid  fd Linux raid auto
+1c Hidden W95 FAT3  75 PC/IX            bc Acronis FAT32 L  fe LANstep        
+1e Hidden W95 FAT1  80 Old Minix        be Solaris boot     ff BBT            
+
+Aliases:
+   linux          - 83
+   swap           - 82
+   extended       - 05
+   uefi           - EF
+   raid           - FD
+   lvm            - 8E
+   linuxex        - 85
+Hex code or alias (type L to list all): 
+Hex code or alias (type L to list all): 82
+
+Changed type of partition 'Linux' to 'Linux swap / Solaris'.
+
+Command (m for help): p
+Disk /dev/sdb: 1.01 GiB, 1083890688 bytes, 2116974 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xa3051e69
+
+Device     Boot   Start     End Sectors   Size Id Type
+/dev/sdb1          2048 1026047 1024000   500M 83 Linux
+/dev/sdb2       1026048 2116973 1090926 532.7M 82 Linux swap / Solaris
+
+Command (m for help): p
+Disk /dev/sdb: 1.01 GiB, 1083890688 bytes, 2116974 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xa3051e69
+
+Device     Boot   Start     End Sectors   Size Id Type
+/dev/sdb1          2048 1026047 1024000   500M 83 Linux
+/dev/sdb2       1026048 2116973 1090926 532.7M 82 Linux swap / Solaris
+
+Command (m for help): w
+The partition table has been altered.
+Syncing disks.
+
+[root@server999 ~]# 
+[root@server999 ~]# mkfs.xfs^C
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# mkswap /dev/sdb2
+Setting up swapspace version 1, size = 532.7 MiB (558546944 bytes)
+no label, UUID=d995dcb8-cb37-47b4-bbe7-bb669e14a4ab
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# df -h
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs             4.0M     0  4.0M   0% /dev
+tmpfs                887M     0  887M   0% /dev/shm
+tmpfs                355M  5.0M  350M   2% /run
+/dev/mapper/cs-root   23G   14G  8.2G  63% /
+/dev/sdb1            436M   29M  408M   7% /mydrive
+/dev/sda1            960M  308M  653M  33% /boot
+tmpfs                178M  4.0K  178M   1% /run/user/1000
+[root@server999 ~]# free -h
+               total        used        free      shared  buff/cache   available
+Mem:           1.7Gi       333Mi       1.3Gi       5.0Mi       212Mi       1.4Gi
+Swap:          2.0Gi          0B       2.0Gi
+[root@server999 ~]# 
+[root@server999 ~]# on///^C
+[root@server999 ~]# swapo
+swapoff  swapon   
+[root@server999 ~]# swapo
+swapoff  swapon   
+[root@server999 ~]# swapon /dev/sdb1
+swapon: /dev/sdb1: read swap header failed
+[root@server999 ~]# swapon /dev/sdb2
+[root@server999 ~]# 
+[root@server999 ~]# free -h
+               total        used        free      shared  buff/cache   available
+Mem:           1.7Gi       333Mi       1.3Gi       5.0Mi       212Mi       1.4Gi
+Swap:          2.6Gi          0B       2.6Gi
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# reboot^C
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# vi /etc/fstab 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# cat /etc/fstab 
+
+#
+# /etc/fstab
+# Created by anaconda on Sun Nov 10 00:26:12 2024
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk/'.
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.
+#
+# After editing this file, run 'systemctl daemon-reload' to update systemd
+# units generated from this file.
+#
+/dev/mapper/cs-root     /                       xfs     defaults        0 0
+UUID=cf417c84-1fd5-49e6-9ff1-66d99a376b3d /boot                   xfs     defaults        0 0
+/dev/mapper/cs-swap     none                    swap    defaults        0 0
+/dev/sdb1           /mydrive            xfs        defaults 0 0
+/dev/sdb2         swap   swap        defaults 0 0 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# reboot
+[root@server999 ~]# Connection to 192.168.12.179 closed by remote host.
+Connection to 192.168.12.179 closed.
+[saipavan@superman ~]$ 
+[saipavan@superman ~]$ 
+[saipavan@superman ~]$ ssh sai@192.168.12.179
+sai@192.168.12.179's password: 
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last login: Sat Nov 30 08:50:40 2024 from 192.168.12.227
+[sai@server999 ~]$ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           1.7Gi       309Mi       1.4Gi       5.0Mi       183Mi       1.4Gi
+Swap:          2.6Gi          0B       2.6Gi
+[sai@server999 ~]$ cat /etc/fstab 
+
+#
+# /etc/fstab
+# Created by anaconda on Sun Nov 10 00:26:12 2024
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk/'.
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.
+#
+# After editing this file, run 'systemctl daemon-reload' to update systemd
+# units generated from this file.
+#
+/dev/mapper/cs-root     /                       xfs     defaults        0 0
+UUID=cf417c84-1fd5-49e6-9ff1-66d99a376b3d /boot                   xfs     defaults        0 0
+/dev/mapper/cs-swap     none                    swap    defaults        0 0
+/dev/sdb1           /mydrive            xfs        defaults 0 0
+/dev/sdb2         swap   swap        defaults 0 0 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ sudo su -
+[sudo] password for sai: 
+[root@server999 ~]# 
+[root@server999 ~]# #swapon /dev/sdb2
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# swapoff /dev/sdb2
+[root@server999 ~]# free -h
+               total        used        free      shared  buff/cache   available
+Mem:           1.7Gi       344Mi       1.3Gi       5.0Mi       208Mi       1.4Gi
+Swap:          2.0Gi          0B       2.0Gi
+[root@server999 ~]# 
+[root@server999 ~]# swapon /dev/sdb2
+[root@server999 ~]# free -h
+               total        used        free      shared  buff/cache   available
+Mem:           1.7Gi       340Mi       1.3Gi       5.0Mi       208Mi       1.4Gi
+Swap:          2.6Gi          0B       2.6Gi
+[root@server999 ~]# df -h
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs             4.0M     0  4.0M   0% /dev
+tmpfs                887M     0  887M   0% /dev/shm
+tmpfs                355M  5.1M  350M   2% /run
+/dev/mapper/cs-root   23G   14G  8.2G  63% /
+/dev/sda1            960M  308M  653M  33% /boot
+/dev/sdb1            436M   29M  408M   7% /mydrive
+tmpfs                178M  4.0K  178M   1% /run/user/1000
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# tune
+tune2fs    tuned      tuned-adm  
+[root@server999 ~]# tune2fs /dev/sdb1
+tune2fs 1.46.5 (30-Dec-2021)
+Usage: tune2fs [-c max_mounts_count] [-e errors_behavior] [-f] [-g group]
+	[-i interval[d|m|w]] [-j] [-J journal_options] [-l]
+	[-m reserved_blocks_percent] [-o [^]mount_options[,...]]
+	[-r reserved_blocks_count] [-u user] [-C mount_count]
+	[-L volume_label] [-M last_mounted_dir]
+	[-O [^]feature[,...]] [-Q quota_options]
+	[-E extended-option[,...]] [-T last_check_time] [-U UUID]
+	[-I new_inode_size] [-z undo_file] device
+[root@server999 ~]# tune2fs -l  /dev/sdb1
+tune2fs 1.46.5 (30-Dec-2021)
+tune2fs: Bad magic number in super-block while trying to open /dev/sdb1
+/dev/sdb1 contains a xfs file system
+[root@server999 ~]# tune2fs -l  /dev/sda1
+tune2fs 1.46.5 (30-Dec-2021)
+tune2fs: Bad magic number in super-block while trying to open /dev/sda1
+/dev/sda1 contains a xfs file system
+[root@server999 ~]# tune2fs -L  /dev/sda1
+tune2fs 1.46.5 (30-Dec-2021)
+Usage: tune2fs [-c max_mounts_count] [-e errors_behavior] [-f] [-g group]
+	[-i interval[d|m|w]] [-j] [-J journal_options] [-l]
+	[-m reserved_blocks_percent] [-o [^]mount_options[,...]]
+	[-r reserved_blocks_count] [-u user] [-C mount_count]
+	[-L volume_label] [-M last_mounted_dir]
+	[-O [^]feature[,...]] [-Q quota_options]
+	[-E extended-option[,...]] [-T last_check_time] [-U UUID]
+	[-I new_inode_size] [-z undo_file] device
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# man tune2fs 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# e2fsck -vv /dev/sdb1
+e2fsck 1.46.5 (30-Dec-2021)
+/dev/sdb1 is mounted.
+e2fsck: Cannot continue, aborting.
+
+
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# umont /mydrive/
+-bash: umont: command not found
+[root@server999 ~]# umount /mydrive/
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# e2fsck -vv /dev/sdb1
+e2fsck 1.46.5 (30-Dec-2021)
+ext2fs_open2: Bad magic number in super-block
+e2fsck: Superblock invalid, trying backup blocks...
+e2fsck: Bad magic number in super-block while trying to open /dev/sdb1
+
+The superblock could not be read or does not describe a valid ext2/ext3/ext4
+filesystem.  If the device is valid and it really contains an ext2/ext3/ext4
+filesystem (and not swap or ufs or something else), then the superblock
+is corrupt, and you might try running e2fsck with an alternate superblock:
+    e2fsck -b 8193 <device>
+ or
+    e2fsck -b 32768 <device>
+
+/dev/sdb1 contains a xfs file system
+[root@server999 ~]# e2fsck -bvv /dev/sdb1
+
+Invalid non-numeric argument to -b ("vv")
+
+[root@server999 ~]# e2fsck -bf /dev/sdb1
+
+Invalid non-numeric argument to -b ("f")
+
+[root@server999 ~]# e2fsck -b /dev/sdb1
+
+Invalid non-numeric argument to -b ("/dev/sdb1")
+
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# mkfs
+mkfs         mkfs.ext2    mkfs.ext4    mkfs.minix   mkfs.vfat    
+mkfs.cramfs  mkfs.ext3    mkfs.fat     mkfs.msdos   mkfs.xfs     
+[root@server999 ~]# mkfs
+mkfs         mkfs.ext2    mkfs.ext4    mkfs.minix   mkfs.vfat    
+mkfs.cramfs  mkfs.ext3    mkfs.fat     mkfs.msdos   mkfs.xfs     
+[root@server999 ~]# mkfs.ext4 /dev/sdb1
+mke2fs 1.46.5 (30-Dec-2021)
+/dev/sdb1 contains a xfs file system
+Proceed anyway? (y,N) y
+Creating filesystem with 512000 1k blocks and 128016 inodes
+Filesystem UUID: 621b2ee9-cb88-42db-9244-cdf2defaaf8f
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345, 73729, 204801, 221185, 401409
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Creating journal (8192 blocks): done
+Writing superblocks and filesystem accounting information: done 
+
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# e2fsck  /dev/sdb1
+e2fsck 1.46.5 (30-Dec-2021)
+/dev/sdb1: clean, 11/128016 files, 42686/512000 blocks
+[root@server999 ~]# e2fsck -vv  /dev/sdb1
+e2fsck 1.46.5 (30-Dec-2021)
+/dev/sdb1: clean, 11/128016 files, 42686/512000 blocks
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# e2fsck -vv^C/dev/sdb1
+[root@server999 ~]# tune2fs /dev/sdb1
+tune2fs 1.46.5 (30-Dec-2021)
+Usage: tune2fs [-c max_mounts_count] [-e errors_behavior] [-f] [-g group]
+	[-i interval[d|m|w]] [-j] [-J journal_options] [-l]
+	[-m reserved_blocks_percent] [-o [^]mount_options[,...]]
+	[-r reserved_blocks_count] [-u user] [-C mount_count]
+	[-L volume_label] [-M last_mounted_dir]
+	[-O [^]feature[,...]] [-Q quota_options]
+	[-E extended-option[,...]] [-T last_check_time] [-U UUID]
+	[-I new_inode_size] [-z undo_file] device
+[root@server999 ~]# tune2fs -L /dev/sdb1
+tune2fs 1.46.5 (30-Dec-2021)
+Usage: tune2fs [-c max_mounts_count] [-e errors_behavior] [-f] [-g group]
+	[-i interval[d|m|w]] [-j] [-J journal_options] [-l]
+	[-m reserved_blocks_percent] [-o [^]mount_options[,...]]
+	[-r reserved_blocks_count] [-u user] [-C mount_count]
+	[-L volume_label] [-M last_mounted_dir]
+	[-O [^]feature[,...]] [-Q quota_options]
+	[-E extended-option[,...]] [-T last_check_time] [-U UUID]
+	[-I new_inode_size] [-z undo_file] device
+[root@server999 ~]# tune2fs /dev/sdb1
+tune2fs 1.46.5 (30-Dec-2021)
+Usage: tune2fs [-c max_mounts_count] [-e errors_behavior] [-f] [-g group]
+	[-i interval[d|m|w]] [-j] [-J journal_options] [-l]
+	[-m reserved_blocks_percent] [-o [^]mount_options[,...]]
+	[-r reserved_blocks_count] [-u user] [-C mount_count]
+	[-L volume_label] [-M last_mounted_dir]
+	[-O [^]feature[,...]] [-Q quota_options]
+	[-E extended-option[,...]] [-T last_check_time] [-U UUID]
+	[-I new_inode_size] [-z undo_file] device
+[root@server999 ~]# tune2fs -L /dev/sdb1
+tune2fs 1.46.5 (30-Dec-2021)
+Usage: tune2fs [-c max_mounts_count] [-e errors_behavior] [-f] [-g group]
+	[-i interval[d|m|w]] [-j] [-J journal_options] [-l]
+	[-m reserved_blocks_percent] [-o [^]mount_options[,...]]
+	[-r reserved_blocks_count] [-u user] [-C mount_count]
+	[-L volume_label] [-M last_mounted_dir]
+	[-O [^]feature[,...]] [-Q quota_options]
+	[-E extended-option[,...]] [-T last_check_time] [-U UUID]
+	[-I new_inode_size] [-z undo_file] device
+[root@server999 ~]# tune2fs -l /dev/sdb1
+tune2fs 1.46.5 (30-Dec-2021)
+Filesystem volume name:   <none>
+Last mounted on:          <not available>
+Filesystem UUID:          621b2ee9-cb88-42db-9244-cdf2defaaf8f
+Filesystem magic number:  0xEF53
+Filesystem revision #:    1 (dynamic)
+Filesystem features:      has_journal ext_attr resize_inode dir_index filetype extent 64bit flex_bg sparse_super large_file huge_file dir_nlink extra_isize metadata_csum
+Filesystem flags:         signed_directory_hash 
+Default mount options:    user_xattr acl
+Filesystem state:         clean
+Errors behavior:          Continue
+Filesystem OS type:       Linux
+Inode count:              128016
+Block count:              512000
+Reserved block count:     25600
+Overhead clusters:        42672
+Free blocks:              469314
+Free inodes:              128005
+First block:              1
+Block size:               1024
+Fragment size:            1024
+Group descriptor size:    64
+Reserved GDT blocks:      256
+Blocks per group:         8192
+Fragments per group:      8192
+Inodes per group:         2032
+Inode blocks per group:   508
+Flex block group size:    16
+Filesystem created:       Sat Nov 30 09:31:24 2024
+Last mount time:          n/a
+Last write time:          Sat Nov 30 09:31:40 2024
+Mount count:              0
+Maximum mount count:      -1
+Last checked:             Sat Nov 30 09:31:24 2024
+Check interval:           0 (<none>)
+Lifetime writes:          298 kB
+Reserved blocks uid:      0 (user root)
+Reserved blocks gid:      0 (group root)
+First inode:              11
+Inode size:	          256
+Required extra isize:     32
+Desired extra isize:      32
+Journal inode:            8
+Default directory hash:   half_md4
+Directory Hash Seed:      b880d349-7cd5-4b5b-8191-fcb735be26c7
+Journal backup:           inode blocks
+Checksum type:            crc32c
+Checksum:                 0x777a0ed6
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# #tune2fs -l /dev/sdb1
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# df -h
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs             4.0M     0  4.0M   0% /dev
+tmpfs                887M     0  887M   0% /dev/shm
+tmpfs                355M  5.1M  350M   2% /run
+/dev/mapper/cs-root   23G   14G  8.2G  63% /
+/dev/sda1            960M  308M  653M  33% /boot
+tmpfs                178M  4.0K  178M   1% /run/user/1000
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# lsblk 
+NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+sda           8:0    0  25.1G  0 disk 
+├─sda1        8:1    0     1G  0 part /boot
+└─sda2        8:2    0  24.1G  0 part 
+  ├─cs-root 253:0    0  22.1G  0 lvm  /
+  └─cs-swap 253:1    0     2G  0 lvm  [SWAP]
+sdb           8:16   0     1G  0 disk 
+├─sdb1        8:17   0   500M  0 part 
+└─sdb2        8:18   0 532.7M  0 part [SWAP]
+sr0          11:0    1  1024M  0 rom  
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# xfs_i
+xfs_info  xfs_io    
+[root@server999 ~]# xfs_info /dev/sda2
+xfs_info: /dev/sda2 is not a valid XFS filesystem (unexpected SB magic number 0x00000000)
+Use -F to force a read attempt.
+[root@server999 ~]# xfs_info /dev/mapper/cs-root 
+meta-data=/dev/mapper/cs-root    isize=512    agcount=4, agsize=1447168 blks
+         =                       sectsz=512   attr=2, projid32bit=1
+         =                       crc=1        finobt=1, sparse=1, rmapbt=0
+         =                       reflink=1    bigtime=1 inobtcount=1 nrext64=0
+data     =                       bsize=4096   blocks=5788672, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0, ftype=1
+log      =internal log           bsize=4096   blocks=16384, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+[root@server999 ~]# #tune2fs -l /dev/sdb1
+[root@server999 ~]# 
+[root@server999 ~]# #tune2fs -l /dev/sdb1 - ext4^C
+[root@server999 ~]# xfs_info /dev/mapper/cs-root  - xfs^C
+[root@server999 ~]# e2fsck error^C
+[root@server999 ~]# xfs_r
+xfs_repair  xfs_rtcp    
+[root@server999 ~]# #xfs_repair /dev/sda2
