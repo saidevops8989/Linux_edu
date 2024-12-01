@@ -1,0 +1,636 @@
+[root@client ~]# lsblk 
+NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+sda           8:0    0 11.4G  0 disk 
+├─sda1        8:1    0    1G  0 part /boot
+└─sda2        8:2    0 10.4G  0 part 
+  ├─cs-root 253:0    0  9.2G  0 lvm  /
+  └─cs-swap 253:1    0  1.1G  0 lvm  [SWAP]
+sr0          11:0    1 1024M  0 rom  
+[root@client ~]# fdisk -l
+
+
+Disk /dev/sda: 11.37 GiB, 12211019776 bytes, 23849648 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x8c508754
+
+Device     Boot   Start      End  Sectors  Size Id Type
+/dev/sda1  *       2048  2099199  2097152    1G 83 Linux
+/dev/sda2       2099200 23848959 21749760 10.4G 8e Linux LVM
+
+
+Disk /dev/mapper/cs-root: 9.23 GiB, 9906946048 bytes, 19349504 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/cs-swap: 1.14 GiB, 1224736768 bytes, 2392064 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+[root@client ~]# init 0
+[root@client ~]# Connection to 192.168.12.166 closed by remote host.
+Connection to 192.168.12.166 closed.
+[saipavan@superman ~]$ ssh root@192.168.12.166
+root@192.168.12.166's password: 
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last login: Sat Nov 30 10:04:22 2024 from 192.168.12.227
+[root@client ~]# 
+[root@client ~]# 
+[root@client ~]# lsblk 
+NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+sda           8:0    0 11.4G  0 disk 
+├─sda1        8:1    0    1G  0 part /boot
+└─sda2        8:2    0 10.4G  0 part 
+  ├─cs-root 253:0    0  9.2G  0 lvm  /
+  └─cs-swap 253:1    0  1.1G  0 lvm  [SWAP]
+sdb           8:16   0    1G  0 disk 
+sdc           8:32   0    1G  0 disk 
+sr0          11:0    1 1024M  0 rom  
+[root@client ~]# 
+[root@client ~]# 
+[root@client ~]# fdisk /dev/sdb
+
+Welcome to fdisk (util-linux 2.37.4).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+Device does not contain a recognized partition table.
+Created a new DOS disklabel with disk identifier 0x7ab36d2c.
+
+Command (m for help): p
+Disk /dev/sdb: 1.01 GiB, 1083890688 bytes, 2116974 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x7ab36d2c
+
+Command (m for help): n
+Partition type
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended (container for logical partitions)
+Select (default p): p
+Partition number (1-4, default 1): 
+First sector (2048-2116973, default 2048): 
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-2116973, default 2116973): 
+
+Created a new partition 1 of type 'Linux' and of size 1 GiB.
+
+Command (m for help): p
+Disk /dev/sdb: 1.01 GiB, 1083890688 bytes, 2116974 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x7ab36d2c
+
+Device     Boot Start     End Sectors Size Id Type
+/dev/sdb1        2048 2116973 2114926   1G 83 Linux
+
+Command (m for help): t
+Selected partition 1
+Hex code or alias (type L to list all): L
+
+00 Empty            24 NEC DOS          81 Minix / old Lin  bf Solaris        
+01 FAT12            27 Hidden NTFS Win  82 Linux swap / So  c1 DRDOS/sec (FAT-
+02 XENIX root       39 Plan 9           83 Linux            c4 DRDOS/sec (FAT-
+03 XENIX usr        3c PartitionMagic   84 OS/2 hidden or   c6 DRDOS/sec (FAT-
+04 FAT16 <32M       40 Venix 80286      85 Linux extended   c7 Syrinx         
+05 Extended         41 PPC PReP Boot    86 NTFS volume set  da Non-FS data    
+06 FAT16            42 SFS              87 NTFS volume set  db CP/M / CTOS / .
+07 HPFS/NTFS/exFAT  4d QNX4.x           88 Linux plaintext  de Dell Utility   
+08 AIX              4e QNX4.x 2nd part  8e Linux LVM        df BootIt         
+09 AIX bootable     4f QNX4.x 3rd part  93 Amoeba           e1 DOS access     
+0a OS/2 Boot Manag  50 OnTrack DM       94 Amoeba BBT       e3 DOS R/O        
+0b W95 FAT32        51 OnTrack DM6 Aux  9f BSD/OS           e4 SpeedStor      
+0c W95 FAT32 (LBA)  52 CP/M             a0 IBM Thinkpad hi  ea Linux extended 
+0e W95 FAT16 (LBA)  53 OnTrack DM6 Aux  a5 FreeBSD          eb BeOS fs        
+0f W95 Ext'd (LBA)  54 OnTrackDM6       a6 OpenBSD          ee GPT            
+10 OPUS             55 EZ-Drive         a7 NeXTSTEP         ef EFI (FAT-12/16/
+11 Hidden FAT12     56 Golden Bow       a8 Darwin UFS       f0 Linux/PA-RISC b
+12 Compaq diagnost  5c Priam Edisk      a9 NetBSD           f1 SpeedStor      
+14 Hidden FAT16 <3  61 SpeedStor        ab Darwin boot      f4 SpeedStor      
+16 Hidden FAT16     63 GNU HURD or Sys  af HFS / HFS+       f2 DOS secondary  
+17 Hidden HPFS/NTF  64 Novell Netware   b7 BSDI fs          fb VMware VMFS    
+18 AST SmartSleep   65 Novell Netware   b8 BSDI swap        fc VMware VMKCORE 
+1b Hidden W95 FAT3  70 DiskSecure Mult  bb Boot Wizard hid  fd Linux raid auto
+1c Hidden W95 FAT3  75 PC/IX            bc Acronis FAT32 L  fe LANstep        
+1e Hidden W95 FAT1  80 Old Minix        be Solaris boot     ff BBT            
+
+Aliases:
+   linux          - 83
+   swap           - 82
+   extended       - 05
+   uefi           - EF
+   raid           - FD
+   lvm            - 8E
+   linuxex        - 85
+Hex code or alias (type L to list all): 8e
+Changed type of partition 'Linux' to 'Linux LVM'.
+
+Command (m for help): p
+Disk /dev/sdb: 1.01 GiB, 1083890688 bytes, 2116974 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x7ab36d2c
+
+Device     Boot Start     End Sectors Size Id Type
+/dev/sdb1        2048 2116973 2114926   1G 8e Linux LVM
+
+Command (m for help): w
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+
+[root@client ~]# 
+[root@client ~]# lsblk 
+NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+sda           8:0    0 11.4G  0 disk 
+├─sda1        8:1    0    1G  0 part /boot
+└─sda2        8:2    0 10.4G  0 part 
+  ├─cs-root 253:0    0  9.2G  0 lvm  /
+  └─cs-swap 253:1    0  1.1G  0 lvm  [SWAP]
+sdb           8:16   0    1G  0 disk 
+└─sdb1        8:17   0    1G  0 part 
+sdc           8:32   0    1G  0 disk 
+sr0          11:0    1 1024M  0 rom  
+[root@client ~]# 
+[root@client ~]# 
+[root@client ~]# 
+[root@client ~]# pvcreate /dev/sdb1
+  Physical volume "/dev/sdb1" successfully created.
+[root@client ~]# 
+[root@client ~]# pvs
+  PV         VG Fmt  Attr PSize   PFree 
+  /dev/sda2  cs lvm2 a--  <10.37g     0 
+  /dev/sdb1     lvm2 ---   <1.01g <1.01g
+[root@client ~]# 
+[root@client ~]# 
+[root@client ~]# vgcreate vgroup1 /dev/sdb1
+  Volume group "vgroup1" successfully created
+[root@client ~]# 
+[root@client ~]# vgs
+  VG      #PV #LV #SN Attr   VSize   VFree
+  cs        1   2   0 wz--n- <10.37g    0 
+  vgroup1   1   0   0 wz--n-   1.00g 1.00g
+[root@client ~]# 
+[root@client ~]# 
+[root@client ~]# lvcreate -n lvm1 -L 500M vgroup1
+  Logical volume "lvm1" created.
+[root@client ~]# lvs
+  LV   VG      Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root cs      -wi-ao----  <9.23g                                                    
+  swap cs      -wi-ao----   1.14g                                                    
+  lvm1 vgroup1 -wi-a----- 500.00m                                                    
+[root@client ~]# 
+[root@client ~]# 
+[root@client ~]# mkf
+mkfifo       mkfs.cramfs  mkfs.ext3    mkfs.fat     mkfs.msdos   mkfs.xfs     
+mkfs         mkfs.ext2    mkfs.ext4    mkfs.minix   mkfs.vfat    
+[root@client ~]# mkfs.ext4 /dev/mapper/vgroup1-lvm1 
+mke2fs 1.46.5 (30-Dec-2021)
+Creating filesystem with 512000 1k blocks and 128016 inodes
+Filesystem UUID: b050e664-abe1-473b-b19f-2d00f824c854
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345, 73729, 204801, 221185, 401409
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Creating journal (8192 blocks): done
+Writing superblocks and filesystem accounting information: done 
+
+[root@client ~]# 
+[root@client ~]# 
+[root@client ~]# mkdir /data
+[root@client ~]# #mount /dev/mapper/vgroup1-lvm1 /data/
+[root@client ~]# df -h
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs             4.0M     0  4.0M   0% /dev
+tmpfs                887M     0  887M   0% /dev/shm
+tmpfs                355M  5.0M  350M   2% /run
+/dev/mapper/cs-root  9.2G  1.9G  7.4G  21% /
+/dev/sda1            960M  308M  653M  33% /boot
+tmpfs                178M     0  178M   0% /run/user/0
+[root@client ~]# mount /dev/mapper/vgroup1-lvm1 /data/
+[root@client ~]# df -h
+Filesystem                Size  Used Avail Use% Mounted on
+devtmpfs                  4.0M     0  4.0M   0% /dev
+tmpfs                     887M     0  887M   0% /dev/shm
+tmpfs                     355M  5.0M  350M   2% /run
+/dev/mapper/cs-root       9.2G  1.9G  7.4G  21% /
+/dev/sda1                 960M  308M  653M  33% /boot
+tmpfs                     178M     0  178M   0% /run/user/0
+/dev/mapper/vgroup1-lvm1  459M   14K  430M   1% /data
+[root@client ~]# cd /data/
+[root@client data]# touch file1
+[root@client data]# 
+[root@client data]# 
+[root@client data]# pvs
+  PV         VG      Fmt  Attr PSize   PFree  
+  /dev/sda2  cs      lvm2 a--  <10.37g      0 
+  /dev/sdb1  vgroup1 lvm2 a--    1.00g 528.00m
+[root@client data]# 
+[root@client data]# 
+[root@client data]# pvdisplay /dev/sdb1
+  --- Physical volume ---
+  PV Name               /dev/sdb1
+  VG Name               vgroup1
+  PV Size               <1.01 GiB / not usable <4.68 MiB
+  Allocatable           yes 
+  PE Size               4.00 MiB
+  Total PE              257
+  Free PE               132
+  Allocated PE          125
+  PV UUID               ckG5lN-VBEM-0DVr-24CG-IxiE-mzOh-bB7QZd
+   
+[root@client data]# 
+[root@client data]# vgs
+  VG      #PV #LV #SN Attr   VSize   VFree  
+  cs        1   2   0 wz--n- <10.37g      0 
+  vgroup1   1   1   0 wz--n-   1.00g 528.00m
+[root@client data]# 
+[root@client data]# vgdisplay vgroup1
+  --- Volume group ---
+  VG Name               vgroup1
+  System ID             
+  Format                lvm2
+  Metadata Areas        1
+  Metadata Sequence No  2
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               1
+  Max PV                0
+  Cur PV                1
+  Act PV                1
+  VG Size               1.00 GiB
+  PE Size               4.00 MiB
+  Total PE              257
+  Alloc PE / Size       125 / 500.00 MiB
+  Free  PE / Size       132 / 528.00 MiB
+  VG UUID               IfH2mF-yvlf-Gwc1-t4Kb-2UxA-dLDA-UR6JQS
+   
+[root@client data]# 
+[root@client data]# lvs
+  LV   VG      Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root cs      -wi-ao----  <9.23g                                                    
+  swap cs      -wi-ao----   1.14g                                                    
+  lvm1 vgroup1 -wi-ao---- 500.00m                                                    
+[root@client data]# lvdisplay lvm1
+  Volume group "lvm1" not found
+  Cannot process volume group lvm1
+[root@client data]# lvdisplay /dev/vgroup1/lvm1 ^C
+[root@client data]# lvdisplay /dev/mapper/vgroup1-lvm1
+  --- Logical volume ---
+  LV Path                /dev/vgroup1/lvm1
+  LV Name                lvm1
+  VG Name                vgroup1
+  LV UUID                eIhNHN-Vd20-4PjE-lOg4-zcTT-e2Nb-bSCPKN
+  LV Write Access        read/write
+  LV Creation host, time client.example.com, 2024-12-01 11:05:54 -0500
+  LV Status              available
+  # open                 1
+  LV Size                500.00 MiB
+  Current LE             125
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:2
+   
+[root@client data]# 
+[root@client data]# 
+[root@client data]# #lvdisplay /dev/mapper/vgroup1-lvm1
+[root@client data]# 
+[root@client data]# vi /etc/fstab 
+[root@client data]# 
+[root@client data]# 
+[root@client data]# df -h
+Filesystem                Size  Used Avail Use% Mounted on
+devtmpfs                  4.0M     0  4.0M   0% /dev
+tmpfs                     887M     0  887M   0% /dev/shm
+tmpfs                     355M  5.0M  350M   2% /run
+/dev/mapper/cs-root       9.2G  1.9G  7.4G  21% /
+/dev/sda1                 960M  308M  653M  33% /boot
+tmpfs                     178M     0  178M   0% /run/user/0
+/dev/mapper/vgroup1-lvm1  459M   14K  430M   1% /data
+[root@client data]# 
+[root@client data]# umount /data 
+umount: /data: target is busy.
+[root@client data]# pwd
+/data
+[root@client data]# cd ..
+[root@client /]# umount /data 
+[root@client /]# 
+[root@client /]# 
+[root@client /]# df -h
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs             4.0M     0  4.0M   0% /dev
+tmpfs                887M     0  887M   0% /dev/shm
+tmpfs                355M  5.0M  350M   2% /run
+/dev/mapper/cs-root  9.2G  1.9G  7.4G  21% /
+/dev/sda1            960M  308M  653M  33% /boot
+tmpfs                178M     0  178M   0% /run/user/0
+[root@client /]# 
+[root@client /]# mount -a
+mount: (hint) your fstab has been modified, but systemd still uses
+       the old version; use 'systemctl daemon-reload' to reload.
+[root@client /]# systemctl daemon-reload
+[root@client /]# #mount /dev/mapper/vgroup1-lvm1 /data/
+[root@client /]# cat /etc/fstab 
+
+#
+# /etc/fstab
+# Created by anaconda on Sun Nov 10 17:54:03 2024
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk/'.
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.
+#
+# After editing this file, run 'systemctl daemon-reload' to update systemd
+# units generated from this file.
+#
+/dev/mapper/cs-root     /                       xfs     defaults        0 0
+UUID=b489caf5-29fa-4d7a-9238-ff9c139a5127 /boot                   xfs     defaults        0 0
+/dev/mapper/cs-swap     none                    swap    defaults        0 0
+/dev/mapper/vgroup1-lvm1  /data      ext4   defaults 0 0
+[root@client /]# 
+[root@client /]# 
+[root@client /]# mount -a
+[root@client /]# df -h
+Filesystem                Size  Used Avail Use% Mounted on
+devtmpfs                  4.0M     0  4.0M   0% /dev
+tmpfs                     887M     0  887M   0% /dev/shm
+tmpfs                     355M  5.0M  350M   2% /run
+/dev/mapper/cs-root       9.2G  1.9G  7.4G  21% /
+/dev/sda1                 960M  308M  653M  33% /boot
+tmpfs                     178M     0  178M   0% /run/user/0
+/dev/mapper/vgroup1-lvm1  459M   14K  430M   1% /data
+[root@client /]# 
+[root@client /]# 
+[root@client /]# 
+[root@client /]# lsblk 
+NAME             MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+sda                8:0    0 11.4G  0 disk 
+├─sda1             8:1    0    1G  0 part /boot
+└─sda2             8:2    0 10.4G  0 part 
+  ├─cs-root      253:0    0  9.2G  0 lvm  /
+  └─cs-swap      253:1    0  1.1G  0 lvm  [SWAP]
+sdb                8:16   0    1G  0 disk 
+└─sdb1             8:17   0    1G  0 part 
+  └─vgroup1-lvm1 253:2    0  500M  0 lvm  /data
+sdc                8:32   0    1G  0 disk 
+sr0               11:0    1 1024M  0 rom  
+[root@client /]# 
+[root@client /]# vgs
+  VG      #PV #LV #SN Attr   VSize   VFree  
+  cs        1   2   0 wz--n- <10.37g      0 
+  vgroup1   1   1   0 wz--n-   1.00g 528.00m
+[root@client /]# 
+[root@client /]# 
+[root@client /]# 
+[root@client /]# fdisk /dev/sdc
+
+Welcome to fdisk (util-linux 2.37.4).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+Device does not contain a recognized partition table.
+Created a new DOS disklabel with disk identifier 0x264ab959.
+
+Command (m for help): p
+Disk /dev/sdc: 1.01 GiB, 1083890688 bytes, 2116974 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x264ab959
+
+Command (m for help): n
+Partition type
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended (container for logical partitions)
+Select (default p): p
+Partition number (1-4, default 1): 
+First sector (2048-2116973, default 2048): 
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-2116973, default 2116973): 
+
+Created a new partition 1 of type 'Linux' and of size 1 GiB.
+
+Command (m for help): p
+Disk /dev/sdc: 1.01 GiB, 1083890688 bytes, 2116974 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x264ab959
+
+Device     Boot Start     End Sectors Size Id Type
+/dev/sdc1        2048 2116973 2114926   1G 83 Linux
+
+Command (m for help): 
+
+
+Command (m for help): t
+
+Selected partition 1
+Hex code or alias (type L to list all): 8e
+Changed type of partition 'Linux' to 'Linux LVM'.
+
+Command (m for help): p
+Disk /dev/sdc: 1.01 GiB, 1083890688 bytes, 2116974 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x264ab959
+
+Device     Boot Start     End Sectors Size Id Type
+/dev/sdc1        2048 2116973 2114926   1G 8e Linux LVM
+
+Command (m for help): w
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+
+[root@client /]# pvcreate /dev/sdc1
+  Physical volume "/dev/sdc1" successfully created.
+[root@client /]# 
+[root@client /]# 
+[root@client /]# #vgcreate 
+[root@client /]# 
+[root@client /]# #in order to addd to existing vgroup
+[root@client /]# 
+[root@client /]# 
+[root@client /]# vgs
+  VG      #PV #LV #SN Attr   VSize   VFree  
+  cs        1   2   0 wz--n- <10.37g      0 
+  vgroup1   1   1   0 wz--n-   1.00g 528.00m
+[root@client /]# vgextend  vgroup1 /dev/sdc1
+  Volume group "vgroup1" successfully extended
+[root@client /]# 
+[root@client /]# vgs
+  VG      #PV #LV #SN Attr   VSize   VFree 
+  cs        1   2   0 wz--n- <10.37g     0 
+  vgroup1   2   1   0 wz--n-  <2.01g <1.52g
+[root@client /]# 
+[root@client /]# vgdisplay vgroup1 
+  --- Volume group ---
+  VG Name               vgroup1
+  System ID             
+  Format                lvm2
+  Metadata Areas        2
+  Metadata Sequence No  3
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               1
+  Max PV                0
+  Cur PV                2
+  Act PV                2
+  VG Size               <2.01 GiB
+  PE Size               4.00 MiB
+  Total PE              514
+  Alloc PE / Size       125 / 500.00 MiB
+  Free  PE / Size       389 / <1.52 GiB
+  VG UUID               IfH2mF-yvlf-Gwc1-t4Kb-2UxA-dLDA-UR6JQS
+   
+[root@client /]# 
+[root@client /]# df -h
+Filesystem                Size  Used Avail Use% Mounted on
+devtmpfs                  4.0M     0  4.0M   0% /dev
+tmpfs                     887M     0  887M   0% /dev/shm
+tmpfs                     355M  5.0M  350M   2% /run
+/dev/mapper/cs-root       9.2G  1.9G  7.4G  21% /
+/dev/sda1                 960M  308M  653M  33% /boot
+tmpfs                     178M     0  178M   0% /run/user/0
+/dev/mapper/vgroup1-lvm1  459M   14K  430M   1% /data
+[root@client /]# 
+[root@client /]# 
+[root@client /]# #lvextend -L +1G /dev/vgroup1/lvm1 
+[root@client /]# lvs
+  LV   VG      Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root cs      -wi-ao----  <9.23g                                                    
+  swap cs      -wi-ao----   1.14g                                                    
+  lvm1 vgroup1 -wi-ao---- 500.00m                                                    
+[root@client /]# lvextend -L +1G /dev/vgroup1/lvm1 
+  Size of logical volume vgroup1/lvm1 changed from 500.00 MiB (125 extents) to <1.49 GiB (381 extents).
+  Logical volume vgroup1/lvm1 successfully resized.
+[root@client /]# lvs
+  LV   VG      Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root cs      -wi-ao---- <9.23g                                                    
+  swap cs      -wi-ao----  1.14g                                                    
+  lvm1 vgroup1 -wi-ao---- <1.49g                                                    
+[root@client /]# df -h
+Filesystem                Size  Used Avail Use% Mounted on
+devtmpfs                  4.0M     0  4.0M   0% /dev
+tmpfs                     887M     0  887M   0% /dev/shm
+tmpfs                     355M  5.0M  350M   2% /run
+/dev/mapper/cs-root       9.2G  1.9G  7.4G  21% /
+/dev/sda1                 960M  308M  653M  33% /boot
+tmpfs                     178M     0  178M   0% /run/user/0
+/dev/mapper/vgroup1-lvm1  459M   14K  430M   1% /data
+[root@client /]# 
+[root@client /]# resize2fs /dev/vgroup1/lvm1 
+resize2fs 1.46.5 (30-Dec-2021)
+Filesystem at /dev/vgroup1/lvm1 is mounted on /data; on-line resizing required
+old_desc_blocks = 4, new_desc_blocks = 12
+The filesystem on /dev/vgroup1/lvm1 is now 1560576 (1k) blocks long.
+
+[root@client /]# df -h
+Filesystem                Size  Used Avail Use% Mounted on
+devtmpfs                  4.0M     0  4.0M   0% /dev
+tmpfs                     887M     0  887M   0% /dev/shm
+tmpfs                     355M  5.0M  350M   2% /run
+/dev/mapper/cs-root       9.2G  1.9G  7.4G  21% /
+/dev/sda1                 960M  308M  653M  33% /boot
+tmpfs                     178M     0  178M   0% /run/user/0
+/dev/mapper/vgroup1-lvm1  1.4G   14K  1.4G   1% /data
+[root@client /]# 
+[root@client /]# 
+[root@client /]# 
+[root@client /]# 
+[root@client /]# #lvextend -L +1G /dev/vgroup1/lvm1 
+[root@client /]# #lvextend -L +1G /dev/vgroup1/lvm2
+[root@client /]# 
+[root@client /]# #lvextend -L +100%FREE /dev/vgroup1/lvm1
+[root@client /]# 
+[root@client /]# umo^C
+[root@client /]# 
+[root@client /]# 
+[root@client /]# 
+[root@client /]# df -h
+Filesystem                Size  Used Avail Use% Mounted on
+devtmpfs                  4.0M     0  4.0M   0% /dev
+tmpfs                     887M     0  887M   0% /dev/shm
+tmpfs                     355M  5.0M  350M   2% /run
+/dev/mapper/cs-root       9.2G  1.9G  7.4G  21% /
+/dev/sda1                 960M  308M  653M  33% /boot
+tmpfs                     178M     0  178M   0% /run/user/0
+/dev/mapper/vgroup1-lvm1  1.4G   14K  1.4G   1% /data
+[root@client /]# 
+[root@client /]# 
+[root@client /]# ^Cp /data/ remote
+[root@client /]# 
+[root@client /]# umount /data 
+[root@client /]# df -h
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs             4.0M     0  4.0M   0% /dev
+tmpfs                887M     0  887M   0% /dev/shm
+tmpfs                355M  5.0M  350M   2% /run
+/dev/mapper/cs-root  9.2G  1.9G  7.4G  21% /
+/dev/sda1            960M  308M  653M  33% /boot
+tmpfs                178M     0  178M   0% /run/user/0
+[root@client /]# 
+[root@client /]# 
+[root@client /]# e2fsck -f /dev/vgroup1/lvm1 
+e2fsck 1.46.5 (30-Dec-2021)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+/dev/vgroup1/lvm1: 12/388112 files (0.0% non-contiguous), 108488/1560576 blocks
+[root@client /]# 
+[root@client /]# 
+[root@client /]# 
+[root@client /]# 
+[root@client /]# resize2fs /dev/vgroup1/lvm1 1G
+resize2fs 1.46.5 (30-Dec-2021)
+Resizing the filesystem on /dev/vgroup1/lvm1 to 1048576 (1k) blocks.
+The filesystem on /dev/vgroup1/lvm1 is now 1048576 (1k) blocks long.
+
+[root@client /]# lvreduce -L 1G /dev/vgroup1/lvm1 
+  File system ext4 found on vgroup1/lvm1.
+  File system size (1.00 GiB) is equal to the requested size (1.00 GiB).
+  File system reduce is not needed, skipping.
+  Size of logical volume vgroup1/lvm1 changed from <1.49 GiB (381 extents) to 1.00 GiB (256 extents).
+  Logical volume vgroup1/lvm1 successfully resized.
+[root@client /]# 
+[root@client /]# 
+[root@client /]# mount -a
+[root@client /]# df -h
+Filesystem                Size  Used Avail Use% Mounted on
+devtmpfs                  4.0M     0  4.0M   0% /dev
+tmpfs                     887M     0  887M   0% /dev/shm
+tmpfs                     355M  5.0M  350M   2% /run
+/dev/mapper/cs-root       9.2G  1.9G  7.4G  21% /
+/dev/sda1                 960M  308M  653M  33% /boot
+tmpfs                     178M     0  178M   0% /run/user/0
+/dev/mapper/vgroup1-lvm1  950M   14K  902M   1% /data
+[root@client /]# 
