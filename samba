@@ -1,0 +1,3 @@
+mount error: cifs filesystem not supported by the system
+mount error(19): No such device
+Refer to the mount.cifs(8) manual page (e.g. man mount.cifs) and kernel log messages (dmesg)
