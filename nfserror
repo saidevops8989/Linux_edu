@@ -1,0 +1,35 @@
+on client side
+
+mount.nfs: Stale file handle
+
+
+on server side
+
+cat /proc/fs/nfs/exports
+# Version 1.1
+# Path Client(Flags) # IPs
+/storage	*(rw,insecure,no_root_squash,async,wdelay,no_subtree_check,pnfs,uuid=5f9e3dfe:e4a4f2ca,sec=1)
+
+cat /proc/fs/nfsd/exports
+# Version 1.1
+# Path Client(Flags) # IPs
+/storage	*(rw,insecure,no_root_squash,async,wdelay,no_subtree_check,pnfs,uuid=5f9e3dfe:e4a4f2ca,sec=1)
+
+
+RUN below cmd on server
+
+#exportfs -ua 
+
+#cat /proc/fs/nfsd/exports
+# Version 1.1
+# Path Client(Flags) # IPs
+
+[root@server1.example.com]# cat /proc/fs/nfs/exports
+# Version 1.1
+# Path Client(Flags) # IPs
+
+
+
+
+
+
