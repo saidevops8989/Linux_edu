@@ -1,1 +1,1170 @@
 
+         Starting RPC Bind...
+[  OK  ] Mounted RPC Pipe File System.
+[  OK  ] Reached target rpc_pipefs.target.
+         Starting NFSv4 ID-name mapping service...
+         Starting NFSv4 Client Tracking Daemon...
+[  OK  ] Started NFSv4 Client Tracking Daemon.
+[  OK  ] Started RPC Bind.
+[  OK  ] Started NFSv4 ID-name mapping service.
+[  OK  ] Started Security Auditing Service.
+         Starting Record System Boot/Shutdown in UTMP...
+[  OK  ] Finished Record System Boot/Shutdown in UTMP.
+[  OK  ] Reached target System Initialization.
+[  OK  ] Started dnf makecache --timer.
+[  OK  ] Started Daily rotation of log files.
+[  OK  ] Started Updates mlocate database every day.
+[  OK  ] Started Daily Cleanup of Temporary Directories.
+[  OK  ] Reached target Timer Units.
+[  OK  ] Listening on D-Bus System Message Bus Socket.
+[  OK  ] Listening on Open-iSCSI iscsid Socket.
+[  OK  ] Listening on Open-iSCSI iscsiuio Socket.
+[  OK  ] Listening on SSSD Kerberos Cache Manager responder socket.
+[  OK  ] Reached target Socket Units.
+         Starting D-Bus System Message Bus...
+[  OK  ] Started D-Bus System Message Bus.
+[  OK  ] Reached target Basic System.
+         Starting Network Manager...
+         Starting NTP client/server...
+         Starting Restore /run/initramfs on shutdown...
+[  OK  ] Started libstoragemgmt plug-in server daemon.
+[  OK  ] Started Machine Check Exception Logging Daemon.
+[  OK  ] Reached target sshd-keygen.target.
+[  OK  ] Reached target User and Group Name Lookups.
+         Starting User Login Management...
+[  OK  ] Finished Restore /run/initramfs on shutdown.
+[  OK  ] Started NTP client/server.
+         Starting Hostname Service...
+[  OK  ] Started User Login Management.
+[  OK  ] Started Hostname Service.
+[  OK  ] Listening on Load/Save RF Kill Switch Status /dev/rfkill Watch.
+         Starting Network Manager Script Dispatcher Service...
+[  OK  ] Started Network Manager Script Dispatcher Service.
+[  OK  ] Started Network Manager.
+[  OK  ] Reached target Network.
+         Starting Network Manager Wait Online...
+         Starting GSSAPI Proxy Daemon...
+         Starting OpenSSH server daemon...
+         Starting Dynamic System Tuning Daemon...
+[  OK  ] Started GSSAPI Proxy Daemon.
+[  OK  ] Reached target NFS client services.
+[  OK  ] Reached target Preparation for Remote File Systems.
+[  OK  ] Started OpenSSH server daemon.
+[  OK  ] Finished Network Manager Wait Online.
+[  OK  ] Reached target Network is Online.
+[  OK  ] Reached target Remote File Systems.
+         Starting Crash recovery kernel arming...
+         Starting NFS Mount Daemon...
+         Starting NFS status monitor for NFSv2/3 locking....
+         Starting System Logging Service...
+         Starting Permit User Sessions...
+[  OK  ] Finished Permit User Sessions.
+[  OK  ] Started Deferred execution scheduler.
+[  OK  ] Started Command Scheduler.
+         Starting Hold until boot process finishes up...
+         Starting Terminate Plymouth Boot Screen...
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# ls
+anaconda           chrony           firewalld            maillog-20241123      samba             sssd
+audit              cron             hawkey.log           maillog-20241130      secure            tallylog
+boot.log           cron-20241123    hawkey.log-20241123  messages              secure-20241123   tuned
+boot.log-20241116  cron-20241130    hawkey.log-20241130  messages-20241123.gz  secure-20241130   wtmp
+boot.log-20241123  dnf.librepo.log  httpd                messages-20241130     spooler
+boot.log-20241130  dnf.log          lastlog              private               spooler-20241123
+btmp               dnf.rpm.log      maillog              README                spooler-20241130
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# httpd^C
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# cd httpd/
+[root@server999 httpd]# ls
+access_log  access_log-20241123  error_log  error_log-20241123  ssl_access_log  ssl_error_log  ssl_request_log
+[root@server999 httpd]# 
+[root@server999 httpd]# 
+[root@server999 httpd]# 
+[root@server999 httpd]# tail -f access_log
+192.168.12.227 - - [07/Dec/2024:08:33:38 -0800] "GET /fonts/fa-solid-900.woff HTTP/1.1" 404 196 "http://192.168.12.179/" "Mozilla/5.0 (X11; Linux x86_64; rv:120.0) Gecko/20100101 Firefox/120.0"
+192.168.12.227 - - [07/Dec/2024:08:33:38 -0800] "GET /fonts/fa-brands-400.woff HTTP/1.1" 404 196 "http://192.168.12.179/" "Mozilla/5.0 (X11; Linux x86_64; rv:120.0) Gecko/20100101 Firefox/120.0"
+192.168.12.227 - - [07/Dec/2024:08:33:38 -0800] "GET /fonts/fa-solid-900.ttf HTTP/1.1" 404 196 "http://192.168.12.179/" "Mozilla/5.0 (X11; Linux x86_64; rv:120.0) Gecko/20100101 Firefox/120.0"
+192.168.12.227 - - [07/Dec/2024:08:33:38 -0800] "GET /fonts/fa-brands-400.ttf HTTP/1.1" 404 196 "http://192.168.12.179/" "Mozilla/5.0 (X11; Linux x86_64; rv:120.0) Gecko/20100101 Firefox/120.0"
+192.168.12.227 - - [07/Dec/2024:08:37:22 -0800] "GET / HTTP/1.1" 200 20 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:120.0) Gecko/20100101 Firefox/120.0"
+192.168.12.227 - - [07/Dec/2024:08:37:22 -0800] "GET /favicon.ico HTTP/1.1" 404 196 "http://192.168.12.179/" "Mozilla/5.0 (X11; Linux x86_64; rv:120.0) Gecko/20100101 Firefox/120.0"
+192.168.12.227 - - [07/Dec/2024:08:47:20 -0800] "GET / HTTP/1.1" 200 34 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:120.0) Gecko/20100101 Firefox/120.0"
+192.168.12.227 - - [07/Dec/2024:08:49:09 -0800] "GET / HTTP/1.1" 200 33 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:120.0) Gecko/20100101 Firefox/120.0"
+192.168.12.166 - - [07/Dec/2024:12:24:02 -0800] "GET / HTTP/1.1" 200 33 "-" "curl/7.76.1"
+192.168.12.166 - - [07/Dec/2024:12:53:28 -0800] "GET / HTTP/1.1" 200 39 "-" "curl/7.76.1"
+^C
+[root@server999 httpd]# 
+[root@server999 httpd]# 
+[root@server999 httpd]# ls
+access_log  access_log-20241123  error_log  error_log-20241123  ssl_access_log  ssl_error_log  ssl_request_log
+[root@server999 httpd]# 
+[root@server999 httpd]# 
+[root@server999 httpd]# tail ssl_access_log 
+192.168.12.227 - - [07/Dec/2024:13:45:41 -0800] "GET / HTTP/1.1" 200 33
+192.168.12.227 - - [07/Dec/2024:13:45:41 -0800] "GET /favicon.ico HTTP/1.1" 404 196
+[root@server999 httpd]# 
+[root@server999 httpd]# 
+[root@server999 httpd]# 
+[root@server999 httpd]# tail ssl_error_log 
+[Sat Dec 07 13:44:40.885060 2024] [ssl:warn] [pid 3891:tid 3891] AH01909: server999.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Dec 07 13:44:40.902978 2024] [ssl:warn] [pid 3891:tid 3891] AH01909: server999.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[root@server999 httpd]# 
+[root@server999 httpd]# 
+[root@server999 httpd]# 
+[root@server999 httpd]# pwd
+/var/log/httpd
+[root@server999 httpd]# 
+[root@server999 httpd]# ls
+access_log  access_log-20241123  error_log  error_log-20241123  ssl_access_log  ssl_error_log  ssl_request_log
+[root@server999 httpd]# 
+[root@server999 httpd]# cd ..
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# vi /etc/ssh/sshd_config
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# systemctl restart sshd
+Job for sshd.service failed because the control process exited with error code.
+See "systemctl status sshd.service" and "journalctl -xeu sshd.service" for details.
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# tail -f messages
+Dec  7 14:03:54 server999 systemd[1]: Stopping sshd-keygen.target...
+Dec  7 14:03:54 server999 systemd[1]: OpenSSH ecdsa Server Key Generation was skipped because no trigger condition checks were met.
+Dec  7 14:03:54 server999 systemd[1]: OpenSSH ed25519 Server Key Generation was skipped because no trigger condition checks were met.
+Dec  7 14:03:54 server999 systemd[1]: OpenSSH rsa Server Key Generation was skipped because no trigger condition checks were met.
+Dec  7 14:03:54 server999 systemd[1]: Reached target sshd-keygen.target.
+Dec  7 14:03:54 server999 systemd[1]: Starting OpenSSH server daemon...
+Dec  7 14:03:54 server999 sshd[4301]: /etc/ssh/sshd_config line 41: unsupported option "yesss".
+Dec  7 14:03:54 server999 systemd[1]: sshd.service: Main process exited, code=exited, status=255/EXCEPTION
+Dec  7 14:03:54 server999 systemd[1]: sshd.service: Failed with result 'exit-code'.
+Dec  7 14:03:54 server999 systemd[1]: Failed to start OpenSSH server daemon.
+^C
+[root@server999 log]# 
+[root@server999 log]# journalctl -xeu sshd.service
+░░ 
+░░ The job identifier is 8937.
+Dec 07 14:04:36 server999.example.com sshd[4306]: /etc/ssh/sshd_config line 41: unsupported option "yesss".
+Dec 07 14:04:36 server999.example.com systemd[1]: sshd.service: Main process exited, code=exited, status=255/EX>
+░░ Subject: Unit process exited
+░░ Defined-By: systemd
+░░ Support: https://access.redhat.com/support
+░░ 
+░░ An ExecStart= process belonging to unit sshd.service has exited.
+░░ 
+░░ The process' exit code is 'exited' and its exit status is 255.
+Dec 07 14:04:36 server999.example.com systemd[1]: sshd.service: Failed with result 'exit-code'.
+░░ Subject: Unit failed
+░░ Defined-By: systemd
+░░ Support: https://access.redhat.com/support
+░░ 
+░░ The unit sshd.service has entered the 'failed' state with result 'exit-code'.
+Dec 07 14:04:36 server999.example.com systemd[1]: Failed to start OpenSSH server daemon.
+░░ Subject: A start job for unit sshd.service has failed
+░░ Defined-By: systemd
+░░ Support: https://access.redhat.com/support
+░░ 
+░░ A start job for unit sshd.service has finished with a failure.
+░░ 
+░░ The job identifier is 8937 and the job result is failed.
+[root@server999 log]# 
+[root@server999 log]# vi /etc/ssh/sshd_config
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# systemctl restart sshd
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# journalctl -xeu sshd.service
+░░ Subject: A stop job for unit sshd.service has finished
+░░ Defined-By: systemd
+░░ Support: https://access.redhat.com/support
+░░ 
+░░ A stop job for unit sshd.service has finished.
+░░ 
+░░ The job identifier is 9151 and the job result is done.
+Dec 07 14:05:48 server999.example.com systemd[1]: Starting OpenSSH server daemon...
+░░ Subject: A start job for unit sshd.service has begun execution
+░░ Defined-By: systemd
+░░ Support: https://access.redhat.com/support
+░░ 
+░░ A start job for unit sshd.service has begun execution.
+░░ 
+░░ The job identifier is 9151.
+Dec 07 14:05:48 server999.example.com sshd[4313]: Server listening on 0.0.0.0 port 22.
+Dec 07 14:05:48 server999.example.com sshd[4313]: Server listening on :: port 22.
+Dec 07 14:05:48 server999.example.com systemd[1]: Started OpenSSH server daemon.
+░░ Subject: A start job for unit sshd.service has finished successfully
+░░ Defined-By: systemd
+░░ Support: https://access.redhat.com/support
+░░ 
+░░ A start job for unit sshd.service has finished successfully.
+░░ 
+░░ The job identifier is 9151.
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# tail messages
+Dec  7 14:05:18 server999 systemd[1]: Failed to start OpenSSH server daemon.
+Dec  7 14:05:48 server999 systemd[1]: Stopped OpenSSH server daemon.
+Dec  7 14:05:48 server999 systemd[1]: Stopped target sshd-keygen.target.
+Dec  7 14:05:48 server999 systemd[1]: Stopping sshd-keygen.target...
+Dec  7 14:05:48 server999 systemd[1]: OpenSSH ecdsa Server Key Generation was skipped because no trigger condition checks were met.
+Dec  7 14:05:48 server999 systemd[1]: OpenSSH ed25519 Server Key Generation was skipped because no trigger condition checks were met.
+Dec  7 14:05:48 server999 systemd[1]: OpenSSH rsa Server Key Generation was skipped because no trigger condition checks were met.
+Dec  7 14:05:48 server999 systemd[1]: Reached target sshd-keygen.target.
+Dec  7 14:05:48 server999 systemd[1]: Starting OpenSSH server daemon...
+Dec  7 14:05:48 server999 systemd[1]: Started OpenSSH server daemon.
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# pw
+-bash: pw: command not found
+[root@server999 log]# pwd
+/var/log
+[root@server999 log]# ls
+anaconda           chrony           firewalld            maillog-20241123      samba             sssd
+audit              cron             hawkey.log           maillog-20241130      secure            tallylog
+boot.log           cron-20241123    hawkey.log-20241123  messages              secure-20241123   tuned
+boot.log-20241116  cron-20241130    hawkey.log-20241130  messages-20241123.gz  secure-20241130   wtmp
+boot.log-20241123  dnf.librepo.log  httpd                messages-20241130     spooler
+boot.log-20241130  dnf.log          lastlog              private               spooler-20241123
+btmp               dnf.rpm.log      maillog              README                spooler-20241130
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# tail dnf.l
+tail: cannot open 'dnf.l' for reading: No such file or directory
+[root@server999 log]# tail dnf.log 
+2024-12-07T13:55:23-0800 DEBUG reviving: 'appstream' can be revived - metalink checksums match.
+2024-12-07T13:55:24-0800 DEBUG appstream: using metadata from Thu 05 Dec 2024 12:59:57 PM PST.
+2024-12-07T13:55:24-0800 DEBUG countme: no event for extras-common: budget to spend: 1
+2024-12-07T13:55:24-0800 DEBUG reviving: 'extras-common' can be revived - metalink checksums match.
+2024-12-07T13:55:24-0800 DEBUG extras-common: using metadata from Fri 04 Oct 2024 06:51:08 AM PDT.
+2024-12-07T13:55:24-0800 DEBUG User-Agent: constructed: 'libdnf (CentOS Stream 9; generic; Linux.x86_64)'
+2024-12-07T13:55:24-0800 DDEBUG timer: sack setup: 2129 ms
+2024-12-07T13:55:24-0800 INFO Metadata cache created.
+2024-12-07T13:55:24-0800 DDEBUG Cleaning up.
+2024-12-07T13:55:24-0800 DDEBUG Plugins were unloaded.
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# rpm -qa | grep rsyslog
+rsyslog-logrotate-8.2310.0-4.el9.x86_64
+rsyslog-8.2310.0-4.el9.x86_64
+rsyslog-gnutls-8.2310.0-4.el9.x86_64
+rsyslog-gssapi-8.2310.0-4.el9.x86_64
+rsyslog-relp-8.2310.0-4.el9.x86_64
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+
+
+
+
+
+
+
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# vi /etc/rsyslog.conf 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# #ROEMOTE LOG SERVER
+[root@server999 log]# 
+[root@server999 log]# vi /etc/rsyslog.conf 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# systemctl restart rsyslog
+[root@server999 log]# systemctl status rsyslog
+● rsyslog.service - System Logging Service
+     Loaded: loaded (/usr/lib/systemd/system/rsyslog.service; enabled; preset: enabled)
+     Active: active (running) since Sat 2024-12-07 14:15:09 PST; 6s ago
+       Docs: man:rsyslogd(8)
+             https://www.rsyslog.com/doc/
+   Main PID: 4449 (rsyslogd)
+      Tasks: 9 (limit: 11065)
+     Memory: 1.6M
+        CPU: 56ms
+     CGroup: /system.slice/rsyslog.service
+             └─4449 /usr/sbin/rsyslogd -n
+
+Dec 07 14:15:09 server999.example.com systemd[1]: Starting System Logging Service...
+Dec 07 14:15:09 server999.example.com systemd[1]: Started System Logging Service.
+Dec 07 14:15:09 server999.example.com rsyslogd[4449]: [origin software="rsyslogd" swVersion="8.2310.0-4.el9" x->
+Dec 07 14:15:09 server999.example.com rsyslogd[4449]: imjournal: journal files changed, reloading...  [v8.2310.>
+lines 1-16/16 (END)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+● rsyslog.service - System Logging Service
+     Loaded: loaded (/usr/lib/systemd/system/rsyslog.servi>
+     Active: active (running) since Sat 2024-12-07 14:15:0>
+       Docs: man:rsyslogd(8)
+             https://www.rsyslog.com/doc/
+   Main PID: 4449 (rsyslogd)
+      Tasks: 9 (limit: 11065)
+     Memory: 1.6M
+        CPU: 56ms
+     CGroup: /system.slice/rsyslog.service
+             └─4449 /usr/sbin/rsyslogd -n
+
+Dec 07 14:15:09 server999.example.com systemd[1]: Starting>
+Dec 07 14:15:09 server999.example.com systemd[1]: Started >
+Dec 07 14:15:09 server999.example.com rsyslogd[4449]: [ori>
+Dec 07 14:15:09 server999.example.com rsyslogd[4449]: imjo>
+~
+~
+~
+~
+~
+~
+~
+~
+lines 1-16/16 (END)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+● rsyslog.service - System Logging Service
+     Loaded: loaded (/usr/lib/systemd/system/rsyslog.serv>
+     Active: active (running) since Sat 2024-12-07 14:15:>
+       Docs: man:rsyslogd(8)
+             https://www.rsyslog.com/doc/
+   Main PID: 4449 (rsyslogd)
+      Tasks: 9 (limit: 11065)
+     Memory: 1.6M
+        CPU: 56ms
+     CGroup: /system.slice/rsyslog.service
+             └─4449 /usr/sbin/rsyslogd -n
+
+Dec 07 14:15:09 server999.example.com systemd[1]: Startin>
+Dec 07 14:15:09 server999.example.com systemd[1]: Started>
+Dec 07 14:15:09 server999.example.com rsyslogd[4449]: [or>
+Dec 07 14:15:09 server999.example.com rsyslogd[4449]: imj>
+~
+~
+~
+~
+~
+~
+~
+lines 1-16/16 (END)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+● rsyslog.service - System Logging Service
+     Loaded: loaded (/usr/lib/systemd/system/rsyslog.service>
+     Active: active (running) since Sat 2024-12-07 14:15:09 >
+       Docs: man:rsyslogd(8)
+             https://www.rsyslog.com/doc/
+   Main PID: 4449 (rsyslogd)
+      Tasks: 9 (limit: 11065)
+     Memory: 1.6M
+        CPU: 56ms
+     CGroup: /system.slice/rsyslog.service
+             └─4449 /usr/sbin/rsyslogd -n
+
+Dec 07 14:15:09 server999.example.com systemd[1]: Starting S>
+Dec 07 14:15:09 server999.example.com systemd[1]: Started Sy>
+Dec 07 14:15:09 server999.example.com rsyslogd[4449]: [origi>
+Dec 07 14:15:09 server999.example.com rsyslogd[4449]: imjour>
+~
+~
+~
+~
+~
+~
+~
+~
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:46:20:52 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic noprefixroute enp0s3
+       valid_lft 67849sec preferred_lft 67849sec
+    inet6 fe80::a00:27ff:fe46:2052/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: enp0s8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:04:c4:44 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.12.179/24 brd 192.168.12.255 scope global dynamic noprefixroute enp0s8
+       valid_lft 586249sec preferred_lft 586249sec
+    inet6 2607:fb90:dba0:412d::4662/128 scope global dynamic noprefixroute 
+       valid_lft 4679sec preferred_lft 1079sec
+    inet6 2607:fb90:dba0:412d:a00:27ff:fe04:c444/64 scope global dynamic noprefixroute 
+       valid_lft 250sec preferred_lft 250sec
+    inet6 fe80::a00:27ff:fe04:c444/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+4: enp0s9: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:2f:2c:ca brd ff:ff:ff:ff:ff:ff
+    inet 192.168.56.145/24 brd 192.168.56.255 scope global dynamic noprefixroute enp0s9
+       valid_lft 350sec preferred_lft 350sec
+    inet6 fe80::a00:27ff:fe2f:2cca/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# 
+[root@server999 log]# tail -f secure
+Dec  7 13:58:12 server999 sshd[4173]: pam_unix(sshd:session): session opened for user sai(uid=1000) by sai(uid=0)
+Dec  7 13:58:14 server999 sshd[4177]: Received disconnect from 192.168.12.166 port 49930:11: disconnected by user
+Dec  7 13:58:14 server999 sshd[4177]: Disconnected from user sai 192.168.12.166 port 49930
+Dec  7 13:58:14 server999 sshd[4173]: pam_unix(sshd:session): session closed for user sai
+Dec  7 13:58:30 server999 sshd[763]: Received signal 15; terminating.
+Dec  7 13:58:30 server999 sshd[4206]: Server listening on 0.0.0.0 port 22.
+Dec  7 13:58:30 server999 sshd[4206]: Server listening on :: port 22.
+Dec  7 14:03:54 server999 sshd[4206]: Received signal 15; terminating.
+Dec  7 14:05:48 server999 sshd[4313]: Server listening on 0.0.0.0 port 22.
+Dec  7 14:05:48 server999 sshd[4313]: Server listening on :: port 22.
+Dec  7 17:19:34 client sshd[3959]: Accepted password for root from 192.168.12.227 port 57250 ssh2
+Dec  7 17:19:34 client sshd[3959]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+Dec  7 17:19:38 client sshd[3963]: Received disconnect from 192.168.12.227 port 57250:11: disconnected by user
+Dec  7 17:19:38 client sshd[3963]: Disconnected from user root 192.168.12.227 port 57250
+Dec  7 17:19:38 client sshd[3959]: pam_unix(sshd:session): session closed for user root
+^C
+[root@server999 log]# 
+[root@server999 log]# cat /etc/rsyslog.conf | grep -i A 4 tcp
+grep: 4: No such file or directory
+grep: tcp: No such file or directory
+[root@server999 log]# cat /etc/rsyslog.conf | grep -i -A 4 tcp
+# Provides TCP syslog reception
+# for parameters see http://www.rsyslog.com/doc/imtcp.html
+module(load="imtcp") # needs to be done just once
+input(type="imtcp" port="514")
+
+#### RULES ####
+
+# Log all kernel messages to the console.
+--
+# # Remote Logging (we use TCP for reliable delivery)
+# # remote_host is: name/ip, e.g. 192.168.0.1, port optional e.g. 10514
+#Target="remote_host" Port="XXX" Protocol="tcp")
+[root@server999 log]# history 
+    1  ip a
+    2  df -h
+    3  ip a
+    4  hostnamectl set-hostname server999.example.com
+    5  ping google.com
+    6  dnf install httpd
+    7  dnf install ftp
+    8  #cd /etc/yum.repos.d/
+    9  cd /etc/yum.repos.d/
+   10  ls
+   11  cat centos.repo 
+   12  dnf install ftp
+   13  pwd
+   14  cd
+   15  dnf install ftp
+   16  dnf update ftp
+   17  #dnf remove ftp
+   18  rpm -qa
+   19  rpm -qa | grep ftp
+   20  dnf remove ftp
+   21  dnf history
+   22  #dnf update ftp
+   23  dnf update ftp
+   24  #dnf remove ftp
+   25  dnf history undo 3
+   26  dnf history
+   27  #rpm -qa | grep ftp
+   28  dnf install telnet
+   29  rpm -qa| grep telnet
+   30  rpm -e telnet-0.17-85.el9.x86_64
+   31  rpm -qa| grep telnet
+   32  #dnf history undo 3
+   33  ls
+   34  du -sh CentOS-Stream-9-latest-x86_64-dvd1.iso 
+   35  ls
+   36  rm -rf CentOS-Stream-9-latest-x86_64-dvd1.iso 
+   37  ls
+   38  du -sh CentOS-Stream-9-latest-x86_64-dvd1.iso 
+   39  ls /mnt/
+   40  mount -o loop CentOS-Stream-9-latest-x86_64-dvd1.iso /mnt/
+   41  ls /mnt/
+   42  dnf install ftp
+   43  pwd
+   44  ls /mnt/
+   45  cd /mnt/
+   46  pwd
+   47  ls
+   48  cd /etc/yum.repos.d/
+   49  ls
+   50  cat centos.repo 
+   51  #server999- please dont go to intenert
+   52  dnf install ftp
+   53  ls
+   54  mv centos-addons.repo centos-addons.repo_bkp
+   55  mv centos.repo centos.repo_bkp
+   56  dnf install ftp
+   57  ls
+   58  cat local.repo_bkp 
+   59  cp local.repo_bkp local1.repo
+   60  vi local1.repo 
+   61  dnf install ftp
+   62  cat local1.repo 
+   63  ls  /mnt/
+   64  dnf history
+   65  cat local1.repo 
+   66  ls /mnt/
+   67  ls
+   68  cd /mnt/
+   69  cd AppStream/
+   70  ls
+   71  cd Packages/
+   72  ls -l | wc -l
+   73  cd
+   74  ls -l | wc -l
+   75  cd -
+   76  ls -l | wc -l
+   77  dnf install http* -y
+   78  rpm -qa | grep http
+   79  systemctl status httpd
+   80  systemctl enable httpd
+   81  systemctl status httpd
+   82  systemctl start httpd
+   83  systemctl status httpd
+   84  cd /var/www/html/
+   85  ls
+   86  vi index.html
+   87  cat index.html 
+   88  ip a
+   89  cd 
+   90  cd /mnt/
+   91  ls
+   92  cd ..
+   93  df -h
+   94  umount /mnt 
+   95  df -h
+   96  mount -o loop /root/CentOS-Stream-9-latest-x86_64-dvd1.iso /var/www/html/repo/
+   97  df -h
+   98  cd /var/www/html/repo
+   99  ls
+  100  cat /etc/yum.repos.d/local
+  101  cat /etc/yum.repos.d/local.repo_bkp 
+  102  cd /etc/yum.repos.d/
+  103  ls
+  104  cat centos.repo_bkp 
+  105  uname -a
+  106  dnf update kernel
+  107  dnf update 
+  108  date
+  109  systemctl restart httpd
+  110  cd
+  111  history 
+  112  cat /etc/yum.repos.d/local.repo_bkp 
+  113  systemctl status httpd
+  114  systemctl restart httpd
+  115  systemctl status httpd
+  116  systemctl reload httpd
+  117  systemctl status httpd
+  118  top
+  119  man top
+  120  top
+  121  ps
+  122  ps -aux
+  123  sleep 200
+  124  ps
+  125  ps -aux| grep -i T
+  126  ps
+  127  jobs
+  128  sleep 500
+  129  jobs
+  130  fg %1
+  131  jobs
+  132  fg %2
+  133  jobs
+  134  ps 
+  135  kill -9 4030
+  136  kill -l
+  137  sleep 300
+  138  jobs 
+  139  bg %1
+  140  jobs 
+  141  ps
+  142  top
+  143  free -h
+  144  vmstat 
+  145  man vmstat
+  146  vmstat 
+  147  top -u root
+  148  top -p 4053
+  149  top
+  150  ps -elf
+  151  ps -eo pid
+  152  ps -eo pid user
+  153  ps -eo pid euser
+  154  ps -eo pid,euser
+  155  systemctl status httpd
+  156  #ps -eo pid,euser
+  157  pstree
+  158  echo $0
+  159  uptime 
+  160  top
+  161  uptime 
+  162  df -h
+  163  pstree
+  164  ip a
+  165  systemctl status httpd
+  166  systemctl status top
+  167  systemctl list-unit
+  168  systemctl list-units
+  169  systemctl list-units| grep http
+  170  systemctl status httpd
+  171  systemctl list-units| grep http
+  172  systemctl list-units
+  173  top
+  174  systemctl status httpd
+  175  systemctl stop httpd
+  176  systemctl list-units
+  177  top
+  178  pstree
+  179  df -h
+  180  ls
+  181  df h
+  182  df -h
+  183  dnf info httpd
+  184  cd /etc/yum.repos.d/
+  185  ls
+  186  mv local.repo local.repo_bkp
+  187  mv centos.repo_bkp centos.repo
+  188  mv centos-addons.repo_bkp centos-addons.repo_
+  189  mv centos-addons.repo_bkp centos-addons.repo
+  190  mv centos-addons.repo_ centos-addons.repo
+  191  ls
+  192  dnf info httpd
+  193  dnf provides /etc/sshd
+  194  dnf provides /etc/ssh.conf
+  195  dnf provides /var/www/html
+  196  ip a
+  197  A^c 
+  198  (c^c^c)
+  199  /var/www/html
+  200  directorys
+  201  directory
+  202  vbv/bbb/https
+  203  ps -ef | grep sshd
+  204  cat /proc/partitions 
+  205  systemctl status httpd
+  206  ip a
+  207  cd /var/www/html/
+  208  ls
+  209  cat index.html 
+  210  systemctl status httpd
+  211  systemctl restart httpd
+  212  systemctl status httpd
+  213  systemctl disable httpd
+  214  systemctl status httpd
+  215  reboot
+  216  systemctl status httpd
+  217  systemctl start httpd
+  218  systemctl status httpd
+  219  systemctl list-units
+  220  ip a
+  221  cd /var/log/
+  222  ls
+  223  tail lastlog 
+  224  cat messages-20241123
+  225  ls
+  226  gzip  messages-20241123 
+  227  ls
+  228  cd
+  229  rpm -qa | grep chrony
+  230  systemctl status chronyd
+  231  date
+  232  systemctl status chronyd
+  233  cat /etc/chrony.conf 
+  234  vi /etc/chrony.conf 
+  235  systemctl restart chronyd
+  236  systemctl status chronyd
+  237  chronyc tracking 
+  238  chronyc  -N sources
+  239  chronyc makestep 
+  240  chronyc help
+  241  timedatectl status
+  242  timedatectl set-timezone America/Los_Angeles
+  243  timedatectl status
+  244  history 
+  245  rpm -qa | grep -i ssh
+  246  systemctl status sshd
+  247  vi /etc/ssh/sshd_config
+  248  systemctl restart sshd
+  249  systemctl status sshd
+  250  vi /etc/ssh/sshd_config
+  251  systemctl restart sshd
+  252  vi /etc/ssh/sshd_config
+  253  grep -v ^#  /etc/ssh/sshd_config
+  254  vi /etc/ssh/sshd_config
+  255  cd /etc/ssh/sshd_config.d/
+  256  ls
+  257  vi 01-permitrootlogin.conf 
+  258  systemctl restart sshd
+  259  cd /var/log/
+  260  ls
+  261  tail cron
+  262  cat /tmp/testcron.txt 
+  263  ls
+  264  tail messages
+  265  tail audit/audit.log 
+  266  history 
+  267  crontab -e
+  268  cd /etc/sudoers.d/
+  269  ls
+  270  cd /etc/sudoers.d/
+  271  pwd
+  272  ls
+  273  vi users
+  274  cat users 
+  275  cat /etc/sudoers
+  276  cd /etc/sudoers.d/
+  277  ls
+  278  cat /etc/sudoers
+  279  vi users 
+  280  cd /etc/sudoers.d/
+  281  ls
+  282  cat users 
+  283  cd
+  284  tail /etc/group
+  285  cd /etc/sudoers.d/
+  286  ls
+  287  vi users 
+  288  id u1
+  289  id u4
+  290  cd /etc/sudoers.d/
+  291  vi users 
+  292  cd /etc/sudoers.d/
+  293  ls
+  294  cat users 
+  295  vi  users 
+  296  cd
+  297  l
+  298  tail /etc/group
+  299  mkdir /myteam
+  300  ls -ld /myteam/
+  301  su - u1
+  302  ls -ld /myteam/
+  303  chmod o-x /myteam/
+  304  ls -ld /myteam/
+  305  su - u1
+  306  ls -ld /myteam/
+  307  chgrp project /myteam/
+  308  ls -ld /myteam/
+  309  su - u2
+  310  su - u1
+  311  ls -ld /myteam/
+  312  chmod g+w /myteam/
+  313  ls -ld /myteam/
+  314  su - u1
+  315  ls -ld /myteam/
+  316  su - u2
+  317  ls -ld /myteam/
+  318  touch test9
+  319  ls -l test9 
+  320  mkdir test999
+  321  ls -ld test999/
+  322  umask 
+  323  ls -ld test999/
+  324  ls -l test9 
+  325  umask 002
+  326  umask 
+  327  touch chagesumaske
+  328  ls -l chagesumaske 
+  329  ip a
+  330  umask 
+  331  vi .bashrc 
+  332  vi .bash_profile 
+  333  umask 
+  334  touch  edureka
+  335  ls -l edureka 
+  336  umask 
+  337  umask 002
+  338  ls -l edureka_test
+  339  touch  edureka_test
+  340  ls -l edureka_test 
+  341  umask 
+  342  ls -ld /myteam/
+  343  su - u1
+  344  chmod g+s /myteam/
+  345  su - u4
+  346  #chmod g+s /myteam/
+  347  ls -ld /myteam/
+  348  su - u4
+  349  ls -ld /myteam/
+  350  chmod o+t /myteam/
+  351  su - u4
+  352  #chmod o+t /myteam/
+  353  ls -ld /myteam/
+  354  chmod o+x /myteam/
+  355  ls -ld /myteam/
+  356  chmod o-x /myteam/
+  357  ls -ld /myteam/
+  358  #chmod g-s /myteam/
+  359  chmod o-t /myteam/
+  360  ls -ld /myteam/
+  361  #chmod 4777 /myteam/
+  362  umask 
+  363  fdisk -l
+  364  poweroff 
+  365  vi /etc/fstab 
+  366  df -h
+  367  cat /etc/fstab 
+  368  mount -a
+  369  systemctl daemon-reload
+  370  mount -a
+  371  df -h
+  372  cat /etc/fstab 
+  373  reboot
+  374  df -h
+  375  lsblk 
+  376  fdisk /dev/sdb
+  377  fdisk -l
+  378  df -h
+  379  free -h
+  380  fdisk /dev/sdb
+  381  mkswap /dev/sdb2
+  382  df -h
+  383  free -h
+  384  swapon /dev/sdb1
+  385  swapon /dev/sdb2
+  386  free -h
+  387  vi /etc/fstab 
+  388  cat /etc/fstab 
+  389  reboot
+  390  ip a
+  391  history 
+  392  systemctl get-default
+  393  ip a
+  394  vi /etc/fstab 
+  395  reboot
+  396  cat /etc/systemd/system/default.target
+  397  systemctl get-default
+  398  sestatus 
+  399  cd /
+  400  pwd
+  401  cd root/
+  402  pwd
+  403  touch  index.html
+  404  ls -lZ index.html 
+  405  cd /var/www/html/
+  406  ls -lZ
+  407  pwd
+  408  getenforce 
+  409  sestatus 
+  410  cd /var/log/
+  411  ls
+  412  setenforce 0
+  413  getenforce 
+  414  setenforce 1
+  415  getenforce 
+  416  systemctl status firewalld
+  417  rpm -qa | grep nfs
+  418  exportfs -av
+  419  df -h
+  420  cd /
+  421  ls
+  422  ls -l xyz/
+  423  systemctl --list-units
+  424  systemctl list-units
+  425  systemctl list-units | grep http
+  426  systemctl list-units | grep httpd
+  427  systemctl list-units | grep ssh
+  428  dnf install http* 
+  429  systemctl status httpd
+  430  systemctl enable httpd
+  431  systemctl status httpd
+  432  systemctl start httpd
+  433  cd /var/www/html/
+  434  ls
+  435  cat index.html
+  436  ip a
+  437  hostname
+  438  dnf install elinks
+  439  cd ..
+  440  cd
+  441  cd /etc/httpd/conf/
+  442  ls
+  443  cat httpd.conf | grep index.html
+  444  pwd
+  445  cat httpd.conf 
+  446  cat httpd.conf | grep index.html
+  447  #default configuartion
+  448  #virtual website
+  449  cd /etc/httpd/conf.d
+  450  ls
+  451  vi virtual.conf
+  452  cat virtual.conf 
+  453  cd /var/www/
+  454  ls
+  455  mkdir virtual
+  456  cd virtual/
+  457  vi sai.html
+  458  hostname
+  459  cat sai.html 
+  460  ip aa
+  461  ip a
+  462  vi /etc/hosts 
+  463  cat /etc/host
+  464  cat /etc/hosts 
+  465  ls
+  466  pwd
+  467  cat sai.html 
+  468  cat /etc/httpd/conf.d/virtual.conf 
+  469  cat sai.html 
+  470  httpd -t
+  471  ls
+  472  mv sai.html sai.html_bkp
+  473  l
+  474  ls
+  475  httpd -t
+  476  mv sai.html_bkp sai.html
+  477  httpd -t
+  478  systemctl resatrt httpd
+  479  systemctl restart httpd
+  480  systemctl status httpd
+  481  cd -
+  482  cd /etc/httpd/conf.d/
+  483  ls
+  484  ls -l
+  485  cd
+  486  dnf install mod_ssl* -
+  487  dnf install mod_ssl* -y
+  488  ls
+  489  mkdir certs
+  490  cd certs/
+  491  ls
+  492  openssl genrsa -out server.key 2048
+  493  ls
+  494  cat server.key 
+  495  openssl req -new -key server.key -out server.csr
+  496  ls
+  497  history 
+  498  ls
+  499  cat server.csr 
+  500  openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+  501  ls
+  502  cat /etc/httpd/conf.d/ssl.conf 
+  503  cat /etc/httpd/conf.d/ssl.conf  | grep key
+  504  cat /etc/httpd/conf.d/ssl.conf  | grep pki
+  505  ls
+  506  cp /etc/pki/tls/certs/ server.crt 
+  507  cp  server.crt  /etc/pki/tls/certs/
+  508  cp server.key  /etc/pki/tls/private/
+  509  cp server.crt /etc/pki/tls/certs/
+  510  ls /etc/pki/tls/private/
+  511  ls /etc/pki/tls/cert
+  512  ls /etc/pki/tls/certs/
+  513  vim /etc/httpd/conf.d/ssl.conf 
+  514  cat /etc/httpd/conf.d/ssl.conf  | grep -v ^#
+  515  vim /etc/httpd/conf.d/ssl.conf 
+  516  httpd -t
+  517  systemctl restart httpd
+  518  systemctl status httpd
+  519  ip a
+  520  cat /etc/httpd/conf.d/ssl.conf  | grep -v ^#
+  521  cd
+  522  ssh-keygen 
+  523  cat /etc/httpd/conf.d/ssl.conf  | grep csr
+  524  cat /etc/httpd/conf.d/ssl.conf  | grep -i auth
+  525  cat /etc/httpd/conf.d/ssl.conf  | grep -i -A 2 auth
+  526  cd /var/log/
+  527  ls
+  528  tail -f messages
+  529  systemctl restart sshd
+  530  tail -f messages
+  531  ls
+  532  tail boot.log
+  533  cat  boot.log
+  534  ls
+  535  cd httpd/
+  536  ls
+  537  tail -f access_log
+  538  ls
+  539  tail ssl_access_log 
+  540  tail ssl_error_log 
+  541  pwd
+  542  ls
+  543  cd ..
+  544  vi /etc/ssh/sshd_config
+  545  systemctl restart sshd
+  546  tail -f messages
+  547  journalctl -xeu sshd.service
+  548  vi /etc/ssh/sshd_config
+  549  systemctl restart sshd
+  550  journalctl -xeu sshd.service
+  551  tail messages
+  552  pw
+  553  pwd
+  554  ls
+  555  tail dnf.l
+  556  tail dnf.log 
+  557  rpm -qa | grep rsyslog
+  558  vi /etc/rsyslog.conf 
+  559  #ROEMOTE LOG SERVER
+  560  vi /etc/rsyslog.conf 
+  561  systemctl restart rsyslog
+  562  systemctl status rsyslog
+  563  ip a
+  564  tail -f secure
+  565  cat /etc/rsyslog.conf | grep -i A 4 tcp
+  566  cat /etc/rsyslog.conf | grep -i -A 4 tcp
+  567  history 
+[root@server999 log]# client_loop: send disconnect: Broken pipe
+[saipavan@superman ~]$ ssh sai@192.168.12.179
+ssh: connect to host 192.168.12.179 port 22: No route to host
+[saipavan@superman ~]$ ssh sai@192.168.12.179
+sai@192.168.12.179's password: 
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last login: Sat Dec  7 13:58:12 2024 from 192.168.12.166
+[sai@server999 ~]$ systemctl status httpd
+● httpd.service - The Apache HTTP Server
+     Loaded: loaded (/usr/lib/systemd/system/httpd.servic>
+     Active: active (running) since Tue 2024-12-10 16:12:>
+       Docs: man:httpd.service(8)
+   Main PID: 784 (httpd)
+     Status: "Total requests: 0; Idle/Busy workers 100/0;>
+      Tasks: 177 (limit: 11065)
+     Memory: 28.6M
+        CPU: 138ms
+     CGroup: /system.slice/httpd.service
+             ├─784 /usr/sbin/httpd -DFOREGROUND
+             ├─865 /usr/sbin/httpd -DFOREGROUND
+             ├─872 /usr/sbin/httpd -DFOREGROUND
+             ├─873 /usr/sbin/httpd -DFOREGROUND
+             └─874 /usr/sbin/httpd -DFOREGROUND
+
+Dec 10 16:12:19 server999.example.com systemd[1]: Startin>
+Dec 10 16:12:20 server999.example.com systemd[1]: Started>
+Dec 10 16:12:20 server999.example.com httpd[784]: Server >
+[sai@server999 ~]$ 
+[sai@server999 ~]$ 
+[sai@server999 ~]$ curl http://localhost
+<h1> This is my virtual  website </h1>
+[sai@server999 ~]$ 
+[sai@server999 ~]$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:46:20:52 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic noprefixroute enp0s3
+       valid_lft 86297sec preferred_lft 86297sec
+    inet6 fe80::a00:27ff:fe46:2052/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: enp0s8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:04:c4:44 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.12.179/24 brd 192.168.12.255 scope global dynamic noprefixroute enp0s8
+       valid_lft 604697sec preferred_lft 604697sec
+    inet6 2607:fb90:dba0:412d:a00:27ff:fe04:c444/64 scope global dynamic noprefixroute 
+       valid_lft 278sec preferred_lft 278sec
+    inet6 fe80::a00:27ff:fe04:c444/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+4: enp0s9: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:2f:2c:ca brd ff:ff:ff:ff:ff:ff
+    inet 192.168.56.145/24 brd 192.168.56.255 scope global dynamic noprefixroute enp0s9
+       valid_lft 497sec preferred_lft 497sec
+    inet6 fe80::a00:27ff:fe2f:2cca/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
