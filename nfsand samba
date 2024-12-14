@@ -1,0 +1,1801 @@
+
+    inet6 fe80::a00:27ff:fe04:c444/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+4: enp0s9: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:2f:2c:ca brd ff:ff:ff:ff:ff:ff
+    inet 192.168.56.145/24 brd 192.168.56.255 scope global dynamic noprefixroute enp0s9
+       valid_lft 595sec preferred_lft 595sec
+    inet6 fe80::a00:27ff:fe2f:2cca/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+5: enp0s10: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:1a:9c:46 brd ff:ff:ff:ff:ff:ff
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# nmcli con show
+NAME    UUID                                  TYPE      DEVICE 
+enp0s3  b7383662-d97f-3bc9-8d2d-a2a85a1bdc88  ethernet  enp0s3 
+enp0s8  a93f7ddb-010b-3036-8dd7-e36a1f116190  ethernet  enp0s8 
+enp0s9  51564ff6-6f56-36bb-93bb-90008942b6cf  ethernet  enp0s9 
+lo      88b327a1-e5d0-419e-9c2c-7f80873a6e1d  loopback  lo     
+[root@server999 ~]# nmcli con down 51564ff6-6f56-36bb-93bb-90008942b6cf
+Connection 'enp0s9' successfully deactivated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/4)
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# nmcli con show
+NAME    UUID                                  TYPE      DEVICE 
+enp0s3  b7383662-d97f-3bc9-8d2d-a2a85a1bdc88  ethernet  enp0s3 
+enp0s8  a93f7ddb-010b-3036-8dd7-e36a1f116190  ethernet  enp0s8 
+lo      88b327a1-e5d0-419e-9c2c-7f80873a6e1d  loopback  lo     
+enp0s9  51564ff6-6f56-36bb-93bb-90008942b6cf  ethernet  --     
+[root@server999 ~]# nmcli con up 51564ff6-6f56-36bb-93bb-90008942b6cf
+Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/5)
+[root@server999 ~]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:46:20:52 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic noprefixroute enp0s3
+       valid_lft 86039sec preferred_lft 86039sec
+    inet6 fe80::a00:27ff:fe46:2052/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: enp0s8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:04:c4:44 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.12.179/24 brd 192.168.12.255 scope global dynamic noprefixroute enp0s8
+       valid_lft 604440sec preferred_lft 604440sec
+    inet6 2607:fb90:db22:9b60:a00:27ff:fe04:c444/64 scope global dynamic noprefixroute 
+       valid_lft 298sec preferred_lft 298sec
+    inet6 fe80::a00:27ff:fe04:c444/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+4: enp0s9: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:2f:2c:ca brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.200/24 brd 192.168.0.255 scope global noprefixroute enp0s9
+       valid_lft forever preferred_lft forever
+    inet6 fe80::a00:27ff:fe2f:2cca/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+5: enp0s10: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:1a:9c:46 brd ff:ff:ff:ff:ff:ff
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# dnf install dhcp* -y
+CentOS Stream 9 - BaseOS                                                         13 kB/s | 6.3 kB     00:00    
+CentOS Stream 9 - BaseOS                                                        4.3 MB/s | 8.4 MB     00:01    
+CentOS Stream 9 - AppStream                                                      11 kB/s | 6.4 kB     00:00    
+CentOS Stream 9 - AppStream                                                     6.6 MB/s |  21 MB     00:03    
+CentOS Stream 9 - Extras packages                                                17 kB/s | 6.9 kB     00:00    
+Dependencies resolved.
+================================================================================================================
+ Package                       Architecture        Version                         Repository              Size
+================================================================================================================
+Installing:
+ dhcp-client                   x86_64              12:4.4.2-19.b1.el9              baseos                 790 k
+ dhcp-common                   noarch              12:4.4.2-19.b1.el9              baseos                 129 k
+ dhcp-relay                    x86_64              12:4.4.2-19.b1.el9              baseos                 404 k
+ dhcp-server                   x86_64              12:4.4.2-19.b1.el9              baseos                 1.2 M
+Installing dependencies:
+ ipcalc                        x86_64              1.0.0-5.el9                     baseos                  42 k
+Installing weak dependencies:
+ geolite2-city                 noarch              20191217-6.el9                  appstream               23 M
+ geolite2-country              noarch              20191217-6.el9                  appstream              1.6 M
+
+Transaction Summary
+================================================================================================================
+Install  7 Packages
+
+Total download size: 27 M
+Installed size: 71 M
+Downloading Packages:
+(1/7): dhcp-common-4.4.2-19.b1.el9.noarch.rpm                                    89 kB/s | 129 kB     00:01    
+(2/7): dhcp-relay-4.4.2-19.b1.el9.x86_64.rpm                                    236 kB/s | 404 kB     00:01    
+(3/7): dhcp-client-4.4.2-19.b1.el9.x86_64.rpm                                   449 kB/s | 790 kB     00:01    
+(4/7): ipcalc-1.0.0-5.el9.x86_64.rpm                                             32 kB/s |  42 kB     00:01    
+(5/7): dhcp-server-4.4.2-19.b1.el9.x86_64.rpm                                   632 kB/s | 1.2 MB     00:01    
+(6/7): geolite2-country-20191217-6.el9.noarch.rpm                               1.7 MB/s | 1.6 MB     00:00    
+(7/7): geolite2-city-20191217-6.el9.noarch.rpm                                  8.1 MB/s |  23 MB     00:02    
+----------------------------------------------------------------------------------------------------------------
+Total                                                                           5.0 MB/s |  27 MB     00:05     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                        1/1 
+  Installing       : dhcp-common-12:4.4.2-19.b1.el9.noarch                                                  1/7 
+  Installing       : geolite2-country-20191217-6.el9.noarch                                                 2/7 
+  Installing       : geolite2-city-20191217-6.el9.noarch                                                    3/7 
+  Installing       : ipcalc-1.0.0-5.el9.x86_64                                                              4/7 
+  Installing       : dhcp-client-12:4.4.2-19.b1.el9.x86_64                                                  5/7 
+  Installing       : dhcp-relay-12:4.4.2-19.b1.el9.x86_64                                                   6/7 
+  Running scriptlet: dhcp-relay-12:4.4.2-19.b1.el9.x86_64                                                   6/7 
+  Running scriptlet: dhcp-server-12:4.4.2-19.b1.el9.x86_64                                                  7/7 
+  Installing       : dhcp-server-12:4.4.2-19.b1.el9.x86_64                                                  7/7 
+  Running scriptlet: dhcp-server-12:4.4.2-19.b1.el9.x86_64                                                  7/7 
+  Verifying        : dhcp-client-12:4.4.2-19.b1.el9.x86_64                                                  1/7 
+  Verifying        : dhcp-common-12:4.4.2-19.b1.el9.noarch                                                  2/7 
+  Verifying        : dhcp-relay-12:4.4.2-19.b1.el9.x86_64                                                   3/7 
+  Verifying        : dhcp-server-12:4.4.2-19.b1.el9.x86_64                                                  4/7 
+  Verifying        : ipcalc-1.0.0-5.el9.x86_64                                                              5/7 
+  Verifying        : geolite2-city-20191217-6.el9.noarch                                                    6/7 
+  Verifying        : geolite2-country-20191217-6.el9.noarch                                                 7/7 
+
+Installed:
+  dhcp-client-12:4.4.2-19.b1.el9.x86_64                  dhcp-common-12:4.4.2-19.b1.el9.noarch                  
+  dhcp-relay-12:4.4.2-19.b1.el9.x86_64                   dhcp-server-12:4.4.2-19.b1.el9.x86_64                  
+  geolite2-city-20191217-6.el9.noarch                    geolite2-country-20191217-6.el9.noarch                 
+  ipcalc-1.0.0-5.el9.x86_64                             
+
+Complete!
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# rpm -qa | grep dhcp
+dhcp-common-4.4.2-19.b1.el9.noarch
+dhcp-client-4.4.2-19.b1.el9.x86_64
+dhcp-relay-4.4.2-19.b1.el9.x86_64
+dhcp-server-4.4.2-19.b1.el9.x86_64
+[root@server999 ~]# 
+[root@server999 ~]# cat /etc/dhcp/dhc
+dhclient.d/  dhcpd6.conf  dhcpd.conf   
+[root@server999 ~]# cat /etc/dhcp/dhc
+dhclient.d/  dhcpd6.conf  dhcpd.conf   
+[root@server999 ~]# cat /etc/dhcp/dhcpd.conf 
+#
+# DHCP Server Configuration file.
+#   see /usr/share/doc/dhcp-server/dhcpd.conf.example
+#   see dhcpd.conf(5) man page
+#
+[root@server999 ~]# cat /usr/share/doc/dhcp-server/dhcpd.conf.example
+# dhcpd.conf
+#
+# Sample configuration file for ISC dhcpd
+#
+
+# option definitions common to all supported networks...
+option domain-name "example.org";
+option domain-name-servers ns1.example.org, ns2.example.org;
+
+default-lease-time 600;
+max-lease-time 7200;
+
+# Use this to enble / disable dynamic dns updates globally.
+#ddns-update-style none;
+
+# If this DHCP server is the official DHCP server for the local
+# network, the authoritative directive should be uncommented.
+#authoritative;
+
+# Use this to send dhcp log messages to a different log file (you also
+# have to hack syslog.conf to complete the redirection).
+log-facility local7;
+
+# No service will be given on this subnet, but declaring it helps the 
+# DHCP server to understand the network topology.
+
+subnet 10.152.187.0 netmask 255.255.255.0 {
+}
+
+# This is a very basic subnet declaration.
+
+subnet 10.254.239.0 netmask 255.255.255.224 {
+  range 10.254.239.10 10.254.239.20;
+  option routers rtr-239-0-1.example.org, rtr-239-0-2.example.org;
+}
+
+# This declaration allows BOOTP clients to get dynamic addresses,
+# which we don't really recommend.
+
+subnet 10.254.239.32 netmask 255.255.255.224 {
+  range dynamic-bootp 10.254.239.40 10.254.239.60;
+  option broadcast-address 10.254.239.31;
+  option routers rtr-239-32-1.example.org;
+}
+
+# A slightly different configuration for an internal subnet.
+subnet 10.5.5.0 netmask 255.255.255.224 {
+  range 10.5.5.26 10.5.5.30;
+  option domain-name-servers ns1.internal.example.org;
+  option domain-name "internal.example.org";
+  option routers 10.5.5.1;
+  option broadcast-address 10.5.5.31;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+# Hosts which require special configuration options can be listed in
+# host statements.   If no address is specified, the address will be
+# allocated dynamically (if possible), but the host-specific information
+# will still come from the host declaration.
+
+host passacaglia {
+  hardware ethernet 0:0:c0:5d:bd:95;
+  filename "vmunix.passacaglia";
+  server-name "toccata.example.com";
+}
+
+# Fixed IP addresses can also be specified for hosts.   These addresses
+# should not also be listed as being available for dynamic assignment.
+# Hosts for which fixed IP addresses have been specified can boot using
+# BOOTP or DHCP.   Hosts for which no fixed address is specified can only
+# be booted with DHCP, unless there is an address range on the subnet
+# to which a BOOTP client is connected which has the dynamic-bootp flag
+# set.
+host fantasia {
+  hardware ethernet 08:00:07:26:c0:a5;
+  fixed-address fantasia.example.com;
+}
+
+# You can declare a class of clients and then do address allocation
+# based on that.   The example below shows a case where all clients
+# in a certain class get addresses on the 10.17.224/24 subnet, and all
+# other clients get addresses on the 10.0.29/24 subnet.
+
+class "foo" {
+  match if substring (option vendor-class-identifier, 0, 4) = "SUNW";
+}
+
+shared-network 224-29 {
+  subnet 10.17.224.0 netmask 255.255.255.0 {
+    option routers rtr-224.example.org;
+  }
+  subnet 10.0.29.0 netmask 255.255.255.0 {
+    option routers rtr-29.example.org;
+  }
+  pool {
+    allow members of "foo";
+    range 10.17.224.10 10.17.224.250;
+  }
+  pool {
+    deny members of "foo";
+    range 10.0.29.10 10.0.29.230;
+  }
+}
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# vi /etc/dhcp/dhcpd.conf 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# cat /etc/dhcp/dhcpd.conf 
+#
+# DHCP Server Configuration file.
+#   see /usr/share/doc/dhcp-server/dhcpd.conf.example
+#   see dhcpd.conf(5) man page
+#
+#
+subnet 192.168.0.0 netmask 255.255.255.0 {
+    	authoritative;
+    	option routers              	192.168.0.1;
+    	option subnet-mask          	255.255.255.0;
+    	option domain-name-servers  	8.8.8.8, 8.8.4.4;
+    	range 192.168.0.60 192.168.0.100;
+    	default-lease-time 3600;
+    	max-lease-time 7200;
+}
+
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# systemctl status dhcpd
+○ dhcpd.service - DHCPv4 Server Daemon
+     Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; disabled; preset: disabled)
+     Active: inactive (dead)
+       Docs: man:dhcpd(8)
+             man:dhcpd.conf(5)
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# systemctl enable dhcpd
+Created symlink /etc/systemd/system/multi-user.target.wants/dhcpd.service → /usr/lib/systemd/system/dhcpd.service.
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# systemctl start dhcpd
+[root@server999 ~]# systemctl status dhcpd
+● dhcpd.service - DHCPv4 Server Daemon
+     Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2024-12-14 07:47:27 PST; 5s ago
+       Docs: man:dhcpd(8)
+             man:dhcpd.conf(5)
+   Main PID: 2406 (dhcpd)
+     Status: "Dispatching packets..."
+      Tasks: 1 (limit: 11065)
+     Memory: 4.6M
+        CPU: 16ms
+     CGroup: /system.slice/dhcpd.service
+             └─2406 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid
+
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: No subnet declaration for enp0s3 (10.0.2.15).
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: ** Ignoring requests on enp0s3.  If this is not what
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    you want, please write a subnet declaration
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    in your dhcpd.conf file for the network segment
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    to which interface enp0s3 is attached. **
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Sending on   Socket/fallback/fallback-net
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Server starting service.
+Dec 14 07:47:27 server999.example.com systemd[1]: Started DHCPv4 Server Daemon.
+[root@server999 ~]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:46:20:52 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic noprefixroute enp0s3
+       valid_lft 85644sec preferred_lft 85644sec
+    inet6 fe80::a00:27ff:fe46:2052/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: enp0s8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:04:c4:44 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.12.179/24 brd 192.168.12.255 scope global dynamic noprefixroute enp0s8
+       valid_lft 604044sec preferred_lft 604044sec
+    inet6 2607:fb90:db22:9b60::5931/128 scope global dynamic noprefixroute 
+       valid_lft 6902sec preferred_lft 3302sec
+    inet6 2607:fb90:db22:9b60:a00:27ff:fe04:c444/64 scope global dynamic noprefixroute 
+       valid_lft 203sec preferred_lft 203sec
+    inet6 fe80::a00:27ff:fe04:c444/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+4: enp0s9: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:2f:2c:ca brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.200/24 brd 192.168.0.255 scope global noprefixroute enp0s9
+       valid_lft forever preferred_lft forever
+    inet6 fe80::a00:27ff:fe2f:2cca/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+5: enp0s10: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:1a:9c:46 brd ff:ff:ff:ff:ff:ff
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# cat /etc/dhcp/dhcpd.conf 
+#
+# DHCP Server Configuration file.
+#   see /usr/share/doc/dhcp-server/dhcpd.conf.example
+#   see dhcpd.conf(5) man page
+#
+#
+subnet 192.168.0.0 netmask 255.255.255.0 {
+    	authoritative;
+    	option routers              	192.168.0.1;
+    	option subnet-mask          	255.255.255.0;
+    	option domain-name-servers  	8.8.8.8, 8.8.4.4;
+    	range 192.168.0.60 192.168.0.100;
+    	default-lease-time 3600;
+    	max-lease-time 7200;
+}
+
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# systemctl status dhcpd
+● dhcpd.service - DHCPv4 Server Daemon
+     Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2024-12-14 07:47:27 PST; 51s ago
+       Docs: man:dhcpd(8)
+             man:dhcpd.conf(5)
+   Main PID: 2406 (dhcpd)
+     Status: "Dispatching packets..."
+      Tasks: 1 (limit: 11065)
+     Memory: 4.6M
+        CPU: 16ms
+     CGroup: /system.slice/dhcpd.service
+             └─2406 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid
+
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: No subnet declaration for enp0s3 (10.0.2.15).
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: ** Ignoring requests on enp0s3.  If this is not what
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    you want, please write a subnet declaration
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    in your dhcpd.conf file for the network segment
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    to which interface enp0s3 is attached. **
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Sending on   Socket/fallback/fallback-net
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Server starting service.
+Dec 14 07:47:27 server999.example.com systemd[1]: Started DHCPv4 Server Daemon.
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# systemctl status dhcpd
+● dhcpd.service - DHCPv4 Server Daemon
+     Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2024-12-14 07:47:27 PST; 2min 29s ago
+       Docs: man:dhcpd(8)
+             man:dhcpd.conf(5)
+   Main PID: 2406 (dhcpd)
+     Status: "Dispatching packets..."
+      Tasks: 1 (limit: 11065)
+     Memory: 4.6M
+        CPU: 16ms
+     CGroup: /system.slice/dhcpd.service
+             └─2406 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid
+
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: No subnet declaration for enp0s3 (10.0.2.15).
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: ** Ignoring requests on enp0s3.  If this is not what
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    you want, please write a subnet declaration
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    in your dhcpd.conf file for the network segment
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    to which interface enp0s3 is attached. **
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Sending on   Socket/fallback/fallback-net
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Server starting service.
+Dec 14 07:47:27 server999.example.com systemd[1]: Started DHCPv4 Server Daemon.
+[root@server999 ~]# systemctl status dhcpd
+● dhcpd.service - DHCPv4 Server Daemon
+     Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2024-12-14 07:47:27 PST; 2min 31s ago
+       Docs: man:dhcpd(8)
+             man:dhcpd.conf(5)
+   Main PID: 2406 (dhcpd)
+     Status: "Dispatching packets..."
+      Tasks: 1 (limit: 11065)
+     Memory: 4.6M
+        CPU: 16ms
+     CGroup: /system.slice/dhcpd.service
+             └─2406 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid
+
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: No subnet declaration for enp0s3 (10.0.2.15).
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: ** Ignoring requests on enp0s3.  If this is not what
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    you want, please write a subnet declaration
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    in your dhcpd.conf file for the network segment
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    to which interface enp0s3 is attached. **
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Sending on   Socket/fallback/fallback-net
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Server starting service.
+Dec 14 07:47:27 server999.example.com systemd[1]: Started DHCPv4 Server Daemon.
+[root@server999 ~]# systemctl status dhcpd
+● dhcpd.service - DHCPv4 Server Daemon
+     Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2024-12-14 07:47:27 PST; 2min 32s ago
+       Docs: man:dhcpd(8)
+             man:dhcpd.conf(5)
+   Main PID: 2406 (dhcpd)
+     Status: "Dispatching packets..."
+      Tasks: 1 (limit: 11065)
+     Memory: 4.6M
+        CPU: 16ms
+     CGroup: /system.slice/dhcpd.service
+             └─2406 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid
+
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: No subnet declaration for enp0s3 (10.0.2.15).
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: ** Ignoring requests on enp0s3.  If this is not what
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    you want, please write a subnet declaration
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    in your dhcpd.conf file for the network segment
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    to which interface enp0s3 is attached. **
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Sending on   Socket/fallback/fallback-net
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Server starting service.
+Dec 14 07:47:27 server999.example.com systemd[1]: Started DHCPv4 Server Daemon.
+[root@server999 ~]# systemctl status dhcpd
+● dhcpd.service - DHCPv4 Server Daemon
+     Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2024-12-14 07:47:27 PST; 2min 33s ago
+       Docs: man:dhcpd(8)
+             man:dhcpd.conf(5)
+   Main PID: 2406 (dhcpd)
+     Status: "Dispatching packets..."
+      Tasks: 1 (limit: 11065)
+     Memory: 4.6M
+        CPU: 16ms
+     CGroup: /system.slice/dhcpd.service
+             └─2406 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid
+
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: No subnet declaration for enp0s3 (10.0.2.15).
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: ** Ignoring requests on enp0s3.  If this is not what
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    you want, please write a subnet declaration
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    in your dhcpd.conf file for the network segment
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    to which interface enp0s3 is attached. **
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Sending on   Socket/fallback/fallback-net
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Server starting service.
+Dec 14 07:47:27 server999.example.com systemd[1]: Started DHCPv4 Server Daemon.
+[root@server999 ~]# systemctl status dhcpd
+● dhcpd.service - DHCPv4 Server Daemon
+     Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2024-12-14 07:47:27 PST; 2min 34s ago
+       Docs: man:dhcpd(8)
+             man:dhcpd.conf(5)
+   Main PID: 2406 (dhcpd)
+     Status: "Dispatching packets..."
+      Tasks: 1 (limit: 11065)
+     Memory: 4.6M
+        CPU: 16ms
+     CGroup: /system.slice/dhcpd.service
+             └─2406 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid
+
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: No subnet declaration for enp0s3 (10.0.2.15).
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: ** Ignoring requests on enp0s3.  If this is not what
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    you want, please write a subnet declaration
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    in your dhcpd.conf file for the network segment
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    to which interface enp0s3 is attached. **
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Sending on   Socket/fallback/fallback-net
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Server starting service.
+Dec 14 07:47:27 server999.example.com systemd[1]: Started DHCPv4 Server Daemon.
+[root@server999 ~]# systemctl status dhcpd
+● dhcpd.service - DHCPv4 Server Daemon
+     Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2024-12-14 07:47:27 PST; 2min 35s ago
+       Docs: man:dhcpd(8)
+             man:dhcpd.conf(5)
+   Main PID: 2406 (dhcpd)
+     Status: "Dispatching packets..."
+      Tasks: 1 (limit: 11065)
+     Memory: 4.6M
+        CPU: 16ms
+     CGroup: /system.slice/dhcpd.service
+             └─2406 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid
+
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: No subnet declaration for enp0s3 (10.0.2.15).
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: ** Ignoring requests on enp0s3.  If this is not what
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    you want, please write a subnet declaration
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    in your dhcpd.conf file for the network segment
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    to which interface enp0s3 is attached. **
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Sending on   Socket/fallback/fallback-net
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Server starting service.
+Dec 14 07:47:27 server999.example.com systemd[1]: Started DHCPv4 Server Daemon.
+[root@server999 ~]# systemctl status dhcpd
+● dhcpd.service - DHCPv4 Server Daemon
+     Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2024-12-14 07:47:27 PST; 2min 35s ago
+       Docs: man:dhcpd(8)
+             man:dhcpd.conf(5)
+   Main PID: 2406 (dhcpd)
+     Status: "Dispatching packets..."
+      Tasks: 1 (limit: 11065)
+     Memory: 4.6M
+        CPU: 16ms
+     CGroup: /system.slice/dhcpd.service
+             └─2406 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid
+
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: No subnet declaration for enp0s3 (10.0.2.15).
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: ** Ignoring requests on enp0s3.  If this is not what
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    you want, please write a subnet declaration
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    in your dhcpd.conf file for the network segment
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    to which interface enp0s3 is attached. **
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Sending on   Socket/fallback/fallback-net
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Server starting service.
+Dec 14 07:47:27 server999.example.com systemd[1]: Started DHCPv4 Server Daemon.
+[root@server999 ~]# systemctl status dhcpd
+● dhcpd.service - DHCPv4 Server Daemon
+     Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2024-12-14 07:47:27 PST; 2min 36s ago
+       Docs: man:dhcpd(8)
+             man:dhcpd.conf(5)
+   Main PID: 2406 (dhcpd)
+     Status: "Dispatching packets..."
+      Tasks: 1 (limit: 11065)
+     Memory: 4.6M
+        CPU: 16ms
+     CGroup: /system.slice/dhcpd.service
+             └─2406 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid
+
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: No subnet declaration for enp0s3 (10.0.2.15).
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: ** Ignoring requests on enp0s3.  If this is not what
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    you want, please write a subnet declaration
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    in your dhcpd.conf file for the network segment
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    to which interface enp0s3 is attached. **
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Sending on   Socket/fallback/fallback-net
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Server starting service.
+Dec 14 07:47:27 server999.example.com systemd[1]: Started DHCPv4 Server Daemon.
+[root@server999 ~]# systemctl status dhcpd
+● dhcpd.service - DHCPv4 Server Daemon
+     Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2024-12-14 07:47:27 PST; 2min 37s ago
+       Docs: man:dhcpd(8)
+             man:dhcpd.conf(5)
+   Main PID: 2406 (dhcpd)
+     Status: "Dispatching packets..."
+      Tasks: 1 (limit: 11065)
+     Memory: 4.6M
+        CPU: 16ms
+     CGroup: /system.slice/dhcpd.service
+             └─2406 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid
+
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: No subnet declaration for enp0s3 (10.0.2.15).
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: ** Ignoring requests on enp0s3.  If this is not what
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    you want, please write a subnet declaration
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    in your dhcpd.conf file for the network segment
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    to which interface enp0s3 is attached. **
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Sending on   Socket/fallback/fallback-net
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Server starting service.
+Dec 14 07:47:27 server999.example.com systemd[1]: Started DHCPv4 Server Daemon.
+[root@server999 ~]# systemctl status dhcpd
+● dhcpd.service - DHCPv4 Server Daemon
+     Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2024-12-14 07:47:27 PST; 2min 38s ago
+       Docs: man:dhcpd(8)
+             man:dhcpd.conf(5)
+   Main PID: 2406 (dhcpd)
+     Status: "Dispatching packets..."
+      Tasks: 1 (limit: 11065)
+     Memory: 4.6M
+        CPU: 16ms
+     CGroup: /system.slice/dhcpd.service
+             └─2406 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid
+
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: No subnet declaration for enp0s3 (10.0.2.15).
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: ** Ignoring requests on enp0s3.  If this is not what
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    you want, please write a subnet declaration
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    in your dhcpd.conf file for the network segment
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    to which interface enp0s3 is attached. **
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Sending on   Socket/fallback/fallback-net
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Server starting service.
+Dec 14 07:47:27 server999.example.com systemd[1]: Started DHCPv4 Server Daemon.
+[root@server999 ~]# systemctl status dhcpd
+● dhcpd.service - DHCPv4 Server Daemon
+     Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2024-12-14 07:47:27 PST; 2min 38s ago
+       Docs: man:dhcpd(8)
+             man:dhcpd.conf(5)
+   Main PID: 2406 (dhcpd)
+     Status: "Dispatching packets..."
+      Tasks: 1 (limit: 11065)
+     Memory: 4.6M
+        CPU: 16ms
+     CGroup: /system.slice/dhcpd.service
+             └─2406 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid
+
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: No subnet declaration for enp0s3 (10.0.2.15).
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: ** Ignoring requests on enp0s3.  If this is not what
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    you want, please write a subnet declaration
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    in your dhcpd.conf file for the network segment
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    to which interface enp0s3 is attached. **
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Sending on   Socket/fallback/fallback-net
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Server starting service.
+Dec 14 07:47:27 server999.example.com systemd[1]: Started DHCPv4 Server Daemon.
+[root@server999 ~]# systemctl status dhcpd
+● dhcpd.service - DHCPv4 Server Daemon
+     Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2024-12-14 07:47:27 PST; 2min 39s ago
+       Docs: man:dhcpd(8)
+             man:dhcpd.conf(5)
+   Main PID: 2406 (dhcpd)
+     Status: "Dispatching packets..."
+      Tasks: 1 (limit: 11065)
+     Memory: 4.6M
+        CPU: 16ms
+     CGroup: /system.slice/dhcpd.service
+             └─2406 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid
+
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: No subnet declaration for enp0s3 (10.0.2.15).
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: ** Ignoring requests on enp0s3.  If this is not what
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    you want, please write a subnet declaration
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    in your dhcpd.conf file for the network segment
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    to which interface enp0s3 is attached. **
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Sending on   Socket/fallback/fallback-net
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Server starting service.
+Dec 14 07:47:27 server999.example.com systemd[1]: Started DHCPv4 Server Daemon.
+[root@server999 ~]# systemctl status dhcpd
+● dhcpd.service - DHCPv4 Server Daemon
+     Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2024-12-14 07:47:27 PST; 2min 39s ago
+       Docs: man:dhcpd(8)
+             man:dhcpd.conf(5)
+   Main PID: 2406 (dhcpd)
+     Status: "Dispatching packets..."
+      Tasks: 1 (limit: 11065)
+     Memory: 4.6M
+        CPU: 16ms
+     CGroup: /system.slice/dhcpd.service
+             └─2406 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid
+
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: No subnet declaration for enp0s3 (10.0.2.15).
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: ** Ignoring requests on enp0s3.  If this is not what
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    you want, please write a subnet declaration
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    in your dhcpd.conf file for the network segment
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    to which interface enp0s3 is attached. **
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Sending on   Socket/fallback/fallback-net
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Server starting service.
+Dec 14 07:47:27 server999.example.com systemd[1]: Started DHCPv4 Server Daemon.
+[root@server999 ~]# systemctl status dhcpd
+● dhcpd.service - DHCPv4 Server Daemon
+     Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2024-12-14 07:47:27 PST; 2min 40s ago
+       Docs: man:dhcpd(8)
+             man:dhcpd.conf(5)
+   Main PID: 2406 (dhcpd)
+     Status: "Dispatching packets..."
+      Tasks: 1 (limit: 11065)
+     Memory: 4.6M
+        CPU: 17ms
+     CGroup: /system.slice/dhcpd.service
+             └─2406 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid
+
+Dec 14 07:47:27 server999.example.com dhcpd[2406]:    to which interface enp0s3 is attached. **
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: 
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Sending on   Socket/fallback/fallback-net
+Dec 14 07:47:27 server999.example.com dhcpd[2406]: Server starting service.
+Dec 14 07:47:27 server999.example.com systemd[1]: Started DHCPv4 Server Daemon.
+Dec 14 07:50:07 server999.example.com dhcpd[2406]: DHCPREQUEST for 192.168.56.147 from 08:00:27:b7:7b:c7 via en>
+Dec 14 07:50:07 server999.example.com dhcpd[2406]: DHCPNAK on 192.168.56.147 to 08:00:27:b7:7b:c7 via enp0s9
+Dec 14 07:50:07 server999.example.com dhcpd[2406]: DHCPDISCOVER from 08:00:27:b7:7b:c7 via enp0s9
+Dec 14 07:50:07 server999.example.com dhcpd[2406]: DHCPREQUEST for 192.168.56.147 (192.168.56.100) from 08:00:2>
+Dec 14 07:50:07 server999.example.com dhcpd[2406]: DHCPNAK on 192.168.56.147 to 08:00:27:b7:7b:c7 via enp0s9
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# cat /etc/dhcp/dhcpd.conf 
+#
+# DHCP Server Configuration file.
+#   see /usr/share/doc/dhcp-server/dhcpd.conf.example
+#   see dhcpd.conf(5) man page
+#
+#
+subnet 192.168.0.0 netmask 255.255.255.0 {
+    	authoritative;
+    	option routers              	192.168.0.1;
+    	option subnet-mask          	255.255.255.0;
+    	option domain-name-servers  	8.8.8.8, 8.8.4.4;
+    	range 192.168.0.60 192.168.0.100;
+    	default-lease-time 3600;
+    	max-lease-time 7200;
+}
+
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# cat /etc/dhcp/dhcpd.conf 
+#
+# DHCP Server Configuration file.
+#   see /usr/share/doc/dhcp-server/dhcpd.conf.example
+#   see dhcpd.conf(5) man page
+#
+#
+subnet 192.168.0.0 netmask 255.255.255.0 {
+    	authoritative;
+    	option routers              	192.168.0.1;
+    	option subnet-mask          	255.255.255.0;
+    	option domain-name-servers  	8.8.8.8, 8.8.4.4;
+    	range 192.168.0.60 192.168.0.100;
+    	default-lease-time 3600;
+    	max-lease-time 7200;
+}
+
+[root@server999 ~]# cat /usr/share/doc/dhcp-server/dhcpd.conf.example
+# dhcpd.conf
+#
+# Sample configuration file for ISC dhcpd
+#
+
+# option definitions common to all supported networks...
+option domain-name "example.org";
+option domain-name-servers ns1.example.org, ns2.example.org;
+
+default-lease-time 600;
+max-lease-time 7200;
+
+# Use this to enble / disable dynamic dns updates globally.
+#ddns-update-style none;
+
+# If this DHCP server is the official DHCP server for the local
+# network, the authoritative directive should be uncommented.
+#authoritative;
+
+# Use this to send dhcp log messages to a different log file (you also
+# have to hack syslog.conf to complete the redirection).
+log-facility local7;
+
+# No service will be given on this subnet, but declaring it helps the 
+# DHCP server to understand the network topology.
+
+subnet 10.152.187.0 netmask 255.255.255.0 {
+}
+
+# This is a very basic subnet declaration.
+
+subnet 10.254.239.0 netmask 255.255.255.224 {
+  range 10.254.239.10 10.254.239.20;
+  option routers rtr-239-0-1.example.org, rtr-239-0-2.example.org;
+}
+
+# This declaration allows BOOTP clients to get dynamic addresses,
+# which we don't really recommend.
+
+subnet 10.254.239.32 netmask 255.255.255.224 {
+  range dynamic-bootp 10.254.239.40 10.254.239.60;
+  option broadcast-address 10.254.239.31;
+  option routers rtr-239-32-1.example.org;
+}
+
+# A slightly different configuration for an internal subnet.
+subnet 10.5.5.0 netmask 255.255.255.224 {
+  range 10.5.5.26 10.5.5.30;
+  option domain-name-servers ns1.internal.example.org;
+  option domain-name "internal.example.org";
+  option routers 10.5.5.1;
+  option broadcast-address 10.5.5.31;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+# Hosts which require special configuration options can be listed in
+# host statements.   If no address is specified, the address will be
+# allocated dynamically (if possible), but the host-specific information
+# will still come from the host declaration.
+
+host passacaglia {
+  hardware ethernet 0:0:c0:5d:bd:95;
+  filename "vmunix.passacaglia";
+  server-name "toccata.example.com";
+}
+
+# Fixed IP addresses can also be specified for hosts.   These addresses
+# should not also be listed as being available for dynamic assignment.
+# Hosts for which fixed IP addresses have been specified can boot using
+# BOOTP or DHCP.   Hosts for which no fixed address is specified can only
+# be booted with DHCP, unless there is an address range on the subnet
+# to which a BOOTP client is connected which has the dynamic-bootp flag
+# set.
+host fantasia {
+  hardware ethernet 08:00:07:26:c0:a5;
+  fixed-address fantasia.example.com;
+}
+
+# You can declare a class of clients and then do address allocation
+# based on that.   The example below shows a case where all clients
+# in a certain class get addresses on the 10.17.224/24 subnet, and all
+# other clients get addresses on the 10.0.29/24 subnet.
+
+class "foo" {
+  match if substring (option vendor-class-identifier, 0, 4) = "SUNW";
+}
+
+shared-network 224-29 {
+  subnet 10.17.224.0 netmask 255.255.255.0 {
+    option routers rtr-224.example.org;
+  }
+  subnet 10.0.29.0 netmask 255.255.255.0 {
+    option routers rtr-29.example.org;
+  }
+  pool {
+    allow members of "foo";
+    range 10.17.224.10 10.17.224.250;
+  }
+  pool {
+    deny members of "foo";
+    range 10.0.29.10 10.0.29.230;
+  }
+}
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# nmtui
+[root@server999 ~]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:46:20:52 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic noprefixroute enp0s3
+       valid_lft 84920sec preferred_lft 84920sec
+    inet6 fe80::a00:27ff:fe46:2052/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: enp0s8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:04:c4:44 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.12.179/24 brd 192.168.12.255 scope global dynamic noprefixroute enp0s8
+       valid_lft 603320sec preferred_lft 603320sec
+    inet6 2607:fb90:db22:9b60::5931/128 scope global dynamic noprefixroute 
+       valid_lft 6178sec preferred_lft 2578sec
+    inet6 2607:fb90:db22:9b60:a00:27ff:fe04:c444/64 scope global dynamic noprefixroute 
+       valid_lft 260sec preferred_lft 260sec
+    inet6 fe80::a00:27ff:fe04:c444/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+4: enp0s9: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:2f:2c:ca brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.200/24 brd 192.168.0.255 scope global noprefixroute enp0s9
+       valid_lft forever preferred_lft forever
+    inet6 fe80::a00:27ff:fe2f:2cca/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+5: enp0s10: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:1a:9c:46 brd ff:ff:ff:ff:ff:ff
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# rpm -qa | grep nfs
+libnfsidmap-2.5.4-27.el9.x86_64
+nfs-utils-2.5.4-27.el9.x86_64
+nfsv4-client-utils-2.5.4-27.el9.x86_64
+nfs-utils-coreos-2.5.4-27.el9.x86_64
+sssd-nfs-idmap-2.9.5-4.el9.x86_64
+nfs4-acl-tools-0.4.2-3.el9.x86_64
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# cat /etc/exports
+/xyz 192.168.12.166/24(rw,sync)
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# mkdir /share
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# chmod 777 /share/
+[root@server999 ~]# ls
+anaconda-ks.cfg                         certs         edureka       file1.txt             file2.txt  test9
+CentOS-Stream-9-latest-x86_64-dvd1.iso  chagesumaske  edureka_test  file1_witupdated.txt  oracleasm  test999
+[root@server999 ~]# ls -l
+total 11431764
+-rw-------. 1 root root         878 Nov  9 16:34 anaconda-ks.cfg
+-rw-r--r--. 1 root root 11706105856 Nov 16 07:46 CentOS-Stream-9-latest-x86_64-dvd1.iso
+drwxr-xr-x. 2 root root          60 Dec  7 13:35 certs
+-rw-rw-r--. 1 root root           0 Nov 30 07:39 chagesumaske
+-rw-r--r--. 1 root root           0 Nov 30 07:42 edureka
+-rw-rw-r--. 1 root root           0 Nov 30 07:43 edureka_test
+-rw-rw----. 1 root root          35 Nov 17 08:47 file1.txt
+-rw-r--r--. 1 root root          34 Nov 17 08:44 file1_witupdated.txt
+-rw-r--r--. 1 root root          70 Nov 17 09:09 file2.txt
+-rw-r--r--. 1 root root         378 Nov 30 09:54 oracleasm
+-rw-r--r--. 1 root root           0 Nov 30 07:29 test9
+drwxr-xr-x. 2 root root           6 Nov 30 07:30 test999
+[root@server999 ~]# ls -ld /share/
+drwxrwxrwx. 2 root root 6 Dec 14 08:20 /share/
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# vi /etc/exports
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# systemctl status nfs-server
+● nfs-server.service - NFS server and services
+     Loaded: loaded (/usr/lib/systemd/system/nfs-server.service; enabled; preset: disabled)
+    Drop-In: /run/systemd/generator/nfs-server.service.d
+             └─order-with-mounts.conf
+     Active: active (exited) since Sat 2024-12-14 07:35:11 PST; 47min ago
+       Docs: man:rpc.nfsd(8)
+             man:exportfs(8)
+   Main PID: 1245 (code=exited, status=0/SUCCESS)
+        CPU: 27ms
+
+Dec 14 07:35:11 server999.example.com systemd[1]: Starting NFS server and services...
+Dec 14 07:35:11 server999.example.com systemd[1]: Finished NFS server and services.
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# systemctl restart nfs-server
+[root@server999 ~]# systemctl status nfs-server
+● nfs-server.service - NFS server and services
+     Loaded: loaded (/usr/lib/systemd/system/nfs-server.service; enabled; preset: disabled)
+    Drop-In: /run/systemd/generator/nfs-server.service.d
+             └─order-with-mounts.conf
+     Active: active (exited) since Sat 2024-12-14 08:22:42 PST; 1s ago
+       Docs: man:rpc.nfsd(8)
+             man:exportfs(8)
+    Process: 2553 ExecStartPre=/usr/sbin/exportfs -r (code=exited, status=0/SUCCESS)
+    Process: 2554 ExecStart=/usr/sbin/rpc.nfsd (code=exited, status=0/SUCCESS)
+    Process: 2564 ExecStart=/bin/sh -c if systemctl -q is-active gssproxy; then systemctl reload gssproxy ; fi >
+   Main PID: 2564 (code=exited, status=0/SUCCESS)
+        CPU: 32ms
+
+Dec 14 08:22:42 server999.example.com systemd[1]: Starting NFS server and services...
+Dec 14 08:22:42 server999.example.com systemd[1]: Finished NFS server and services.
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# exportfs -v
+/share        	192.168.12.0/24(sync,wdelay,hide,no_subtree_check,sec=sys,rw,secure,root_squash,no_all_squash)
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# exportfs -v
+/share        	192.168.12.0/24(sync,wdelay,hide,no_subtree_check,sec=sys,rw,secure,root_squash,no_all_squash)
+[root@server999 ~]# 
+[root@server999 ~]# cat /etc/exports
+/share 192.168.12.0/24(rw,sync)
+#/share *.example.com(rw,sync)
+[root@server999 ~]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:46:20:52 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic noprefixroute enp0s3
+       valid_lft 83415sec preferred_lft 83415sec
+    inet6 fe80::a00:27ff:fe46:2052/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: enp0s8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:04:c4:44 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.12.179/24 brd 192.168.12.255 scope global dynamic noprefixroute enp0s8
+       valid_lft 601815sec preferred_lft 601815sec
+    inet6 2607:fb90:db22:9b60::5931/128 scope global dynamic noprefixroute 
+       valid_lft 4673sec preferred_lft 1073sec
+    inet6 2607:fb90:db22:9b60:a00:27ff:fe04:c444/64 scope global dynamic noprefixroute 
+       valid_lft 256sec preferred_lft 256sec
+    inet6 fe80::a00:27ff:fe04:c444/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+4: enp0s9: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:2f:2c:ca brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.200/24 brd 192.168.0.255 scope global noprefixroute enp0s9
+       valid_lft forever preferred_lft forever
+    inet6 fe80::a00:27ff:fe2f:2cca/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+5: enp0s10: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:1a:9c:46 brd ff:ff:ff:ff:ff:ff
+[root@server999 ~]# 
+[root@server999 ~]# 
+[root@server999 ~]# cd /share/
+[root@server999 share]# ls
+file1
+[root@server999 share]# touch filetest
+[root@server999 share]# 
+[root@server999 share]# 
+[root@server999 share]# 
+[root@server999 share]# 
+[root@server999 share]# 
+[root@server999 share]# 
+[root@server999 share]# 
+[root@server999 share]# cd..
+-bash: cd..: command not found
+[root@server999 share]# cd ..
+[root@server999 /]# dnf install samba* -y
+Last metadata expiration check: 0:33:47 ago on Sat 14 Dec 2024 08:01:05 AM PST.
+Package samba-client-libs-4.20.2-2.el9.x86_64 is already installed.
+Package samba-common-4.20.2-2.el9.noarch is already installed.
+Package samba-common-libs-4.20.2-2.el9.x86_64 is already installed.
+Dependencies resolved.
+================================================================================================================
+ Package                               Architecture      Version                     Repository            Size
+================================================================================================================
+Installing:
+ samba                                 x86_64            4.21.2-3.el9                baseos               986 k
+ samba-client                          x86_64            4.21.2-3.el9                appstream            753 k
+ samba-common-tools                    x86_64            4.21.2-3.el9                baseos               488 k
+ samba-dc-libs                         x86_64            4.21.2-3.el9                baseos               118 k
+ samba-dcerpc                          x86_64            4.21.2-3.el9                baseos               722 k
+ samba-gpupdate                        x86_64            4.21.2-3.el9                appstream             18 k
+ samba-krb5-printing                   x86_64            4.21.2-3.el9                appstream             22 k
+ samba-ldb-ldap-modules                x86_64            4.21.2-3.el9                baseos                36 k
+ samba-libs                            x86_64            4.21.2-3.el9                baseos               128 k
+ samba-tools                           x86_64            4.21.2-3.el9                baseos                27 k
+ samba-usershares                      x86_64            4.21.2-3.el9                baseos                15 k
+ samba-vfs-iouring                     x86_64            4.21.2-3.el9                appstream             25 k
+ samba-winbind                         x86_64            4.21.2-3.el9                baseos               439 k
+ samba-winbind-clients                 x86_64            4.21.2-3.el9                appstream             82 k
+ samba-winbind-krb5-locator            x86_64            4.21.2-3.el9                appstream             29 k
+ samba-winbind-modules                 x86_64            4.21.2-3.el9                baseos                64 k
+ samba-winexe                          x86_64            4.21.2-3.el9                appstream             82 k
+Upgrading:
+ libipa_hbac                           x86_64            2.9.5-5.el9                 baseos                38 k
+ libldb                                x86_64            4.21.2-3.el9                baseos               184 k
+ libsmbclient                          x86_64            4.21.2-3.el9                baseos                75 k
+ libsss_certmap                        x86_64            2.9.5-5.el9                 baseos                92 k
+ libsss_idmap                          x86_64            2.9.5-5.el9                 baseos                43 k
+ libsss_nss_idmap                      x86_64            2.9.5-5.el9                 baseos                47 k
+ libsss_sudo                           x86_64            2.9.5-5.el9                 baseos                37 k
+ libtdb                                x86_64            1.4.12-1.el9                baseos                51 k
+ libwbclient                           x86_64            4.21.2-3.el9                baseos                44 k
+ samba-client-libs                     x86_64            4.21.2-3.el9                baseos               5.3 M
+ samba-common                          noarch            4.21.2-3.el9                baseos               176 k
+ samba-common-libs                     x86_64            4.21.2-3.el9                baseos               102 k
+ sssd                                  x86_64            2.9.5-5.el9                 baseos                29 k
+ sssd-ad                               x86_64            2.9.5-5.el9                 baseos               218 k
+ sssd-client                           x86_64            2.9.5-5.el9                 baseos               169 k
+ sssd-common                           x86_64            2.9.5-5.el9                 baseos               1.6 M
+ sssd-common-pac                       x86_64            2.9.5-5.el9                 baseos                98 k
+ sssd-ipa                              x86_64            2.9.5-5.el9                 baseos               284 k
+ sssd-kcm                              x86_64            2.9.5-5.el9                 baseos               111 k
+ sssd-krb5                             x86_64            2.9.5-5.el9                 baseos                74 k
+ sssd-krb5-common                      x86_64            2.9.5-5.el9                 baseos                96 k
+ sssd-ldap                             x86_64            2.9.5-5.el9                 baseos               160 k
+ sssd-nfs-idmap                        x86_64            2.9.5-5.el9                 baseos                41 k
+ sssd-proxy                            x86_64            2.9.5-5.el9                 baseos                74 k
+Installing dependencies:
+ cepces                                noarch            0.3.8-4.el9                 appstream             14 k
+ cepces-certmonger                     noarch            0.3.8-4.el9                 appstream             12 k
+ cepces-selinux                        noarch            0.3.8-4.el9                 appstream             21 k
+ certmonger                            x86_64            0.79.17-2.el9               appstream            616 k
+ dbus-tools                            x86_64            1:1.12.20-8.el9             baseos                52 k
+ libnetapi                             x86_64            4.21.2-3.el9                baseos               143 k
+ liburing                              x86_64            2.5-1.el9                   appstream             39 k
+ python3-cepces                        noarch            0.3.8-4.el9                 appstream            109 k
+ python3-cffi                          x86_64            1.14.5-5.el9                baseos               253 k
+ python3-cryptography                  x86_64            36.0.1-4.el9                baseos               1.2 M
+ python3-decorator                     noarch            4.4.2-6.el9                 baseos                28 k
+ python3-dns                           noarch            2.6.1-3.el9                 baseos               507 k
+ python3-gssapi                        x86_64            1.6.9-5.el9                 appstream            484 k
+ python3-ldb                           x86_64            4.21.2-3.el9                baseos                56 k
+ python3-markdown                      noarch            3.3.4-4.el9                 baseos               168 k
+ python3-ply                           noarch            3.11-14.el9                 baseos               106 k
+ python3-pycparser                     noarch            2.20-6.el9                  baseos               135 k
+ python3-requests-gssapi               noarch            1.2.3-3.el9                 appstream             29 k
+ python3-samba                         x86_64            4.21.2-3.el9                baseos               3.8 M
+ python3-samba-dc                      x86_64            4.21.2-3.el9                baseos               348 k
+ python3-talloc                        x86_64            2.4.2-1.el9                 baseos                22 k
+ python3-tdb                           x86_64            1.4.12-1.el9                baseos                22 k
+ python3-tevent                        x86_64            0.16.1-1.el9                baseos                19 k
+
+Transaction Summary
+================================================================================================================
+Install  40 Packages
+Upgrade  24 Packages
+
+Total download size: 21 M
+Downloading Packages:
+(1/64): dbus-tools-1.12.20-8.el9.x86_64.rpm                                      37 kB/s |  52 kB     00:01    
+(2/64): libnetapi-4.21.2-3.el9.x86_64.rpm                                        90 kB/s | 143 kB     00:01    
+(3/64): python3-cffi-1.14.5-5.el9.x86_64.rpm                                    143 kB/s | 253 kB     00:01    
+(4/64): python3-decorator-4.4.2-6.el9.noarch.rpm                                 22 kB/s |  28 kB     00:01    
+(5/64): python3-cryptography-36.0.1-4.el9.x86_64.rpm                            649 kB/s | 1.2 MB     00:01    
+(6/64): python3-dns-2.6.1-3.el9.noarch.rpm                                      300 kB/s | 507 kB     00:01    
+(7/64): python3-ldb-4.21.2-3.el9.x86_64.rpm                                      39 kB/s |  56 kB     00:01    
+(8/64): python3-markdown-3.3.4-4.el9.noarch.rpm                                 100 kB/s | 168 kB     00:01    
+(9/64): python3-ply-3.11-14.el9.noarch.rpm                                       68 kB/s | 106 kB     00:01    
+(10/64): python3-pycparser-2.20-6.el9.noarch.rpm                                 85 kB/s | 135 kB     00:01    
+(11/64): python3-samba-dc-4.21.2-3.el9.x86_64.rpm                               206 kB/s | 348 kB     00:01    
+(12/64): python3-samba-4.21.2-3.el9.x86_64.rpm                                  1.8 MB/s | 3.8 MB     00:02    
+(13/64): python3-talloc-2.4.2-1.el9.x86_64.rpm                                   16 kB/s |  22 kB     00:01    
+(14/64): python3-tdb-1.4.12-1.el9.x86_64.rpm                                     18 kB/s |  22 kB     00:01    
+(15/64): python3-tevent-0.16.1-1.el9.x86_64.rpm                                  16 kB/s |  19 kB     00:01    
+(16/64): samba-4.21.2-3.el9.x86_64.rpm                                          509 kB/s | 986 kB     00:01    
+(17/64): samba-common-tools-4.21.2-3.el9.x86_64.rpm                             278 kB/s | 488 kB     00:01    
+(18/64): samba-dc-libs-4.21.2-3.el9.x86_64.rpm                                   76 kB/s | 118 kB     00:01    
+(19/64): samba-dcerpc-4.21.2-3.el9.x86_64.rpm                                   410 kB/s | 722 kB     00:01    
+(20/64): samba-ldb-ldap-modules-4.21.2-3.el9.x86_64.rpm                          26 kB/s |  36 kB     00:01    
+(21/64): samba-libs-4.21.2-3.el9.x86_64.rpm                                      83 kB/s | 128 kB     00:01    
+(22/64): samba-tools-4.21.2-3.el9.x86_64.rpm                                     20 kB/s |  27 kB     00:01    
+(23/64): samba-usershares-4.21.2-3.el9.x86_64.rpm                                12 kB/s |  15 kB     00:01    
+(24/64): cepces-0.3.8-4.el9.noarch.rpm                                           26 kB/s |  14 kB     00:00    
+(25/64): cepces-certmonger-0.3.8-4.el9.noarch.rpm                               162 kB/s |  12 kB     00:00    
+(26/64): cepces-selinux-0.3.8-4.el9.noarch.rpm                                  245 kB/s |  21 kB     00:00    
+(27/64): samba-winbind-4.21.2-3.el9.x86_64.rpm                                  260 kB/s | 439 kB     00:01    
+(28/64): liburing-2.5-1.el9.x86_64.rpm                                          104 kB/s |  39 kB     00:00    
+(29/64): python3-cepces-0.3.8-4.el9.noarch.rpm                                  625 kB/s | 109 kB     00:00    
+(30/64): samba-winbind-modules-4.21.2-3.el9.x86_64.rpm                           46 kB/s |  64 kB     00:01    
+(31/64): certmonger-0.79.17-2.el9.x86_64.rpm                                    787 kB/s | 616 kB     00:00    
+(32/64): python3-requests-gssapi-1.2.3-3.el9.noarch.rpm                          94 kB/s |  29 kB     00:00    
+(33/64): samba-gpupdate-4.21.2-3.el9.x86_64.rpm                                 298 kB/s |  18 kB     00:00    
+(34/64): python3-gssapi-1.6.9-5.el9.x86_64.rpm                                  907 kB/s | 484 kB     00:00    
+(35/64): samba-krb5-printing-4.21.2-3.el9.x86_64.rpm                            102 kB/s |  22 kB     00:00    
+(36/64): samba-vfs-iouring-4.21.2-3.el9.x86_64.rpm                              262 kB/s |  25 kB     00:00    
+(37/64): samba-winbind-krb5-locator-4.21.2-3.el9.x86_64.rpm                     311 kB/s |  29 kB     00:00    
+(38/64): samba-winbind-clients-4.21.2-3.el9.x86_64.rpm                          458 kB/s |  82 kB     00:00    
+(39/64): samba-client-4.21.2-3.el9.x86_64.rpm                                   1.0 MB/s | 753 kB     00:00    
+(40/64): samba-winexe-4.21.2-3.el9.x86_64.rpm                                   588 kB/s |  82 kB     00:00    
+(41/64): libipa_hbac-2.9.5-5.el9.x86_64.rpm                                      30 kB/s |  38 kB     00:01    
+(42/64): libsmbclient-4.21.2-3.el9.x86_64.rpm                                    52 kB/s |  75 kB     00:01    
+(43/64): libldb-4.21.2-3.el9.x86_64.rpm                                         117 kB/s | 184 kB     00:01    
+(44/64): libsss_certmap-2.9.5-5.el9.x86_64.rpm                                   62 kB/s |  92 kB     00:01    
+(45/64): libsss_idmap-2.9.5-5.el9.x86_64.rpm                                     31 kB/s |  43 kB     00:01    
+(46/64): libsss_nss_idmap-2.9.5-5.el9.x86_64.rpm                                 34 kB/s |  47 kB     00:01    
+(47/64): libsss_sudo-2.9.5-5.el9.x86_64.rpm                                      28 kB/s |  37 kB     00:01    
+(48/64): libtdb-1.4.12-1.el9.x86_64.rpm                                          37 kB/s |  51 kB     00:01    
+(49/64): libwbclient-4.21.2-3.el9.x86_64.rpm                                     35 kB/s |  44 kB     00:01    
+(50/64): samba-common-4.21.2-3.el9.noarch.rpm                                   110 kB/s | 176 kB     00:01    
+(51/64): samba-common-libs-4.21.2-3.el9.x86_64.rpm                               64 kB/s | 102 kB     00:01    
+(52/64): samba-client-libs-4.21.2-3.el9.x86_64.rpm                              2.4 MB/s | 5.3 MB     00:02    
+(53/64): sssd-2.9.5-5.el9.x86_64.rpm                                             22 kB/s |  29 kB     00:01    
+(54/64): sssd-ad-2.9.5-5.el9.x86_64.rpm                                         133 kB/s | 218 kB     00:01    
+(55/64): sssd-client-2.9.5-5.el9.x86_64.rpm                                     114 kB/s | 169 kB     00:01    
+(56/64): sssd-common-pac-2.9.5-5.el9.x86_64.rpm                                  64 kB/s |  98 kB     00:01    
+(57/64): sssd-common-2.9.5-5.el9.x86_64.rpm                                     867 kB/s | 1.6 MB     00:01    
+(58/64): sssd-ipa-2.9.5-5.el9.x86_64.rpm                                        161 kB/s | 284 kB     00:01    
+(59/64): sssd-krb5-2.9.5-5.el9.x86_64.rpm                                        51 kB/s |  74 kB     00:01    
+(60/64): sssd-kcm-2.9.5-5.el9.x86_64.rpm                                         71 kB/s | 111 kB     00:01    
+(61/64): sssd-krb5-common-2.9.5-5.el9.x86_64.rpm                                 63 kB/s |  96 kB     00:01    
+(62/64): sssd-nfs-idmap-2.9.5-5.el9.x86_64.rpm                                   29 kB/s |  41 kB     00:01    
+(63/64): sssd-ldap-2.9.5-5.el9.x86_64.rpm                                       104 kB/s | 160 kB     00:01    
+(64/64): sssd-proxy-2.9.5-5.el9.x86_64.rpm                                       51 kB/s |  74 kB     00:01    
+----------------------------------------------------------------------------------------------------------------
+Total                                                                           772 kB/s |  21 MB     00:28     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                        1/1 
+  Upgrading        : libtdb-1.4.12-1.el9.x86_64                                                            1/88 
+  Upgrading        : libldb-4.21.2-3.el9.x86_64                                                            2/88 
+  Running scriptlet: samba-common-4.21.2-3.el9.noarch                                                      3/88 
+  Upgrading        : samba-common-4.21.2-3.el9.noarch                                                      3/88 
+  Running scriptlet: samba-common-4.21.2-3.el9.noarch                                                      3/88 
+  Running scriptlet: libwbclient-4.21.2-3.el9.x86_64                                                       4/88 
+  Upgrading        : libwbclient-4.21.2-3.el9.x86_64                                                       4/88 
+  Upgrading        : samba-client-libs-4.21.2-3.el9.x86_64                                                 5/88 
+  Upgrading        : samba-common-libs-4.21.2-3.el9.x86_64                                                 6/88 
+  Installing       : samba-libs-4.21.2-3.el9.x86_64                                                        7/88 
+  Upgrading        : libsss_idmap-2.9.5-5.el9.x86_64                                                       8/88 
+  Upgrading        : libsss_certmap-2.9.5-5.el9.x86_64                                                     9/88 
+  Installing       : libnetapi-4.21.2-3.el9.x86_64                                                        10/88 
+  Upgrading        : libsmbclient-4.21.2-3.el9.x86_64                                                     11/88 
+  Installing       : samba-dcerpc-4.21.2-3.el9.x86_64                                                     12/88 
+  Installing       : samba-dc-libs-4.21.2-3.el9.x86_64                                                    13/88 
+  Installing       : samba-ldb-ldap-modules-4.21.2-3.el9.x86_64                                           14/88 
+  Installing       : samba-common-tools-4.21.2-3.el9.x86_64                                               15/88 
+  Installing       : samba-4.21.2-3.el9.x86_64                                                            16/88 
+  Running scriptlet: samba-4.21.2-3.el9.x86_64                                                            16/88 
+  Installing       : python3-tdb-1.4.12-1.el9.x86_64                                                      17/88 
+  Installing       : python3-talloc-2.4.2-1.el9.x86_64                                                    18/88 
+  Installing       : python3-ldb-4.21.2-3.el9.x86_64                                                      19/88 
+  Installing       : samba-client-4.21.2-3.el9.x86_64                                                     20/88 
+  Running scriptlet: samba-client-4.21.2-3.el9.x86_64                                                     20/88 
+  Installing       : samba-winbind-modules-4.21.2-3.el9.x86_64                                            21/88 
+  Upgrading        : sssd-nfs-idmap-2.9.5-5.el9.x86_64                                                    22/88 
+  Upgrading        : libsss_sudo-2.9.5-5.el9.x86_64                                                       23/88 
+  Upgrading        : libsss_nss_idmap-2.9.5-5.el9.x86_64                                                  24/88 
+  Upgrading        : sssd-client-2.9.5-5.el9.x86_64                                                       25/88 
+  Running scriptlet: sssd-client-2.9.5-5.el9.x86_64                                                       25/88 
+  Running scriptlet: sssd-common-2.9.5-5.el9.x86_64                                                       26/88 
+  Upgrading        : sssd-common-2.9.5-5.el9.x86_64                                                       26/88 
+  Running scriptlet: sssd-common-2.9.5-5.el9.x86_64                                                       26/88 
+  Upgrading        : sssd-krb5-common-2.9.5-5.el9.x86_64                                                  27/88 
+  Upgrading        : sssd-common-pac-2.9.5-5.el9.x86_64                                                   28/88 
+  Upgrading        : sssd-ad-2.9.5-5.el9.x86_64                                                           29/88 
+  Upgrading        : sssd-krb5-2.9.5-5.el9.x86_64                                                         30/88 
+  Upgrading        : sssd-ldap-2.9.5-5.el9.x86_64                                                         31/88 
+  Upgrading        : sssd-proxy-2.9.5-5.el9.x86_64                                                        32/88 
+  Upgrading        : libipa_hbac-2.9.5-5.el9.x86_64                                                       33/88 
+  Upgrading        : sssd-ipa-2.9.5-5.el9.x86_64                                                          34/88 
+  Installing       : liburing-2.5-1.el9.x86_64                                                            35/88 
+  Installing       : python3-tevent-0.16.1-1.el9.x86_64                                                   36/88 
+  Installing       : python3-ply-3.11-14.el9.noarch                                                       37/88 
+  Installing       : python3-pycparser-2.20-6.el9.noarch                                                  38/88 
+  Installing       : python3-cffi-1.14.5-5.el9.x86_64                                                     39/88 
+  Installing       : python3-cryptography-36.0.1-4.el9.x86_64                                             40/88 
+  Installing       : python3-markdown-3.3.4-4.el9.noarch                                                  41/88 
+  Installing       : python3-dns-2.6.1-3.el9.noarch                                                       42/88 
+  Installing       : python3-samba-4.21.2-3.el9.x86_64                                                    43/88 
+  Installing       : python3-samba-dc-4.21.2-3.el9.x86_64                                                 44/88 
+  Installing       : samba-tools-4.21.2-3.el9.x86_64                                                      45/88 
+  Running scriptlet: samba-winbind-4.21.2-3.el9.x86_64                                                    46/88 
+  Installing       : samba-winbind-4.21.2-3.el9.x86_64                                                    46/88 
+  Running scriptlet: samba-winbind-4.21.2-3.el9.x86_64                                                    46/88 
+  Installing       : python3-decorator-4.4.2-6.el9.noarch                                                 47/88 
+  Installing       : python3-gssapi-1.6.9-5.el9.x86_64                                                    48/88 
+  Installing       : python3-requests-gssapi-1.2.3-3.el9.noarch                                           49/88 
+  Installing       : python3-cepces-0.3.8-4.el9.noarch                                                    50/88 
+  Running scriptlet: cepces-selinux-0.3.8-4.el9.noarch                                                    51/88 
+  Installing       : cepces-selinux-0.3.8-4.el9.noarch                                                    51/88 
+  Running scriptlet: cepces-selinux-0.3.8-4.el9.noarch                                                    51/88 
+  Installing       : cepces-0.3.8-4.el9.noarch                                                            52/88 
+  Installing       : dbus-tools-1:1.12.20-8.el9.x86_64                                                    53/88 
+  Installing       : certmonger-0.79.17-2.el9.x86_64                                                      54/88 
+  Running scriptlet: certmonger-0.79.17-2.el9.x86_64                                                      54/88 
+  Installing       : cepces-certmonger-0.3.8-4.el9.noarch                                                 55/88 
+  Running scriptlet: cepces-certmonger-0.3.8-4.el9.noarch                                                 55/88 
+  Installing       : samba-gpupdate-4.21.2-3.el9.x86_64                                                   56/88 
+  Installing       : samba-winbind-clients-4.21.2-3.el9.x86_64                                            57/88 
+  Installing       : samba-winbind-krb5-locator-4.21.2-3.el9.x86_64                                       58/88 
+  Running scriptlet: samba-winbind-krb5-locator-4.21.2-3.el9.x86_64                                       58/88 
+  Installing       : samba-vfs-iouring-4.21.2-3.el9.x86_64                                                59/88 
+  Upgrading        : sssd-2.9.5-5.el9.x86_64                                                              60/88 
+  Upgrading        : sssd-kcm-2.9.5-5.el9.x86_64                                                          61/88 
+  Running scriptlet: sssd-kcm-2.9.5-5.el9.x86_64                                                          61/88 
+  Installing       : samba-krb5-printing-4.21.2-3.el9.x86_64                                              62/88 
+  Running scriptlet: samba-krb5-printing-4.21.2-3.el9.x86_64                                              62/88 
+  Running scriptlet: samba-usershares-4.21.2-3.el9.x86_64                                                 63/88 
+  Installing       : samba-usershares-4.21.2-3.el9.x86_64                                                 63/88 
+  Installing       : samba-winexe-4.21.2-3.el9.x86_64                                                     64/88 
+  Cleanup          : sssd-2.9.5-4.el9.x86_64                                                              65/88 
+  Cleanup          : sssd-ipa-2.9.5-4.el9.x86_64                                                          66/88 
+  Cleanup          : sssd-ad-2.9.5-4.el9.x86_64                                                           67/88 
+  Cleanup          : libsmbclient-4.20.2-2.el9.x86_64                                                     68/88 
+  Cleanup          : sssd-common-pac-2.9.5-4.el9.x86_64                                                   69/88 
+  Cleanup          : samba-client-libs-4.20.2-2.el9.x86_64                                                70/88 
+  Cleanup          : samba-common-libs-4.20.2-2.el9.x86_64                                                71/88 
+  Cleanup          : libwbclient-4.20.2-2.el9.x86_64                                                      72/88 
+  Cleanup          : sssd-ldap-2.9.5-4.el9.x86_64                                                         73/88 
+  Cleanup          : sssd-proxy-2.9.5-4.el9.x86_64                                                        74/88 
+  Cleanup          : sssd-krb5-2.9.5-4.el9.x86_64                                                         75/88 
+  Running scriptlet: sssd-kcm-2.9.5-4.el9.x86_64                                                          76/88 
+  Cleanup          : sssd-kcm-2.9.5-4.el9.x86_64                                                          76/88 
+  Running scriptlet: sssd-kcm-2.9.5-4.el9.x86_64                                                          76/88 
+  Cleanup          : samba-common-4.20.2-2.el9.noarch                                                     77/88 
+  Cleanup          : sssd-krb5-common-2.9.5-4.el9.x86_64                                                  78/88 
+  Running scriptlet: sssd-common-2.9.5-4.el9.x86_64                                                       79/88 
+  Cleanup          : sssd-common-2.9.5-4.el9.x86_64                                                       79/88 
+  Running scriptlet: sssd-common-2.9.5-4.el9.x86_64                                                       79/88 
+  Running scriptlet: sssd-client-2.9.5-4.el9.x86_64                                                       80/88 
+  Cleanup          : sssd-client-2.9.5-4.el9.x86_64                                                       80/88 
+  Cleanup          : libldb-2.9.1-2.el9.x86_64                                                            81/88 
+  Cleanup          : libtdb-1.4.10-1.el9.x86_64                                                           82/88 
+  Cleanup          : libsss_idmap-2.9.5-4.el9.x86_64                                                      83/88 
+  Cleanup          : libsss_nss_idmap-2.9.5-4.el9.x86_64                                                  84/88 
+  Cleanup          : libsss_sudo-2.9.5-4.el9.x86_64                                                       85/88 
+  Cleanup          : sssd-nfs-idmap-2.9.5-4.el9.x86_64                                                    86/88 
+  Cleanup          : libsss_certmap-2.9.5-4.el9.x86_64                                                    87/88 
+  Cleanup          : libipa_hbac-2.9.5-4.el9.x86_64                                                       88/88 
+  Running scriptlet: sssd-common-2.9.5-5.el9.x86_64                                                       88/88 
+  Running scriptlet: cepces-selinux-0.3.8-4.el9.noarch                                                    88/88 
+  Running scriptlet: libipa_hbac-2.9.5-4.el9.x86_64                                                       88/88 
+  Verifying        : dbus-tools-1:1.12.20-8.el9.x86_64                                                     1/88 
+  Verifying        : libnetapi-4.21.2-3.el9.x86_64                                                         2/88 
+  Verifying        : python3-cffi-1.14.5-5.el9.x86_64                                                      3/88 
+  Verifying        : python3-cryptography-36.0.1-4.el9.x86_64                                              4/88 
+  Verifying        : python3-decorator-4.4.2-6.el9.noarch                                                  5/88 
+  Verifying        : python3-dns-2.6.1-3.el9.noarch                                                        6/88 
+  Verifying        : python3-ldb-4.21.2-3.el9.x86_64                                                       7/88 
+  Verifying        : python3-markdown-3.3.4-4.el9.noarch                                                   8/88 
+  Verifying        : python3-ply-3.11-14.el9.noarch                                                        9/88 
+  Verifying        : python3-pycparser-2.20-6.el9.noarch                                                  10/88 
+  Verifying        : python3-samba-4.21.2-3.el9.x86_64                                                    11/88 
+  Verifying        : python3-samba-dc-4.21.2-3.el9.x86_64                                                 12/88 
+  Verifying        : python3-talloc-2.4.2-1.el9.x86_64                                                    13/88 
+  Verifying        : python3-tdb-1.4.12-1.el9.x86_64                                                      14/88 
+  Verifying        : python3-tevent-0.16.1-1.el9.x86_64                                                   15/88 
+  Verifying        : samba-4.21.2-3.el9.x86_64                                                            16/88 
+  Verifying        : samba-common-tools-4.21.2-3.el9.x86_64                                               17/88 
+  Verifying        : samba-dc-libs-4.21.2-3.el9.x86_64                                                    18/88 
+  Verifying        : samba-dcerpc-4.21.2-3.el9.x86_64                                                     19/88 
+  Verifying        : samba-ldb-ldap-modules-4.21.2-3.el9.x86_64                                           20/88 
+  Verifying        : samba-libs-4.21.2-3.el9.x86_64                                                       21/88 
+  Verifying        : samba-tools-4.21.2-3.el9.x86_64                                                      22/88 
+  Verifying        : samba-usershares-4.21.2-3.el9.x86_64                                                 23/88 
+  Verifying        : samba-winbind-4.21.2-3.el9.x86_64                                                    24/88 
+  Verifying        : samba-winbind-modules-4.21.2-3.el9.x86_64                                            25/88 
+  Verifying        : cepces-0.3.8-4.el9.noarch                                                            26/88 
+  Verifying        : cepces-certmonger-0.3.8-4.el9.noarch                                                 27/88 
+  Verifying        : cepces-selinux-0.3.8-4.el9.noarch                                                    28/88 
+  Verifying        : certmonger-0.79.17-2.el9.x86_64                                                      29/88 
+  Verifying        : liburing-2.5-1.el9.x86_64                                                            30/88 
+  Verifying        : python3-cepces-0.3.8-4.el9.noarch                                                    31/88 
+  Verifying        : python3-gssapi-1.6.9-5.el9.x86_64                                                    32/88 
+  Verifying        : python3-requests-gssapi-1.2.3-3.el9.noarch                                           33/88 
+  Verifying        : samba-client-4.21.2-3.el9.x86_64                                                     34/88 
+  Verifying        : samba-gpupdate-4.21.2-3.el9.x86_64                                                   35/88 
+  Verifying        : samba-krb5-printing-4.21.2-3.el9.x86_64                                              36/88 
+  Verifying        : samba-vfs-iouring-4.21.2-3.el9.x86_64                                                37/88 
+  Verifying        : samba-winbind-clients-4.21.2-3.el9.x86_64                                            38/88 
+  Verifying        : samba-winbind-krb5-locator-4.21.2-3.el9.x86_64                                       39/88 
+  Verifying        : samba-winexe-4.21.2-3.el9.x86_64                                                     40/88 
+  Verifying        : libipa_hbac-2.9.5-5.el9.x86_64                                                       41/88 
+  Verifying        : libipa_hbac-2.9.5-4.el9.x86_64                                                       42/88 
+  Verifying        : libldb-4.21.2-3.el9.x86_64                                                           43/88 
+  Verifying        : libldb-2.9.1-2.el9.x86_64                                                            44/88 
+  Verifying        : libsmbclient-4.21.2-3.el9.x86_64                                                     45/88 
+  Verifying        : libsmbclient-4.20.2-2.el9.x86_64                                                     46/88 
+  Verifying        : libsss_certmap-2.9.5-5.el9.x86_64                                                    47/88 
+  Verifying        : libsss_certmap-2.9.5-4.el9.x86_64                                                    48/88 
+  Verifying        : libsss_idmap-2.9.5-5.el9.x86_64                                                      49/88 
+  Verifying        : libsss_idmap-2.9.5-4.el9.x86_64                                                      50/88 
+  Verifying        : libsss_nss_idmap-2.9.5-5.el9.x86_64                                                  51/88 
+  Verifying        : libsss_nss_idmap-2.9.5-4.el9.x86_64                                                  52/88 
+  Verifying        : libsss_sudo-2.9.5-5.el9.x86_64                                                       53/88 
+  Verifying        : libsss_sudo-2.9.5-4.el9.x86_64                                                       54/88 
+  Verifying        : libtdb-1.4.12-1.el9.x86_64                                                           55/88 
+  Verifying        : libtdb-1.4.10-1.el9.x86_64                                                           56/88 
+  Verifying        : libwbclient-4.21.2-3.el9.x86_64                                                      57/88 
+  Verifying        : libwbclient-4.20.2-2.el9.x86_64                                                      58/88 
+  Verifying        : samba-client-libs-4.21.2-3.el9.x86_64                                                59/88 
+  Verifying        : samba-client-libs-4.20.2-2.el9.x86_64                                                60/88 
+  Verifying        : samba-common-4.21.2-3.el9.noarch                                                     61/88 
+  Verifying        : samba-common-4.20.2-2.el9.noarch                                                     62/88 
+  Verifying        : samba-common-libs-4.21.2-3.el9.x86_64                                                63/88 
+  Verifying        : samba-common-libs-4.20.2-2.el9.x86_64                                                64/88 
+  Verifying        : sssd-2.9.5-5.el9.x86_64                                                              65/88 
+  Verifying        : sssd-2.9.5-4.el9.x86_64                                                              66/88 
+  Verifying        : sssd-ad-2.9.5-5.el9.x86_64                                                           67/88 
+  Verifying        : sssd-ad-2.9.5-4.el9.x86_64                                                           68/88 
+  Verifying        : sssd-client-2.9.5-5.el9.x86_64                                                       69/88 
+  Verifying        : sssd-client-2.9.5-4.el9.x86_64                                                       70/88 
+  Verifying        : sssd-common-2.9.5-5.el9.x86_64                                                       71/88 
+  Verifying        : sssd-common-2.9.5-4.el9.x86_64                                                       72/88 
+  Verifying        : sssd-common-pac-2.9.5-5.el9.x86_64                                                   73/88 
+  Verifying        : sssd-common-pac-2.9.5-4.el9.x86_64                                                   74/88 
+  Verifying        : sssd-ipa-2.9.5-5.el9.x86_64                                                          75/88 
+  Verifying        : sssd-ipa-2.9.5-4.el9.x86_64                                                          76/88 
+  Verifying        : sssd-kcm-2.9.5-5.el9.x86_64                                                          77/88 
+  Verifying        : sssd-kcm-2.9.5-4.el9.x86_64                                                          78/88 
+  Verifying        : sssd-krb5-2.9.5-5.el9.x86_64                                                         79/88 
+  Verifying        : sssd-krb5-2.9.5-4.el9.x86_64                                                         80/88 
+  Verifying        : sssd-krb5-common-2.9.5-5.el9.x86_64                                                  81/88 
+  Verifying        : sssd-krb5-common-2.9.5-4.el9.x86_64                                                  82/88 
+  Verifying        : sssd-ldap-2.9.5-5.el9.x86_64                                                         83/88 
+  Verifying        : sssd-ldap-2.9.5-4.el9.x86_64                                                         84/88 
+  Verifying        : sssd-nfs-idmap-2.9.5-5.el9.x86_64                                                    85/88 
+  Verifying        : sssd-nfs-idmap-2.9.5-4.el9.x86_64                                                    86/88 
+  Verifying        : sssd-proxy-2.9.5-5.el9.x86_64                                                        87/88 
+  Verifying        : sssd-proxy-2.9.5-4.el9.x86_64                                                        88/88 
+
+Upgraded:
+  libipa_hbac-2.9.5-5.el9.x86_64                        libldb-4.21.2-3.el9.x86_64                             
+  libsmbclient-4.21.2-3.el9.x86_64                      libsss_certmap-2.9.5-5.el9.x86_64                      
+  libsss_idmap-2.9.5-5.el9.x86_64                       libsss_nss_idmap-2.9.5-5.el9.x86_64                    
+  libsss_sudo-2.9.5-5.el9.x86_64                        libtdb-1.4.12-1.el9.x86_64                             
+  libwbclient-4.21.2-3.el9.x86_64                       samba-client-libs-4.21.2-3.el9.x86_64                  
+  samba-common-4.21.2-3.el9.noarch                      samba-common-libs-4.21.2-3.el9.x86_64                  
+  sssd-2.9.5-5.el9.x86_64                               sssd-ad-2.9.5-5.el9.x86_64                             
+  sssd-client-2.9.5-5.el9.x86_64                        sssd-common-2.9.5-5.el9.x86_64                         
+  sssd-common-pac-2.9.5-5.el9.x86_64                    sssd-ipa-2.9.5-5.el9.x86_64                            
+  sssd-kcm-2.9.5-5.el9.x86_64                           sssd-krb5-2.9.5-5.el9.x86_64                           
+  sssd-krb5-common-2.9.5-5.el9.x86_64                   sssd-ldap-2.9.5-5.el9.x86_64                           
+  sssd-nfs-idmap-2.9.5-5.el9.x86_64                     sssd-proxy-2.9.5-5.el9.x86_64                          
+Installed:
+  cepces-0.3.8-4.el9.noarch                            cepces-certmonger-0.3.8-4.el9.noarch                    
+  cepces-selinux-0.3.8-4.el9.noarch                    certmonger-0.79.17-2.el9.x86_64                         
+  dbus-tools-1:1.12.20-8.el9.x86_64                    libnetapi-4.21.2-3.el9.x86_64                           
+  liburing-2.5-1.el9.x86_64                            python3-cepces-0.3.8-4.el9.noarch                       
+  python3-cffi-1.14.5-5.el9.x86_64                     python3-cryptography-36.0.1-4.el9.x86_64                
+  python3-decorator-4.4.2-6.el9.noarch                 python3-dns-2.6.1-3.el9.noarch                          
+  python3-gssapi-1.6.9-5.el9.x86_64                    python3-ldb-4.21.2-3.el9.x86_64                         
+  python3-markdown-3.3.4-4.el9.noarch                  python3-ply-3.11-14.el9.noarch                          
+  python3-pycparser-2.20-6.el9.noarch                  python3-requests-gssapi-1.2.3-3.el9.noarch              
+  python3-samba-4.21.2-3.el9.x86_64                    python3-samba-dc-4.21.2-3.el9.x86_64                    
+  python3-talloc-2.4.2-1.el9.x86_64                    python3-tdb-1.4.12-1.el9.x86_64                         
+  python3-tevent-0.16.1-1.el9.x86_64                   samba-4.21.2-3.el9.x86_64                               
+  samba-client-4.21.2-3.el9.x86_64                     samba-common-tools-4.21.2-3.el9.x86_64                  
+  samba-dc-libs-4.21.2-3.el9.x86_64                    samba-dcerpc-4.21.2-3.el9.x86_64                        
+  samba-gpupdate-4.21.2-3.el9.x86_64                   samba-krb5-printing-4.21.2-3.el9.x86_64                 
+  samba-ldb-ldap-modules-4.21.2-3.el9.x86_64           samba-libs-4.21.2-3.el9.x86_64                          
+  samba-tools-4.21.2-3.el9.x86_64                      samba-usershares-4.21.2-3.el9.x86_64                    
+  samba-vfs-iouring-4.21.2-3.el9.x86_64                samba-winbind-4.21.2-3.el9.x86_64                       
+  samba-winbind-clients-4.21.2-3.el9.x86_64            samba-winbind-krb5-locator-4.21.2-3.el9.x86_64          
+  samba-winbind-modules-4.21.2-3.el9.x86_64            samba-winexe-4.21.2-3.el9.x86_64                        
+
+Complete!
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# #dnf install samba* -y
+[root@server999 /]# 
+[root@server999 /]# mkdir /samab_share
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# sestatus 
+SELinux status:                 enabled
+SELinuxfs mount:                /sys/fs/selinux
+SELinux root directory:         /etc/selinux
+Loaded policy name:             targeted
+Current mode:                   enforcing
+Mode from config file:          enforcing
+Policy MLS status:              enabled
+Policy deny_unknown status:     allowed
+Memory protection checking:     actual (secure)
+Max kernel policy version:      33
+[root@server999 /]# 
+[root@server999 /]# ls -lZ /samab_share/
+total 0
+[root@server999 /]# ls -ldZ /samab_share/
+drwxr-xr-x. 2 root root unconfined_u:object_r:default_t:s0 6 Dec 14 08:36 /samab_share/
+[root@server999 /]# 
+[root@server999 /]# semanage fcontext -a -t samba_share_t "/samab_sare(/.*)?"
+[root@server999 /]# res
+rescan-scsi-bus.sh  resize2fs           resizepart          restorecon_xattr    
+reset               resizecons          restorecon          
+[root@server999 /]# restorecon -vvF /samab_share/
+Relabeled /samab_share from unconfined_u:object_r:default_t:s0 to system_u:object_r:default_t:s0
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# ls -ldZ samab_share/
+drwxr-xr-x. 2 root root system_u:object_r:default_t:s0 6 Dec 14 08:36 samab_share/
+[root@server999 /]# 
+[root@server999 /]# ls -lZ
+total 28
+dr-xr-xr-x.   2 root root    system_u:object_r:mnt_t:s0            6 Jun 25 07:23 afs
+lrwxrwxrwx.   1 root root    system_u:object_r:bin_t:s0            7 Jun 25 07:23 bin -> usr/bin
+dr-xr-xr-x.   5 root root    system_u:object_r:boot_t:s0        4096 Nov  9 17:44 boot
+drwxr-xr-x.  20 root root    system_u:object_r:device_t:s0      3260 Dec 14 07:35 dev
+drwxr-xr-x. 123 root root    system_u:object_r:etc_t:s0         8192 Dec 14 08:35 etc
+drwxr-xr-x.   7 root root    system_u:object_r:home_root_t:s0     57 Nov 23 11:24 home
+lrwxrwxrwx.   1 root root    system_u:object_r:lib_t:s0            7 Jun 25 07:23 lib -> usr/lib
+lrwxrwxrwx.   1 root root    system_u:object_r:lib_t:s0            9 Jun 25 07:23 lib64 -> usr/lib64
+drwxr-xr-x.   2 root root    system_u:object_r:mnt_t:s0            6 Jun 25 07:23 media
+drwxr-xr-x.   2 root root    system_u:object_r:mnt_t:s0            6 Jun 25 07:23 mnt
+drwxr-xr-x.   2 root root    unconfined_u:object_r:default_t:s0    6 Nov 30 08:46 mydrive
+drwxrwsr--.   2 root project unconfined_u:object_r:default_t:s0  150 Nov 30 08:09 myteam
+drwxr-xr-x.   2 root root    system_u:object_r:usr_t:s0            6 Jun 25 07:23 opt
+dr-xr-xr-x. 204 root root    system_u:object_r:proc_t:s0           0 Dec 14 07:35 proc
+dr-xr-x---.   6 root root    system_u:object_r:admin_home_t:s0  4096 Dec 14 08:22 root
+drwxr-xr-x.  39 root root    system_u:object_r:var_run_t:s0     1200 Dec 14 08:35 run
+drwxr-xr-x.   2 root root    system_u:object_r:default_t:s0        6 Dec 14 08:36 samab_share
+lrwxrwxrwx.   1 root root    system_u:object_r:bin_t:s0            8 Jun 25 07:23 sbin -> usr/sbin
+drwxrwxrwx.   2 root root    unconfined_u:object_r:default_t:s0   35 Dec 14 08:27 share
+drwxr-xr-x.   2 root root    system_u:object_r:var_t:s0            6 Jun 25 07:23 srv
+dr-xr-xr-x.  13 root root    system_u:object_r:sysfs_t:s0          0 Dec 14 07:35 sys
+drwxr-xr-x.   2 root root    unconfined_u:object_r:default_t:s0    6 Nov  9 17:48 test
+drwxrwxrwt.  11 root root    system_u:object_r:tmp_t:s0         4096 Dec 14 08:36 tmp
+drwxr-xr-x.  12 root root    system_u:object_r:usr_t:s0          144 Nov  9 16:28 usr
+drwxr-xr-x.  21 root root    system_u:object_r:var_t:s0         4096 Nov  9 17:50 var
+drwxrwxrwx.   2 root root    unconfined_u:object_r:default_t:s0   19 Nov 30 13:19 xyz
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# ls -lZ /var/www/html/
+total 8
+-rw-r--r--. 1 root root system_u:object_r:httpd_sys_content_t:s0     33 Dec  7 08:49 index.html
+-rw-r--r--. 1 root root system_u:object_r:httpd_sys_content_t:s0     34 Dec  7 08:45 index.html_bkp2
+drwxr-xr-x. 2 root root unconfined_u:object_r:httpd_sys_content_t:s0  6 Nov  9 17:51 repo
+[root@server999 /]# 
+[root@server999 /]# restorecon -vvF /samab_share/
+[root@server999 /]# 
+[root@server999 /]# #semanage fcontext -a -t samba_share_t "/samab_sare(/.*)?"
+[root@server999 /]# 
+[root@server999 /]# sestatus 
+SELinux status:                 enabled
+SELinuxfs mount:                /sys/fs/selinux
+SELinux root directory:         /etc/selinux
+Loaded policy name:             targeted
+Current mode:                   enforcing
+Mode from config file:          enforcing
+Policy MLS status:              enabled
+Policy deny_unknown status:     allowed
+Memory protection checking:     actual (secure)
+Max kernel policy version:      33
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# useradd -s /sbin/nologin chinni
+[root@server999 /]# 
+[root@server999 /]# smbpasswd -a chinni
+New SMB password:
+Retype new SMB password:
+Added user chinni.
+[root@server999 /]# 
+[root@server999 /]# chmod  777 /samab_share/
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# vi /etc/samba/smb.conf
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# testparm 
+Load smb config files from /etc/samba/smb.conf
+Loaded services file OK.
+Weak crypto is allowed by GnuTLS (e.g. NTLM as a compatibility fallback)
+
+Server role: ROLE_STANDALONE
+
+Press enter to see a dump of your service definitions
+
+# Global parameters
+[global]
+	printcap name = cups
+	security = USER
+	workgroup = SAMBA
+	idmap config * : backend = tdb
+	cups options = raw
+
+
+[homes]
+	browseable = No
+	comment = Home Directories
+	inherit acls = Yes
+	read only = No
+	valid users = %S %D%w%S
+
+
+[printers]
+	browseable = No
+	comment = All Printers
+	create mask = 0600
+	path = /var/tmp
+	printable = Yes
+
+
+[print$]
+	comment = Printer Drivers
+	create mask = 0664
+	directory mask = 0775
+	force group = @printadmin
+	path = /var/lib/samba/drivers
+	write list = @printadmin root
+
+
+[samab]
+	comment = this demo of samaba
+	hosts allow = 192.168.12.
+	path = /samab_share
+	read only = No
+	valid users = chinni
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# systemctl status smb nmb
+○ smb.service - Samba SMB Daemon
+     Loaded: loaded (/usr/lib/systemd/system/smb.service; disabled; preset: disabled)
+     Active: inactive (dead)
+       Docs: man:smbd(8)
+             man:samba(7)
+             man:smb.conf(5)
+
+○ nmb.service - Samba NMB Daemon
+     Loaded: loaded (/usr/lib/systemd/system/nmb.service; disabled; preset: disabled)
+     Active: inactive (dead)
+       Docs: man:nmbd(8)
+             man:samba(7)
+             man:smb.conf(5)
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# systemctl status firewalld
+○ firewalld.service - firewalld - dynamic firewall daemon
+     Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; preset: enabled)
+     Active: inactive (dead)
+       Docs: man:firewalld(1)
+[root@server999 /]# systemctl status firewalld
+○ firewalld.service - firewalld - dynamic firewall daemon
+     Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; preset: enabled)
+     Active: inactive (dead)
+       Docs: man:firewalld(1)
+[root@server999 /]# 
+[root@server999 /]# firewall-cmd --permanent --add-service=samba
+FirewallD is not running
+[root@server999 /]# firewall-cmd --reload
+FirewallD is not running
+[root@server999 /]# 
+[root@server999 /]# firewall-cmd --permanent --add-service=https^C
+[root@server999 /]# 
+[root@server999 /]# systemctl status firewalld
+○ firewalld.service - firewalld - dynamic firewall daemon
+     Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; preset: enabled)
+     Active: inactive (dead)
+       Docs: man:firewalld(1)
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# systemctl status smb nmb
+○ smb.service - Samba SMB Daemon
+     Loaded: loaded (/usr/lib/systemd/system/smb.service; disabled; preset: disabled)
+     Active: inactive (dead)
+       Docs: man:smbd(8)
+             man:samba(7)
+             man:smb.conf(5)
+
+○ nmb.service - Samba NMB Daemon
+     Loaded: loaded (/usr/lib/systemd/system/nmb.service; disabled; preset: disabled)
+     Active: inactive (dead)
+       Docs: man:nmbd(8)
+             man:samba(7)
+             man:smb.conf(5)
+[root@server999 /]# systemctl start smb nmb
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# systemctl status smb nmb
+● smb.service - Samba SMB Daemon
+     Loaded: loaded (/usr/lib/systemd/system/smb.service; disabled; preset: disabled)
+     Active: active (running) since Sat 2024-12-14 08:50:05 PST; 6s ago
+       Docs: man:smbd(8)
+             man:samba(7)
+             man:smb.conf(5)
+   Main PID: 4694 (smbd)
+     Status: "smbd: ready to serve connections..."
+      Tasks: 3 (limit: 11065)
+     Memory: 8.0M
+        CPU: 112ms
+     CGroup: /system.slice/smb.service
+             ├─4694 /usr/sbin/smbd --foreground --no-process-group
+             ├─4697 /usr/sbin/smbd --foreground --no-process-group
+             └─4698 /usr/sbin/smbd --foreground --no-process-group
+
+Dec 14 08:50:05 server999.example.com systemd[1]: Starting Samba SMB Daemon...
+Dec 14 08:50:05 server999.example.com smbd[4694]: [2024/12/14 08:50:05.773612,  0] ../../source3/smbd/server.c:>
+Dec 14 08:50:05 server999.example.com smbd[4694]:   smbd version 4.21.2 started.
+Dec 14 08:50:05 server999.example.com smbd[4694]:   Copyright Andrew Tridgell and the Samba Team 1992-2024
+Dec 14 08:50:05 server999.example.com systemd[1]: Started Samba SMB Daemon.
+
+● nmb.service - Samba NMB Daemon
+     Loaded: loaded (/usr/lib/systemd/system/nmb.service; disabled; preset: disabled)
+     Active: active (running) since Sat 2024-12-14 08:50:05 PST; 6s ago
+       Docs: man:nmbd(8)
+             man:samba(7)
+[root@server999 /]# 
+[root@server999 /]# 
+[root@server999 /]# cat /etc/samba/smb.conf
+# See smb.conf.example for a more detailed config file or
+# read the smb.conf manpage.
+# Run 'testparm' to verify the config is correct after
+# you modified it.
+#
+# Note:
+# SMB1 is disabled by default. This means clients without support for SMB2 or
+# SMB3 are no longer able to connect to smbd (by default).
+
+[global]
+	workgroup = SAMBA
+	security = user
+
+	passdb backend = tdbsam
+
+	printing = cups
+	printcap name = cups
+	load printers = yes
+	cups options = raw
+
+[homes]
+	comment = Home Directories
+	valid users = %S, %D%w%S
+	browseable = No
+	read only = No
+	inherit acls = Yes
+
+[printers]
+	comment = All Printers
+	path = /var/tmp
+	printable = Yes
+	create mask = 0600
+	browseable = No
+
+[print$]
+	comment = Printer Drivers
+	path = /var/lib/samba/drivers
+	write list = @printadmin root
+	force group = @printadmin
+	create mask = 0664
+	directory mask = 0775
+[samab]
+        comment = this demo of samaba
+        path = /samab_share
+        browseable = yes
+        writable = yes
+        valid users = chinni
+        hosts allow = 192.168.12.
+
+
+
+#####clientside####
+192.168.12.179:/share     /nfs_share  nfs defaults,vers=4.2 0 0
+//192.168.12.179/samab     /mnt   cifs  defaults,credentials=/root/user.txt   0 0
+[root@client ~]# 
+[root@client ~]# 
+[root@client ~]# 
+[root@client ~]# 
+[root@client ~]# df -h
+Filesystem                Size  Used Avail Use% Mounted on
+devtmpfs                  4.0M     0  4.0M   0% /dev
+tmpfs                     887M     0  887M   0% /dev/shm
+tmpfs                     355M  5.1M  350M   2% /run
+/dev/mapper/cs-root       9.2G  4.3G  4.9G  47% /
+/dev/sda1                 960M  308M  653M  33% /boot
+/dev/mapper/vgroup1-lvm1  669M   14K  643M   1% /data
+192.168.12.179:/share      23G   14G  8.1G  64% /nfs_share
+tmpfs                     178M     0  178M   0% /run/user/0
+//192.168.12.179/samab     23G   14G  8.1G  64% /mnt
+[root@client ~]# cat /etc/fstab 
+
+#
+# /etc/fstab
+# Created by anaconda on Sun Nov 10 17:54:03 2024
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk/'.
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.
+#
+# After editing this file, run 'systemctl daemon-reload' to update systemd
+# units generated from this file.
+#
+/dev/mapper/cs-root     /                       xfs     defaults        0 0
+UUID=b489caf5-29fa-4d7a-9238-ff9c139a5127 /boot                   xfs     defaults        0 0
+/dev/mapper/cs-swap     none                    swap    defaults        0 0
+/dev/mapper/vgroup1-lvm1  /data      ext4   defaults 0 0
+192.168.12.179:/share     /nfs_share  nfs defaults,vers=4.2 0 0
+//192.168.12.179/samab     /mnt   cifs  defaults,credentials=/root/user.txt   0 0
+[root@client ~]# 
