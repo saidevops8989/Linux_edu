@@ -48,7 +48,7 @@ enabled=1
 name=CentOS Stream $releasever - BaseOS
 baseurl=http://192.168.12.179/repo/AppStream
 enabled=1
-########################
+#######################
 
 
 
