@@ -1,5 +1,5 @@
 226  gzip  messages-20241123 
-  227  ls
+
   228  cd
   229  rpm -qa | grep chrony
   230  systemctl status chronyd
