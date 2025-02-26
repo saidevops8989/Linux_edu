@@ -1,0 +1,1 @@
+ echo -e "date\npwd" | xargs -I{} -P 0 bash -c "{}"
