@@ -1,4 +1,5 @@
- 
+
+
 sai@server123~$ systemctl get-default
 multi-user.target
 sai@server123~$ 
