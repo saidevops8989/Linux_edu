@@ -1,4 +1,4 @@
-sync before pr
+sync before pr merge
 root@server999 ~]# history 
     1  ip a
     2  df -h
